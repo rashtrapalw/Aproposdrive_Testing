@@ -1,5 +1,6 @@
 "use client";
 
+import type { ReactNode } from "react";
 import { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence, useInView, useSpring, useMotionValue } from "motion/react";
 import {
@@ -7,6 +8,7 @@ import {
   CheckCircle, Leaf, TrendingUp, ChevronDown,
   Activity, Thermometer, Wifi, Wind, Weight, ArrowRight,
 } from "lucide-react";
+import type { LucideIcon } from "lucide-react";
 import { ImageWithFallback } from "../../src/app/components/figma/ImageWithFallback";
 
 // ─── ORBITAL CANVAS CONSTANTS ─────────────────────────────────────────────────
@@ -19,6 +21,36 @@ const R   = 230;          // orbit radius (center → card center)
 const CW  = 112;          // card width
 const CH  = 88;           // card height
 const IMG = 400;          // product image size
+
+type Spec = {
+  icon: LucideIcon;
+  label: string;
+  value: string;
+  color: string;
+  angle: number;
+};
+
+type Variant = {
+  name: string;
+  cols: string[][];
+};
+
+type Product = {
+  id: number;
+  num: string;
+  tag: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  image: string;
+  accent: string;
+  features: { icon: LucideIcon; text: string }[];
+  specs: Spec[];
+  variants: Variant[];
+  tableHeaders: string[];
+  tableRows: string[][];
+  platforms?: string[];
+};
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
 const PRODUCTS = [
@@ -98,13 +130,14 @@ const PRODUCTS = [
 // ─── ORBITAL SHOWCASE ─────────────────────────────────────────────────────────
 // Fixed C×C canvas. Image is IMG×IMG centered. Cards orbit at radius R.
 // Canvas is CSS-scaled on smaller screens via the wrapper.
-function OrbitalShowcase({ product, idx }) {
+function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
   const floatY = useMotionValue(0);
   const springY = useSpring(floatY, { stiffness: 45, damping: 14 });
 
   useEffect(() => {
-    let raf, t0 = null;
-    const loop = (ts) => {
+    let raf: number;
+    let t0: number | null = null;
+    const loop = (ts: number) => {
       if (!t0) t0 = ts;
       floatY.set(Math.sin(((ts - t0) / 1000) * 0.5 + idx) * 10);
       raf = requestAnimationFrame(loop);
@@ -217,7 +250,7 @@ function OrbitalShowcase({ product, idx }) {
 }
 
 // ─── ORBITAL CARD ─────────────────────────────────────────────────────────────
-function OrbCard({ spec, Icon, left, top, delay }) {
+function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIcon; left: number; top: number; delay: number }) {
   const [hov, setHov] = useState(false);
   return (
     <motion.div
@@ -273,7 +306,7 @@ function OrbCard({ spec, Icon, left, top, delay }) {
 }
 
 // ─── FEATURE PILL ─────────────────────────────────────────────────────────────
-function FeaturePill({ icon: Icon, text, color, delay, mobile = false }) {
+function FeaturePill({ icon: Icon, text, color, delay, mobile = false }: { icon: LucideIcon; text: string; color: string; delay: number; mobile?: boolean }) {
   const [hov, setHov] = useState(false);
   return (
     <motion.div
@@ -311,7 +344,7 @@ function FeaturePill({ icon: Icon, text, color, delay, mobile = false }) {
 }
 
 // ─── VARIANT CARD ─────────────────────────────────────────────────────────────
-function VariantCard({ variant, accent, delay }) {
+function VariantCard({ variant, accent, delay }: { variant: Variant; accent: string; delay: number }) {
   const [hov, setHov] = useState(false);
   return (
     <motion.div
@@ -347,7 +380,7 @@ function VariantCard({ variant, accent, delay }) {
 }
 
 // ─── SPECS ACCORDION ──────────────────────────────────────────────────────────
-function SpecsAccordion({ headers, rows, accent, delay }) {
+function SpecsAccordion({ headers, rows, accent, delay }: { headers: string[]; rows: string[][]; accent: string; delay: number }) {
   const [open, setOpen] = useState(false);
   return (
     <motion.div
@@ -424,7 +457,7 @@ function useWindowWidth() {
 }
 
 // ─── PRODUCT BLOCK ─────────────────────────────────────────────────────────────
-function ProductBlock({ product, index }) {
+function ProductBlock({ product, index }: { product: Product; index: number }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, margin: "-6% 0px" });
   const width = useWindowWidth();
@@ -593,7 +626,7 @@ function ProductBlock({ product, index }) {
 // ─── SCALE BOX ────────────────────────────────────────────────────────────────
 // Measures available width, scales the fixed canvas down to fit.
 // No breakpoints needed — purely math-based.
-function ScaleBox({ canvasSize, children }) {
+function ScaleBox({ canvasSize, children }: { canvasSize: number; children: ReactNode }) {
   const wrapRef = useRef(null);
   const [scale, setScale] = useState(1);
 

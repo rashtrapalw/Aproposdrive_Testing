@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'motion/react'
 import { TrendingUp, Users, Target, DollarSign, ArrowRight, BarChart2, Globe, Zap } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import {
   AreaChart, Area, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer,
 } from 'recharts'
@@ -64,8 +65,28 @@ const highlights = [
   { icon: DollarSign,text: '$50M Series A — proven investor confidence', accent: '#00E5FF' },
 ]
 
+type GrowthTooltipPayloadItem = {
+  name?: string
+  value?: number | string
+}
+
+type Metric = {
+  icon: LucideIcon
+  label: string
+  value: string
+  subtitle: string
+  accent: string
+  image: string
+}
+
+type Highlight = {
+  icon: LucideIcon
+  text: string
+  accent: string
+}
+
 // ─── Custom Tooltip ───────────────────────────────────────────────────────────
-function CustomTooltip({ active, payload, label }) {
+function CustomTooltip({ active, payload, label }: { active?: boolean; payload?: GrowthTooltipPayloadItem[]; label?: string }) {
   if (!active || !payload?.length) return null
   return (
     <div style={{
@@ -76,7 +97,7 @@ function CustomTooltip({ active, payload, label }) {
       backdropFilter: 'blur(12px)',
     }}>
       <p style={{ color: '#00C853', fontSize: 11, fontWeight: 700, fontFamily: "'DM Sans',sans-serif", marginBottom: 4 }}>{label}</p>
-      {payload.map(p => (
+      {payload.map((p: GrowthTooltipPayloadItem) => (
         <p key={p.name} style={{ color: 'rgba(255,255,255,0.7)', fontSize: 11, fontFamily: "'DM Sans',sans-serif" }}>
           {p.name === 'revenue' ? `Revenue: ₹${p.value}Cr` : `Units: ${p.value}`}
         </p>
@@ -86,7 +107,7 @@ function CustomTooltip({ active, payload, label }) {
 }
 
 // ─── Metric Card (rectangle with photo) ──────────────────────────────────────
-function MetricCard({ metric, index }) {
+function MetricCard({ metric, index }: { metric: Metric; index: number }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: false, margin: '-8% 0px' })
   const [hov, setHov] = useState(false)
@@ -220,7 +241,7 @@ function MetricCard({ metric, index }) {
 }
 
 // ─── Highlight Row ────────────────────────────────────────────────────────────
-function HighlightRow({ item, index, inView }) {
+function HighlightRow({ item, index, inView }: { item: Highlight; index: number; inView: boolean }) {
   const [hov, setHov] = useState(false)
   const Icon = item.icon
   return (

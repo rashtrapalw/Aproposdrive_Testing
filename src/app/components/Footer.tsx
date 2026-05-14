@@ -3,6 +3,7 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 import { Zap, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowRight } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
 const footerLinks = {
   Product: ['VoltDrive X1', 'Specifications', 'Test Drive', 'Compare'],
@@ -28,7 +29,7 @@ const contactItems = [
 ]
 
 // ─── Link item with animated arrow ───────────────────────────────────────────
-function FooterLink({ text, delay }) {
+function FooterLink({ text, delay }: { text: string; delay: number }) {
   return (
     <motion.li
       initial={{ opacity: 0, x: -8 }}
@@ -54,7 +55,7 @@ function FooterLink({ text, delay }) {
 }
 
 // ─── Social icon button ───────────────────────────────────────────────────────
-function SocialBtn({ icon: Icon, href, label, delay }) {
+function SocialBtn({ icon: Icon, href, label, delay }: { icon: LucideIcon; href: string; label: string; delay: number }) {
   return (
     <motion.a
       href={href}

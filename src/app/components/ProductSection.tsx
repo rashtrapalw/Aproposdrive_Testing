@@ -3,8 +3,21 @@
 import Link from 'next/link'
 import { motion, useInView } from 'motion/react'
 import { ArrowRight, Zap, Cpu } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { useRef, useState } from 'react'
 import { ImageWithFallback } from './figma/ImageWithFallback'
+
+type Product = {
+  id: number
+  tag: string
+  title: string
+  description: string
+  image: string
+  href: string
+  accent: string
+  icon: LucideIcon
+  stats: { label: string; value: string }[]
+}
 
 const products = [
   {
@@ -42,7 +55,7 @@ const products = [
 ]
 
 // ── Single Product Card ───────────────────────────────────────────────────────
-function ProductCard({ product, index }) {
+function ProductCard({ product, index }: { product: Product; index: number }) {
   const ref = useRef(null)
   const isInView = useInView(ref, { once: false, margin: '-8% 0px' })
   const [hovered, setHovered] = useState(false)
@@ -168,7 +181,7 @@ function ProductCard({ product, index }) {
 
               {/* Stats row */}
               <div className="grid grid-cols-3 gap-2 mb-5">
-                {product.stats.map((stat) => (
+                {product.stats.map((stat: { label: string; value: string }) => (
                   <div
                     key={stat.label}
                     className="flex flex-col items-center py-2.5 rounded-xl transition-colors duration-200"

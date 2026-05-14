@@ -1,5 +1,6 @@
 'use client'
 
+import type { CSSProperties } from 'react'
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'motion/react'
 import { Mail, Phone, MapPin, Send, CheckCircle, ArrowUpRight, Zap, MessageSquare } from 'lucide-react'
@@ -29,7 +30,7 @@ function Input({ accent = '#00C853', as = 'input', ...props }) {
       transition: 'all 0.18s ease',
       padding: as === 'textarea' ? '9px 12px' : '0 12px',
       height: as === 'textarea' ? 'auto' : 38,
-      resize: as === 'textarea' ? 'none' : undefined,
+      resize: (as === 'textarea' ? 'none' : undefined) as CSSProperties['resize'],
     },
   }
   return as === 'textarea'

@@ -1,8 +1,10 @@
 ﻿'use client'
 
+import type { MouseEvent } from 'react'
 import { useRef, useState, useEffect } from 'react'
 import { motion, useInView, useMotionValue, useSpring } from 'motion/react'
 import { DollarSign, Wrench, Leaf, Zap, Shield, TrendingUp, ArrowRight } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
 const benefits = [
@@ -62,6 +64,24 @@ const bigStats = [
   { val: '100%', lbl: 'Zero Emissions' },
 ]
 
+type Benefit = {
+  icon: LucideIcon
+  title: string
+  description: string
+  stat: string
+  statLabel: string
+  accent: string
+}
+
+type Comparison = {
+  label: string
+  ev: string
+  ice: string
+  savings: string
+  barW: string
+  icon: LucideIcon
+}
+
 // ─── useWindowWidth ────────────────────────────────────────────────────────────
 function useWindowWidth() {
   const [w, setW] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
@@ -74,7 +94,7 @@ function useWindowWidth() {
 }
 
 // ─── Benefit Card ─────────────────────────────────────────────────────────────
-function BenefitCard({ benefit, index }) {
+function BenefitCard({ benefit, index }: { benefit: Benefit; index: number }) {
   const Icon = benefit.icon
   const ref = useRef(null)
   const inView = useInView(ref, { once: false, margin: '-8% 0px' })
@@ -84,7 +104,7 @@ function BenefitCard({ benefit, index }) {
   const rotX = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 })
   const rotY = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 })
 
-  const handleMouse = (e) => {
+  const handleMouse = (e: MouseEvent<HTMLDivElement>) => {
     const r = e.currentTarget.getBoundingClientRect()
     const x = (e.clientX - r.left) / r.width - 0.5
     const y = (e.clientY - r.top)  / r.height - 0.5
@@ -102,7 +122,6 @@ function BenefitCard({ benefit, index }) {
       style={{ perspective: 900 }}
     >
       <motion.div
-        style={{ rotateX: rotX, rotateY: rotY, transformStyle: 'preserve-3d' }}
         onMouseMove={handleMouse}
         onMouseEnter={() => setHov(true)}
         onMouseLeave={() => { setHov(false); resetMouse() }}
@@ -221,7 +240,7 @@ function BenefitCard({ benefit, index }) {
 }
 
 // ─── Comparison Row ───────────────────────────────────────────────────────────
-function ComparisonRow({ item, index }) {
+function ComparisonRow({ item, index }: { item: Comparison; index: number }) {
   const Icon = item.icon
   const ref = useRef(null)
   const inView = useInView(ref, { once: false, margin: '-5% 0px' })

@@ -2,10 +2,19 @@
 
 import { motion, useScroll, useSpring, useInView } from 'motion/react';
 import { Calendar, MapPin, Award, Users, Zap, Play } from 'lucide-react';
+import type { LucideIcon } from 'lucide-react';
 import { useRef, useState } from 'react';
 
+type Milestone = {
+  year: string;
+  title: string;
+  description: string;
+  icon: LucideIcon;
+  stats: string;
+};
+
 // ── Milestone Card ────────────────────────────────────────────────────────────
-function MilestoneCard({ milestone, index }) {
+function MilestoneCard({ milestone, index }: { milestone: Milestone; index: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: false, margin: '-10% 0px' });
   const isEven = index % 2 === 0;

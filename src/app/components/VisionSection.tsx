@@ -3,6 +3,7 @@
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'motion/react'
 import { Eye, Lightbulb, TrendingUp, Sparkles, ArrowRight } from 'lucide-react'
+import type { LucideIcon } from 'lucide-react'
 import { ImageWithFallback } from './figma/ImageWithFallback'
 
 // ─── Data ─────────────────────────────────────────────────────────────────────
@@ -42,8 +43,24 @@ const stats = [
   { value: '10K+', label: 'Charging Stations',      accent: '#00C853' },
 ]
 
+type VisionCardData = {
+  icon: LucideIcon
+  tag: string
+  title: string
+  description: string
+  image: string
+  accent: string
+  accent2: string
+}
+
+type VisionStat = {
+  value: string
+  label: string
+  accent: string
+}
+
 // ─── Vision Card ──────────────────────────────────────────────────────────────
-function VisionCard({ card, index }) {
+function VisionCard({ card, index }: { card: VisionCardData; index: number }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: false, margin: '-8% 0px' })
   const [hov, setHov] = useState(false)
@@ -187,7 +204,7 @@ function VisionCard({ card, index }) {
 }
 
 // ─── Stat Card ────────────────────────────────────────────────────────────────
-function StatCard({ stat, index, inView }) {
+function StatCard({ stat, index, inView }: { stat: VisionStat; index: number; inView: boolean }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}

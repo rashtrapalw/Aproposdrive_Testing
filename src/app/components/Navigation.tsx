@@ -145,7 +145,7 @@ const navItems = [
   { name: 'Blogs',    href: '/vision'  },
   { name: 'About Us', href: '/journey' },
   { name: 'Contact',  href: '/contact' },
-  { name: 'FAQ',      href: '/faq'     },
+  { name: 'Product 2',      href: '/faq'     },
 ]
 
 export function Navigation() {

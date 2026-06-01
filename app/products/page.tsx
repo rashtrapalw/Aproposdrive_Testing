@@ -581,47 +581,211 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
   }
 
   // ── DESKTOP LAYOUT (≥ 900px): 3-column flex, unchanged ──
-  const sideW = isTablet ? 220 : 260;
-  return (
-    <div ref={ref} style={{ marginBottom: 80 }}>
-      {LabelRow}
+//   const sideW = isTablet ? 220 : 260;
+//   return (
+//     <div ref={ref} style={{ marginBottom: 80 }}>
+//       {LabelRow}
 
-      <div style={{ display: "flex", gap: isTablet ? 16 : 24, alignItems: "center", minWidth: 0 }}>
+//       <div style={{ display: "flex", gap: isTablet ? 16 : 24, alignItems: "center", minWidth: 0 }}>
 
-        {/* LEFT */}
-        <motion.div
-          initial={{ opacity: 0, x: -24 }} animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -24 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          style={{ width: sideW, flexShrink: 0, display: "flex", flexDirection: "column", gap: 10 }}
-        >
-          {TitleBlock(isTablet ? 16 : 18)}
-          {FeaturesList}
-          {PlatformsBlock}
-        </motion.div>
+//         {/* LEFT */}
+//         <motion.div
+//           initial={{ opacity: 0, x: -24 }} animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: -24 }}
+//           transition={{ duration: 0.5, delay: 0.05 }}
+//           style={{ width: sideW, flexShrink: 0, display: "flex", flexDirection: "column", gap: 10 }}
+//         >
+//           {TitleBlock(isTablet ? 16 : 18)}
+//           {FeaturesList}
+//           {PlatformsBlock}
+//         </motion.div>
 
-        {/* CENTER */}
-        <motion.div
-          initial={{ opacity: 0, scale: 0.9 }} animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-          transition={{ duration: 0.6, delay: 0.08 }}
-          style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", justifyContent: "center" }}
-        >
-          <ScaleBox canvasSize={C}>
-            <OrbitalShowcase product={product} idx={index} />
-          </ScaleBox>
-        </motion.div>
+//         {/* CENTER */}
+//         <motion.div
+//           initial={{ opacity: 0, scale: 0.9 }} animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+//           transition={{ duration: 0.6, delay: 0.08 }}
+//           style={{ flex: 1, minWidth: 0, display: "flex", alignItems: "center", justifyContent: "center" }}
+//         >
+//           <ScaleBox canvasSize={C}>
+//             <OrbitalShowcase product={product} idx={index} />
+//           </ScaleBox>
+//         </motion.div>
 
-        {/* RIGHT */}
-        <motion.div
-          initial={{ opacity: 0, x: 24 }} animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 24 }}
-          transition={{ duration: 0.5, delay: 0.05 }}
-          style={{ width: sideW, flexShrink: 0, display: "flex", flexDirection: "column", gap: 10 }}
-        >
-          {RightPanel}
-        </motion.div>
+//         {/* RIGHT */}
+//         <motion.div
+//           initial={{ opacity: 0, x: 24 }} animate={inView ? { opacity: 1, x: 0 } : { opacity: 0, x: 24 }}
+//           transition={{ duration: 0.5, delay: 0.05 }}
+//           style={{ width: sideW, flexShrink: 0, display: "flex", flexDirection: "column", gap: 10 }}
+//         >
+//           {RightPanel}
+//         </motion.div>
+//       </div>
+//     </div>
+//   );
+// }
+
+
+
+
+
+
+
+
+// ── DESKTOP LAYOUT (≥ 900px)
+// Zig-Zag Layout Version
+
+const reverseLayout = index % 2 === 1;
+
+const DetailsSection = (
+  <motion.div
+    initial={{ opacity: 0, x: reverseLayout ? 24 : -24 }}
+    animate={
+      inView
+        ? { opacity: 1, x: 0 }
+        : { opacity: 0, x: reverseLayout ? 24 : -24 }
+    }
+    transition={{ duration: 0.5, delay: 0.05 }}
+    style={{
+      width: isTablet ? 420 : 500,
+      flexShrink: 0,
+      display: "flex",
+      flexDirection: "column",
+      gap: 14,
+    }}
+  >
+    {TitleBlock(isTablet ? 16 : 18)}
+
+    {FeaturesList}
+
+    {PlatformsBlock}
+
+    {product.variants.map((v, i) => (
+      <VariantCard
+        key={v.name}
+        variant={v}
+        accent={product.accent}
+        delay={i * 0.08}
+      />
+    ))}
+
+    <SpecsAccordion
+      headers={product.tableHeaders}
+      rows={product.tableRows}
+      accent={product.accent}
+      delay={0.16}
+    />
+
+    <a
+      href="/products"
+      style={{
+        display: "inline-flex",
+        alignItems: "center",
+        gap: 7,
+        fontSize: 12,
+        fontWeight: 700,
+        color: product.accent,
+        fontFamily: "'DM Sans',sans-serif",
+        textDecoration: "none",
+        marginTop: 4,
+      }}
+    >
+      Explore Full Details
+
+      <div
+        style={{
+          width: 22,
+          height: 22,
+          borderRadius: "50%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          background: `${product.accent}14`,
+          border: `1px solid ${product.accent}30`,
+        }}
+      >
+        <ArrowRight style={{ width: 11, height: 11 }} />
       </div>
+    </a>
+  </motion.div>
+);
+
+const ImageSection = (
+  <motion.div
+    initial={{ opacity: 0, scale: 0.9 }}
+    animate={
+      inView
+        ? { opacity: 1, scale: 1 }
+        : { opacity: 0, scale: 0.9 }
+    }
+    transition={{ duration: 0.6, delay: 0.08 }}
+    style={{
+      flex: 1,
+      minWidth: 0,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+    }}
+  >
+    <ScaleBox canvasSize={C}>
+      <OrbitalShowcase product={product} idx={index} />
+    </ScaleBox>
+  </motion.div>
+);
+
+return (
+  <div ref={ref} style={{ marginBottom: 90 }}>
+    {LabelRow}
+
+    <div
+      style={{
+        display: "flex",
+        flexDirection: reverseLayout ? "row-reverse" : "row",
+        alignItems: "center",
+        justifyContent: "space-between",
+        gap: isTablet ? 28 : 48,
+        minWidth: 0,
+      }}
+    >
+      {DetailsSection}
+
+      {ImageSection}
     </div>
-  );
+  </div>
+);
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 // ─── SCALE BOX ────────────────────────────────────────────────────────────────
 // Measures available width, scales the fixed canvas down to fit.
@@ -700,7 +864,7 @@ export default function ProductsPage() {
               <motion.span style={{ width: 6, height: 6, borderRadius: "50%", background: "#00C853", boxShadow: "0 0 6px #00C853", display: "block" }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2, repeat: Infinity }} />
               <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.25em", color: "#00C853" }}>Our Solutions</span>
             </div>
-            <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 900, letterSpacing: "-1px", lineHeight: 1, marginBottom: 12, fontSize: "clamp(36px,5vw,64px)" }}>
+            <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 900, letterSpacing: "-1px", lineHeight: 1, marginBottom: 5,fontSize: "clamp(24px,3.5vw,40px)" }}>
               <span style={{ color: "#fff" }}>EV Powertrain & </span>
               <span style={{ background: "linear-gradient(90deg,#00C853,#00E5FF,#00C853)", backgroundSize: "200% 100%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", animation: "gradShift 4s linear infinite" }}>
                 Motor Controller
@@ -721,6 +885,7 @@ export default function ProductsPage() {
 
         </div>
       </section>
+      
     </>
   );
 }

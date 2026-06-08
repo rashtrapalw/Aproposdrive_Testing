@@ -1,8 +1,7 @@
 ﻿'use client'
 
 import { motion } from 'motion/react';
-import { ArrowRight, Sparkles } from 'lucide-react';
-import { ImageWithFallback } from './figma/ImageWithFallback';
+import { ArrowRight } from 'lucide-react';
 
 export function HeroSection() {
   return (
@@ -10,7 +9,7 @@ export function HeroSection() {
 
       {/* Background video overlay */}
 
-      <video autoPlay muted loop className="absolute inset-0 w-full h-full object-cover z-0">
+      <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
         <source src="/videos/video2.mp4" type="video/mp4" />
       </video>
 
@@ -54,12 +53,12 @@ export function HeroSection() {
               transition={{ delay: 0.3 }}
               className="audiowide-regular text-5xl md:text-6xl lg:text-7xl leading-tight"
             >
-              <span className="text-[#0A0F1C] text-white">Driving the </span>
+              <span className="text-white">Driving the </span>
               <span className="bg-gradient-to-r from-[#00C853] to-[#00E5FF] bg-clip-text text-transparent">
                 Future
               </span>
               <br />
-              <span className="text-[#0A0F1C] text-white">of  </span>
+              <span className="text-white">of </span>
               <span className="text-[#00C853]"> Green India</span>
             </motion.h1>
             {/* 

@@ -11,19 +11,6 @@ import {
 import type { LucideIcon } from "lucide-react";
 import { ImageWithFallback } from "../../src/app/components/figma/ImageWithFallback";
 
-// ─── LIGHT GREEN THEME TOKENS ──────────────────────────────────────────────────
-// Base bg:        #EDF7F1  (soft green-tinted white)
-// Surface:        rgba(255,255,255,0.75–0.92)
-// Grid:           rgba(0,200,83,0.06)
-// Accent green:   #00813A  (deep green — replaces #00C853 for text on light bg)
-// Accent teal:    #006B6B  (teal — replaces #00E5FF which is invisible on light)
-// Accent vivid:   #00C853  (kept for glows/icons only)
-// Accent vivid2:  #00897B  (kept for glows/icons only)
-// Text primary:   #0A2010
-// Text muted:     rgba(10,32,16,0.55)
-// Borders:        rgba(0,200,83,0.18)
-// ──────────────────────────────────────────────────────────────────────────────
-
 const C   = 560;
 const CX  = C / 2;
 const CY  = C / 2;
@@ -36,7 +23,7 @@ type Spec = {
   icon: LucideIcon;
   label: string;
   value: string;
-  color: string;   // original dark-theme color — kept for glows/icons
+  color: string;
   angle: number;
 };
 
@@ -53,9 +40,9 @@ type Product = {
   subtitle: string;
   description: string;
   image: string;
-  accent: string;        // vivid color for glows/icons
-  accentText: string;    // accessible text color on light bg
-  accentBorder: string;  // border/badge color
+  accent: string;
+  accentText: string;
+  accentBorder: string;
   features: { icon: LucideIcon; text: string }[];
   specs: Spec[];
   variants: Variant[];
@@ -64,7 +51,6 @@ type Product = {
   platforms?: string[];
 };
 
-// ─── DATA — accent colors updated for light theme ─────────────────────────────
 const PRODUCTS: Product[] = [
   {
     id: 1, num: "01", tag: "Powertrain",
@@ -72,8 +58,8 @@ const PRODUCTS: Product[] = [
     subtitle: "Compact. Rare-earth-free. Purpose-built.",
     description: "A single unified unit combining motor, gearbox, and controller — air-cooled, IP67-sealed, and engineered for electric scooters at scale.",
     image: "/photos/no-bg-controller.png",
-    accent: "#00C853",        // vivid green — for icons/glows
-    accentText: "#00813A",    // accessible deep green for text on light bg
+    accent: "#00C853",
+    accentText: "#00813A",
     accentBorder: "rgba(0,200,83,0.22)",
     features: [
       { icon: Leaf,       text: "Rare Earth-Free Motor Technology" },
@@ -109,8 +95,8 @@ const PRODUCTS: Product[] = [
     subtitle: "Precise. Thermal-stable. Intelligent.",
     description: "High-performance vector field-oriented motor controller for light EVs — with ride modes, hill hold, and real-time diagnostics built in.",
     image: "/photos/motor-removebg.png",
-    accent: "#00897B",        // vivid teal — for icons/glows
-    accentText: "#006B6B",    // accessible deep teal for text on light bg
+    accent: "#00897B",
+    accentText: "#006B6B",
     accentBorder: "rgba(0,137,123,0.22)",
     features: [
       { icon: Cpu,         text: "Vector Field-Oriented Control Algorithm" },
@@ -162,8 +148,6 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
 
   return (
     <div style={{ position: "relative", width: C, height: C, flexShrink: 0 }}>
-
-      {/* Orbit rings — tinted for light bg */}
       {[R * 2 + 20, R * 2 + 90].map((d, i) => (
         <motion.div key={d}
           style={{
@@ -179,7 +163,6 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         />
       ))}
 
-      {/* SVG: connector lines + tick dots */}
       <svg style={{ position: "absolute", inset: 0, width: C, height: C, overflow: "visible", pointerEvents: "none" }}>
         {product.specs.map((s) => {
           const rad = (s.angle * Math.PI) / 180;
@@ -202,9 +185,6 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         })}
       </svg>
 
-      {/* ── Multi-layer glow bg behind image ── */}
-
-      {/* Outer soft aurora — largest, most diffuse */}
       <div style={{
         position: "absolute",
         width: IMG + 200, height: IMG + 200,
@@ -215,18 +195,16 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         pointerEvents: "none",
       }} />
 
-      {/* Mid glow ring — warm cream accent */}
       <div style={{
         position: "absolute",
         width: IMG + 100, height: IMG + 100,
         left: CX - (IMG + 100) / 2, top: CY - (IMG + 100) / 2,
         borderRadius: "50%",
-        background: `radial-gradient(circle, rgba(245,200,80,0.22) 0%, ${product.accent}14 35%, transparent 65%)`,
+        background: `radial-gradient(circle, rgba(56,189,248,0.22) 0%, ${product.accent}14 35%, transparent 65%)`,
         filter: "blur(28px)",
         pointerEvents: "none",
       }} />
 
-      {/* Core tight glow — brightest spot directly behind image */}
       <motion.div
         style={{
           position: "absolute",
@@ -241,7 +219,6 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         transition={{ duration: 3.5, repeat: Infinity, ease: "easeInOut" }}
       />
 
-      {/* Glowing floor shadow — ellipse below image */}
       <div style={{
         position: "absolute",
         width: IMG - 60, height: 40,
@@ -253,7 +230,6 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         pointerEvents: "none",
       }} />
 
-      {/* Product image */}
       <motion.div style={{
         position: "absolute",
         left: CX - IMG / 2, top: CY - IMG / 2,
@@ -263,7 +239,6 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         display: "flex", alignItems: "center", justifyContent: "center",
         overflow: "hidden",
       }}>
-        {/* Scan line */}
         <motion.div style={{
           position: "absolute", left: 0, right: 0, height: 1,
           background: `linear-gradient(90deg,transparent,${product.accent}88,transparent)`,
@@ -281,7 +256,6 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         />
       </motion.div>
 
-      {/* Orbital spec cards */}
       {product.specs.map((s, i) => {
         const rad = (s.angle * Math.PI) / 180;
         const cx = CX + Math.cos(rad) * R;
@@ -298,7 +272,7 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
   );
 }
 
-// ─── ORBITAL CARD — light glassmorphism ───────────────────────────────────────
+// ─── ORBITAL CARD ─────────────────────────────────────────────────────────────
 function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIcon; left: number; top: number; delay: number }) {
   const [hov, setHov] = useState(false);
   return (
@@ -319,9 +293,8 @@ function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIco
         alignItems: "center", justifyContent: "center",
         gap: 5,
         borderRadius: 16,
-        // Light glassmorphism: white semi-transparent
-        background: hov ? "rgba(255,252,245,0.99)" : "rgba(255,252,245,0.92)",
-        border: `1px solid ${hov ? spec.color + "65" : "rgba(180,120,40,0.22)"}`,
+        background: hov ? "rgba(240,249,255,0.99)" : "rgba(240,249,255,0.92)",
+        border: `1px solid ${hov ? spec.color + "65" : "rgba(14,165,233,0.22)"}`,
         backdropFilter: "blur(18px)",
         boxShadow: hov
           ? `0 0 18px ${spec.color}22, 0 8px 24px rgba(0,0,0,0.1), inset 0 1px 0 rgba(255,255,255,0.9)`
@@ -344,18 +317,17 @@ function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIco
       }}>
         <Icon style={{ width: 14, height: 14, color: spec.color }} />
       </div>
-      {/* Value: dark text on light card */}
-      <span style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 900, color: "#2C1A08", fontSize: 14, lineHeight: 1 }}>
+      <span style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 900, color: "#0C2A3A", fontSize: 14, lineHeight: 1 }}>
         {spec.value}
       </span>
-      <span style={{ fontFamily: "'DM Sans',sans-serif", color: "rgba(44,26,8,0.58)", fontSize: 9, textTransform: "uppercase", letterSpacing: "0.1em", lineHeight: 1, textAlign: "center", padding: "0 6px" }}>
+      <span style={{ fontFamily: "'DM Sans',sans-serif", color: "rgba(12,42,58,0.58)", fontSize: 9, textTransform: "uppercase", letterSpacing: "0.1em", lineHeight: 1, textAlign: "center", padding: "0 6px" }}>
         {spec.label}
       </span>
     </motion.div>
   );
 }
 
-// ─── FEATURE PILL — light theme ───────────────────────────────────────────────
+// ─── FEATURE PILL ─────────────────────────────────────────────────────────────
 function FeaturePill({ icon: Icon, text, color, accentText, delay, mobile = false }: { icon: LucideIcon; text: string; color: string; accentText: string; delay: number; mobile?: boolean }) {
   const [hov, setHov] = useState(false);
   return (
@@ -370,8 +342,8 @@ function FeaturePill({ icon: Icon, text, color, accentText, delay, mobile = fals
         display: "flex", alignItems: "center", gap: 10,
         padding: mobile ? "10px 14px" : "8px 12px",
         borderRadius: 12, cursor: "default",
-        background: hov ? `${color}12` : "rgba(255,252,245,0.9)",
-        border: `1px solid ${hov ? color + "45" : "rgba(180,120,40,0.18)"}`,
+        background: hov ? `${color}12` : "rgba(240,249,255,0.9)",
+        border: `1px solid ${hov ? color + "45" : "rgba(14,165,233,0.18)"}`,
         backdropFilter: "blur(8px)",
         transform: hov ? "translateX(4px)" : "translateX(0)",
         boxShadow: hov ? `0 4px 14px ${color}18` : "0 1px 4px rgba(0,0,0,0.05)",
@@ -388,7 +360,7 @@ function FeaturePill({ icon: Icon, text, color, accentText, delay, mobile = fals
       </div>
       <span style={{
         fontSize: mobile ? 14 : 13, fontFamily: "'DM Sans',sans-serif",
-        color: hov ? accentText : "rgba(44,26,8,0.78)",
+        color: hov ? accentText : "rgba(12,42,58,0.78)",
         fontWeight: 500,
         transition: "color 0.2s",
       }}>{text}</span>
@@ -396,7 +368,7 @@ function FeaturePill({ icon: Icon, text, color, accentText, delay, mobile = fals
   );
 }
 
-// ─── VARIANT CARD — light theme ───────────────────────────────────────────────
+// ─── VARIANT CARD ─────────────────────────────────────────────────────────────
 function VariantCard({ variant, accent, accentText, delay }: { variant: Variant; accent: string; accentText: string; delay: number }) {
   const [hov, setHov] = useState(false);
   return (
@@ -409,8 +381,8 @@ function VariantCard({ variant, accent, accentText, delay }: { variant: Variant;
       onMouseLeave={() => setHov(false)}
       style={{
         padding: "14px 16px", borderRadius: 16, cursor: "default",
-        background: hov ? "rgba(255,252,245,0.97)" : "rgba(255,252,245,0.85)",
-        border: `1px solid ${hov ? accent + "50" : "rgba(180,120,40,0.2)"}`,
+        background: hov ? "rgba(240,249,255,0.97)" : "rgba(240,249,255,0.85)",
+        border: `1px solid ${hov ? accent + "50" : "rgba(14,165,233,0.2)"}`,
         backdropFilter: "blur(8px)",
         transform: hov ? "translateY(-3px)" : "none",
         boxShadow: hov ? `0 8px 24px rgba(0,0,0,0.1), 0 2px 6px rgba(0,0,0,0.06)` : "0 2px 8px rgba(0,0,0,0.05)",
@@ -418,14 +390,14 @@ function VariantCard({ variant, accent, accentText, delay }: { variant: Variant;
       }}
     >
       <div style={{ display: "flex", justifyContent: "space-between", alignItems: "center", marginBottom: 10 }}>
-        <span style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 900, color: "#2C1A08", fontSize: 15 }}>{variant.name}</span>
+        <span style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 900, color: "#0C2A3A", fontSize: 15 }}>{variant.name}</span>
         <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, padding: "3px 10px", borderRadius: 20, background: `${accent}16`, color: accentText, fontWeight: 700 }}>Available</span>
       </div>
       <div style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: 8 }}>
         {variant.cols.map(([k, v]) => (
           <div key={k}>
-            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(44,26,8,0.52)", marginBottom: 3 }}>{k}</div>
-            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 800, color: "rgba(44,26,8,0.88)" }}>{v}</div>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.08em", color: "rgba(12,42,58,0.52)", marginBottom: 3 }}>{k}</div>
+            <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 14, fontWeight: 800, color: "rgba(12,42,58,0.88)" }}>{v}</div>
           </div>
         ))}
       </div>
@@ -433,7 +405,7 @@ function VariantCard({ variant, accent, accentText, delay }: { variant: Variant;
   );
 }
 
-// ─── SPECS ACCORDION — light theme ────────────────────────────────────────────
+// ─── SPECS ACCORDION ──────────────────────────────────────────────────────────
 function SpecsAccordion({ headers, rows, accent, accentText, delay }: { headers: string[]; rows: string[][]; accent: string; accentText: string; delay: number }) {
   const [open, setOpen] = useState(false);
   return (
@@ -444,8 +416,8 @@ function SpecsAccordion({ headers, rows, accent, accentText, delay }: { headers:
       transition={{ delay }}
       style={{
         borderRadius: 16, overflow: "hidden",
-        border: `1px solid rgba(180,120,40,0.2)`,
-        background: "rgba(255,252,245,0.88)",
+        border: `1px solid rgba(14,165,233,0.2)`,
+        background: "rgba(240,249,255,0.88)",
         backdropFilter: "blur(14px)",
         boxShadow: "0 2px 12px rgba(0,0,0,0.05)",
       }}
@@ -461,12 +433,12 @@ function SpecsAccordion({ headers, rows, accent, accentText, delay }: { headers:
         <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
           <motion.div style={{ width: 7, height: 7, borderRadius: "50%", background: accent, boxShadow: `0 0 6px ${accent}` }}
             animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} />
-          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(44,26,8,0.78)" }}>
+          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 12, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(12,42,58,0.78)" }}>
             View Full Specifications
           </span>
         </div>
         <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.28 }}>
-          <ChevronDown style={{ width: 14, height: 14, color: "rgba(10,32,16,0.38)" }} />
+          <ChevronDown style={{ width: 14, height: 14, color: "rgba(12,42,58,0.38)" }} />
         </motion.div>
       </button>
 
@@ -482,19 +454,19 @@ function SpecsAccordion({ headers, rows, accent, accentText, delay }: { headers:
                 <thead>
                   <tr style={{ background: `${accent}07` }}>
                     {headers.map((h, i) => (
-                      <th key={i} style={{ padding: "8px 14px", textAlign: "left", fontFamily: "'DM Sans',sans-serif", fontSize: 9, textTransform: "uppercase", letterSpacing: "0.15em", color: i === 0 ? "rgba(10,32,16,0.45)" : accentText, fontWeight: 700 }}>{h}</th>
+                      <th key={i} style={{ padding: "8px 14px", textAlign: "left", fontFamily: "'DM Sans',sans-serif", fontSize: 9, textTransform: "uppercase", letterSpacing: "0.15em", color: i === 0 ? "rgba(12,42,58,0.45)" : accentText, fontWeight: 700 }}>{h}</th>
                     ))}
                   </tr>
                 </thead>
                 <tbody>
                   {rows.map((row, ri) => (
                     <motion.tr key={ri} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: ri * 0.025 }}
-                      style={{ borderTop: "1px solid rgba(0,200,83,0.07)" }}
+                      style={{ borderTop: "1px solid rgba(14,165,233,0.07)" }}
                       onMouseEnter={e => (e.currentTarget.style.background = `${accent}05`)}
                       onMouseLeave={e => (e.currentTarget.style.background = "transparent")}
                     >
                       {row.map((cell, ci) => (
-                        <td key={ci} style={{ padding: "9px 14px", fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: ci === 0 ? "rgba(44,26,8,0.88)" : "rgba(44,26,8,0.65)" }}>{cell}</td>
+                        <td key={ci} style={{ padding: "9px 14px", fontFamily: "'DM Sans',sans-serif", fontSize: 12, color: ci === 0 ? "rgba(12,42,58,0.88)" : "rgba(12,42,58,0.65)" }}>{cell}</td>
                       ))}
                     </motion.tr>
                   ))}
@@ -510,8 +482,9 @@ function SpecsAccordion({ headers, rows, accent, accentText, delay }: { headers:
 
 // ─── useWindowWidth ────────────────────────────────────────────────────────────
 function useWindowWidth() {
-  const [w, setW] = useState(typeof window !== "undefined" ? window.innerWidth : 1200);
+  const [w, setW] = useState(1200);
   useEffect(() => {
+    setW(window.innerWidth);
     const fn = () => setW(window.innerWidth);
     window.addEventListener("resize", fn);
     return () => window.removeEventListener("resize", fn);
@@ -545,12 +518,12 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
       <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.22em", color: product.accentText, display: "block", marginBottom: 8 }}>
         {product.tag}
       </span>
-      <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 900, fontSize: fs, lineHeight: 1.25, color: "#2C1A08", margin: "0 0 8px" }}>
+      <h3 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 900, fontSize: fs, lineHeight: 1.25, color: "#0C2A3A", margin: "0 0 8px" }}>
         {product.title.split(" ").slice(0, -2).join(" ")}{" "}
         <span style={{ color: product.accentText }}>{product.title.split(" ").slice(-2).join(" ")}</span>
       </h3>
       <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontStyle: "italic", color: product.accentText, margin: "0 0 8px", opacity: 0.8 }}>{product.subtitle}</p>
-      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: isMobile ? 15 : 13, lineHeight: 1.7, color: "rgba(44,26,8,0.72)", margin: 0 }}>{product.description}</p>
+      <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: isMobile ? 15 : 13, lineHeight: 1.7, color: "rgba(12,42,58,0.72)", margin: 0 }}>{product.description}</p>
     </div>
   );
 
@@ -568,10 +541,10 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
       background: `${product.accent}08`,
       border: `1px solid ${product.accent}20`,
     }}>
-      <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.18em", color: "rgba(44,26,8,0.55)", marginBottom: 6 }}>Compatible Platforms</div>
+      <div style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.18em", color: "rgba(12,42,58,0.55)", marginBottom: 6 }}>Compatible Platforms</div>
       <div style={{ display: "flex", flexWrap: "wrap", gap: 4 }}>
         {product.platforms!.map(p => (
-          <span key={p} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, padding: "4px 10px", borderRadius: 8, background: "rgba(255,252,245,0.9)", border: `1px solid rgba(180,100,10,0.22)`, color: product.accentText, fontWeight: 600 }}>{p}</span>
+          <span key={p} style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, padding: "4px 10px", borderRadius: 8, background: "rgba(240,249,255,0.9)", border: `1px solid rgba(14,165,233,0.22)`, color: product.accentText, fontWeight: 600 }}>{p}</span>
         ))}
       </div>
     </div>
@@ -590,7 +563,6 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
     </>
   );
 
-  // ── MOBILE ──
   if (isMobile) {
     return (
       <div ref={ref} style={{ marginBottom: 60 }}>
@@ -612,7 +584,6 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
     );
   }
 
-  // ── DESKTOP — zig-zag layout ──
   const reverseLayout = index % 2 === 1;
 
   const DetailsSection = (
@@ -683,17 +654,17 @@ function ScaleBox({ canvasSize, children }: { canvasSize: number; children: Reac
   );
 }
 
-// ─── DIVIDER — light theme ────────────────────────────────────────────────────
+// ─── DIVIDER ──────────────────────────────────────────────────────────────────
 function Divider() {
   return (
     <div style={{ position: "relative", display: "flex", alignItems: "center", justifyContent: "center", margin: "48px 0" }}>
-      <div style={{ position: "absolute", left: 0, right: 0, height: 1, background: "linear-gradient(90deg,transparent,rgba(180,100,10,0.3),transparent)" }} />
+      <div style={{ position: "absolute", left: 0, right: 0, height: 1, background: "linear-gradient(90deg,transparent,rgba(14,165,233,0.3),transparent)" }} />
       <div style={{
         position: "relative", zIndex: 1, padding: "6px 20px", borderRadius: 20,
-        background: "#fdf8f0",
-        border: "1px solid rgba(180,100,10,0.2)",
+        background: "#f0f9ff",
+        border: "1px solid rgba(14,165,233,0.2)",
         fontFamily: "'DM Sans',sans-serif", fontSize: 10, textTransform: "uppercase", letterSpacing: "0.25em",
-        color: "rgba(44,26,8,0.52)",
+        color: "rgba(12,42,58,0.52)",
       }}>
         Next Product
       </div>
@@ -719,21 +690,24 @@ export default function ProductsPage() {
         style={{ position: "relative", padding: "60px 0 80px", overflow: "hidden", fontFamily: "'DM Sans',sans-serif" }}
       >
 
-        {/* ── Creamy background ── */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg,#fdf8f0 0%,#fef6e8 45%,#fdf2e3 100%)" }} />
+        {/* ── Sky blue background ── */}
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(160deg,#FFFDF8 0%,#FFF8ED 50%,#FFF3E0 100%)" }} />
 
-        {/* Grid overlay — warm amber-tinted */}
+        {/* Grid overlay — sky-blue tinted */}
         <div style={{
           position: "absolute", inset: 0, pointerEvents: "none",
-          backgroundImage: "linear-gradient(rgba(180,120,40,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(180,120,40,0.07) 1px,transparent 1px)",
+          backgroundImage: "linear-gradient(rgba(14,165,233,0.07) 1px,transparent 1px),linear-gradient(90deg,rgba(14,165,233,0.07) 1px,transparent 1px)",
           backgroundSize: "64px 64px",
         }} />
 
-        {/* Ambient blobs — warm cream + soft gold */}
+        {/* Ambient blobs — sky blue palette */}
         <div style={{ position: "absolute", inset: 0, pointerEvents: "none", overflow: "hidden" }}>
-          <div style={{ position: "absolute", top: -96, left: -96, width: 500, height: 500, borderRadius: "50%", background: "#F5C842", filter: "blur(120px)", opacity: 0.18 }} />
-          <div style={{ position: "absolute", top: 40, right: -60, width: 450, height: 450, borderRadius: "50%", background: "#E8A020", filter: "blur(120px)", opacity: 0.12 }} />
-          <div style={{ position: "absolute", bottom: -64, left: "50%", transform: "translateX(-50%)", width: 500, height: 500, borderRadius: "50%", background: "#F5D68A", filter: "blur(120px)", opacity: 0.16 }} />
+          {/* Top-left: bright sky blue */}
+          <div style={{ position: "absolute", top: -96, left: -96, width: 500, height: 500, borderRadius: "50%", background: "#38BDF8", filter: "blur(120px)", opacity: 0.28 }} />
+          {/* Top-right: deeper blue */}
+          <div style={{ position: "absolute", top: 40, right: -60, width: 450, height: 450, borderRadius: "50%", background: "#0EA5E9", filter: "blur(120px)", opacity: 0.2 }} />
+          {/* Bottom-center: soft light blue */}
+          <div style={{ position: "absolute", bottom: -64, left: "50%", transform: "translateX(-50%)", width: 500, height: 500, borderRadius: "50%", background: "#7DD3FC", filter: "blur(120px)", opacity: 0.22 }} />
         </div>
 
         <div style={{ position: "relative", zIndex: 10, maxWidth: 1280, margin: "0 auto", padding: "0 16px" }}>
@@ -746,19 +720,19 @@ export default function ProductsPage() {
             style={{ textAlign: "center", marginBottom: 64 }}
           >
             {/* Badge */}
-            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "7px 16px", borderRadius: 40, background: "rgba(180,100,10,0.1)", border: "1px solid rgba(180,100,10,0.28)", marginBottom: 16 }}>
-              <motion.span style={{ width: 6, height: 6, borderRadius: "50%", background: "#B06010", boxShadow: "0 0 6px rgba(180,100,10,0.5)", display: "block" }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2, repeat: Infinity }} />
-              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.25em", color: "#7A3E08" }}>Our Solutions</span>
+            <div style={{ display: "inline-flex", alignItems: "center", gap: 8, padding: "7px 16px", borderRadius: 40, background: "rgba(14,165,233,0.12)", border: "1px solid rgba(14,165,233,0.3)", marginBottom: 16 }}>
+              <motion.span style={{ width: 6, height: 6, borderRadius: "50%", background: "#0284C7", boxShadow: "0 0 6px rgba(14,165,233,0.6)", display: "block" }} animate={{ opacity: [1, 0.4, 1] }} transition={{ duration: 2, repeat: Infinity }} />
+              <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.25em", color: "#0369A1" }}>Our Solutions</span>
             </div>
 
-            <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 900, letterSpacing: "-1px", lineHeight: 1, marginBottom: 8, fontSize: "clamp(28px,4vw,52px)", color: "#2C1A08" }}>
+            <h2 style={{ fontFamily: "'DM Sans',sans-serif", fontWeight: 900, letterSpacing: "-1px", lineHeight: 1, marginBottom: 8, fontSize: "clamp(28px,4vw,52px)", color: "#0C2A3A" }}>
               EV Powertrain &{" "}
-              <span style={{ background: "linear-gradient(90deg,#7A3E08,#B06010,#7A3E08)", backgroundSize: "200% 100%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", animation: "gradShift 4s linear infinite" }}>
+              <span style={{ background: "linear-gradient(90deg,#0369A1,#0EA5E9,#0369A1)", backgroundSize: "200% 100%", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent", animation: "gradShift 4s linear infinite" }}>
                 Motor Controller
               </span>
             </h2>
 
-            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: "rgba(44,26,8,0.65)", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>
+            <p style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 15, color: "rgba(12,42,58,0.65)", maxWidth: 500, margin: "0 auto", lineHeight: 1.75 }}>
               Advanced electric mobility systems engineered for Indian roads — built for efficiency, reliability, and scale.
             </p>
           </motion.div>

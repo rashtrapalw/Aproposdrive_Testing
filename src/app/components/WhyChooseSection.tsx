@@ -84,8 +84,9 @@ type Comparison = {
 
 // ─── useWindowWidth ────────────────────────────────────────────────────────────
 function useWindowWidth() {
-  const [w, setW] = useState(typeof window !== 'undefined' ? window.innerWidth : 1200)
+  const [w, setW] = useState(1200)
   useEffect(() => {
+    setW(window.innerWidth)
     const fn = () => setW(window.innerWidth)
     window.addEventListener('resize', fn)
     return () => window.removeEventListener('resize', fn)
@@ -99,8 +100,6 @@ function BenefitCard({ benefit, index }: { benefit: Benefit; index: number }) {
   const ref = useRef(null)
   const inView = useInView(ref, { once: false, margin: '-8% 0px' })
   const [hov, setHov] = useState(false)
-  const mouseX = useMotionValue(0)
-  const mouseY = useMotionValue(0)
   const rotX = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 })
   const rotY = useSpring(useMotionValue(0), { stiffness: 200, damping: 20 })
 

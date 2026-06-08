@@ -4,6 +4,7 @@ import type { CSSProperties } from 'react'
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'motion/react'
 import { Mail, Phone, MapPin, Send, CheckCircle, ArrowUpRight, Zap, MessageSquare } from 'lucide-react'
+import { AboutSection } from '../../src/app/components/AboutSection'
 
 const contactInfo = [
   { icon: Mail,   title: 'Email',    text: 'contact@aproposdrive.com', accent: '#00C853', href: 'mailto:contact@aproposdrive.com' },
@@ -344,6 +345,7 @@ export default function ContactPage() {
           </div>
         </div>
       </main>
+      <AboutSection />
     </>
   )
 }

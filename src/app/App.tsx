@@ -2,14 +2,8 @@ import dynamic from 'next/dynamic'
 
 import { HeroSection } from './components/HeroSection'
 
-const HighlightSection = dynamic(() =>
-  import('./components/HighlightSection').then((mod) => mod.HighlightSection),
-)
 const ProductSection = dynamic(() =>
   import('./components/ProductSection').then((mod) => mod.ProductSection),
-)
-const VisionSection = dynamic(() =>
-  import('./components/VisionSection').then((mod) => mod.VisionSection),
 )
 const WhyChooseSection = dynamic(() =>
   import('./components/WhyChooseSection').then((mod) => mod.WhyChooseSection),
@@ -66,7 +60,7 @@ export default function App() {
       <HeroSection />
       {/* <HighlightSection /> */}
       <ProductSection />
-      <VisionSection />
+      {/* <VisionSection /> */}
       <WhyChooseSection />
       <JourneySection />
       <InvestorsSection />

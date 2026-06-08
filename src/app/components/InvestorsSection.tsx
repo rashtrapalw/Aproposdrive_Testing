@@ -351,7 +351,7 @@ export function InvestorsSection() {
             style={{ gridTemplateColumns: 'minmax(0,1.5fr) minmax(0,1fr)' }}
           >
             {/* Left: Area chart */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, x: -28 }}
               animate={chartInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -28 }}
               transition={{ duration: 0.6 }}
@@ -362,9 +362,9 @@ export function InvestorsSection() {
                 backdropFilter: 'blur(14px)',
                 boxShadow: '0 16px 40px rgba(0,0,0,0.4)',
               }}
-            >
+            > */}
               {/* Chart header */}
-              <div className="flex items-center justify-between">
+              {/* <div className="flex items-center justify-between">
                 <div>
                   <p className="font-black text-sm text-white" style={{ fontFamily: "'DM Sans',sans-serif" }}>Revenue Trajectory</p>
                   <p className="text-[10px]" style={{ color: 'rgba(255,255,255,0.35)', fontFamily: "'DM Sans',sans-serif" }}>
@@ -379,13 +379,13 @@ export function InvestorsSection() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
 
               {/* Top shimmer */}
-              <div className="h-px w-full" style={{ background: 'linear-gradient(90deg,transparent,rgba(0,200,83,0.4),rgba(0,229,255,0.3),transparent)' }} />
+              {/* <div className="h-px w-full" style={{ background: 'linear-gradient(90deg,transparent,rgba(0,200,83,0.4),rgba(0,229,255,0.3),transparent)' }} /> */}
 
               {/* Chart */}
-              <div style={{ height: 220 }}>
+              {/* <div style={{ height: 220 }}>
                 <ResponsiveContainer width="100%" height="100%">
                   <AreaChart data={growthData} margin={{ top: 8, right: 8, left: -20, bottom: 0 }}>
                     <defs>
@@ -407,17 +407,17 @@ export function InvestorsSection() {
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
-            </motion.div>
+            </motion.div> */}
 
             {/* Right: Highlights */}
-            <motion.div
+            {/* <motion.div
               initial={{ opacity: 0, x: 28 }}
               animate={chartInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 28 }}
               transition={{ duration: 0.6, delay: 0.06 }}
               className="flex flex-col gap-4"
-            >
+            > */}
               {/* Title */}
-              <div>
+              {/* <div>
                 <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full mb-4"
                   style={{ background: 'rgba(0,229,255,0.08)', border: '1px solid rgba(0,229,255,0.22)' }}>
                   <motion.span className="w-1.5 h-1.5 rounded-full"
@@ -435,17 +435,17 @@ export function InvestorsSection() {
                 <p className="text-xs leading-relaxed" style={{ color: 'rgba(255,255,255,0.38)', fontFamily: "'DM Sans',sans-serif" }}>
                   Strong fundamentals, proven traction, and a massive addressable market in India's EV revolution.
                 </p>
-              </div>
+              </div> */}
 
               {/* Highlight rows */}
-              <div className="flex flex-col gap-2">
+              {/* <div className="flex flex-col gap-2">
                 {highlights.map((h, i) => (
                   <HighlightRow key={h.text} item={h} index={i} inView={chartInView} />
                 ))}
-              </div>
+              </div> */}
 
               {/* CTA button */}
-              <motion.a
+              {/* <motion.a
                 href="#contact"
                 initial={{ opacity: 0, y: 10 }}
                 animate={chartInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
@@ -462,8 +462,8 @@ export function InvestorsSection() {
               >
                 Explore Investment Deck
                 <ArrowRight style={{ width: 14, height: 14 }} />
-              </motion.a>
-            </motion.div>
+              </motion.a> */}
+            {/* </motion.div> */}
           </div>
 
         </div>

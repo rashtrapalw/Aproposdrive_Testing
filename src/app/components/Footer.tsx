@@ -1,6 +1,7 @@
 ﻿'use client'
 
 import { useRef } from 'react'
+import { usePathname } from 'next/navigation'
 import { motion, useInView } from 'motion/react'
 import { Zap, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -89,8 +90,13 @@ function SocialBtn({ icon: Icon, href, label, delay }: { icon: LucideIcon; href:
 
 // ═══════════════════════════════════════════════════════════════════════════════
 export function Footer() {
+  const pathname = usePathname()
   const ref = useRef(null)
   const inView = useInView(ref, { once: false, margin: '-5% 0px' })
+
+  if (pathname.startsWith('/admin')) {
+    return null
+  }
 
   return (
     <>

@@ -2,10 +2,10 @@
 
 import type { ReactNode } from "react";
 import { useState, useEffect, useRef } from "react";
-import { motion, AnimatePresence, useInView, useSpring, useMotionValue } from "motion/react";
+import { motion, useInView, useSpring, useMotionValue } from "motion/react";
 import {
   Battery, Gauge, Zap, Shield, Cpu, Package,
-  CheckCircle, Leaf, TrendingUp, ChevronDown,
+  CheckCircle, Leaf, TrendingUp,
   Activity, Thermometer, Wifi, Wind, Weight, ArrowRight,
 } from "lucide-react";
 import type { LucideIcon } from "lucide-react";
@@ -65,9 +65,9 @@ const PRODUCTS = [
       { icon: Leaf,       text: "Rare Earth-Free Motor Technology" },
       { icon: Package,    text: "Motor + Controller + Gearbox in One Unit" },
       { icon: Wind,       text: "Natural Air Cooling — No Liquid Needed" },
-      { icon: TrendingUp, text: "94–95% Efficiency, Extended Range" },
-      { icon: Shield,     text: "IP67 Sealed — All-Weather Reliable" },
-      { icon: Zap,        text: "Lower System Cost for Mass Adoption" },
+      // { icon: TrendingUp, text: "94–95% Efficiency, Extended Range" },
+      // { icon: Shield,     text: "IP67 Sealed — All-Weather Reliable" },
+      // { icon: Zap,        text: "Lower System Cost for Mass Adoption" },
     ],
     specs: [
       { icon: Gauge,      label: "Peak Power",  value: "6.5 kW",  color: "#00C853", angle: 270 },
@@ -78,8 +78,8 @@ const PRODUCTS = [
       { icon: Battery,    label: "Voltage",     value: "48/60V",  color: "#00C853", angle: 210 },
     ],
     variants: [
-      { name: "Series 70", cols: [["Power","2.5 kW"],["Torque","160 Nm"],["Weight","6.5 kg"]] },
-      { name: "Series 85", cols: [["Power","4 kW"],  ["Torque","200 Nm"],["Weight","7.5 kg"]] },
+      // { name: "Series 70", cols: [["Power","2.5 kW"],["Torque","160 Nm"],["Weight","6.5 kg"]] },
+      // { name: "Series 85", cols: [["Power","4 kW"],  ["Torque","200 Nm"],["Weight","7.5 kg"]] },
     ],
     tableHeaders: ["Spec", "Series 70", "Series 85"],
     tableRows: [
@@ -379,9 +379,8 @@ function VariantCard({ variant, accent, delay }: { variant: Variant; accent: str
   );
 }
 
-// ─── SPECS ACCORDION ──────────────────────────────────────────────────────────
-function SpecsAccordion({ headers, rows, accent, delay }: { headers: string[]; rows: string[][]; accent: string; delay: number }) {
-  const [open, setOpen] = useState(false);
+// ─── SPECS TABLE ──────────────────────────────────────────────────────────────
+function SpecsTable({ headers, rows, accent, delay }: { headers: string[]; rows: string[][]; accent: string; delay: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, y: 12 }}
@@ -390,57 +389,27 @@ function SpecsAccordion({ headers, rows, accent, delay }: { headers: string[]; r
       transition={{ delay }}
       style={{ borderRadius: 16, overflow: "hidden", border: `1px solid ${accent}20`, background: "rgba(6,10,22,0.8)", backdropFilter: "blur(14px)" }}
     >
-      <button
-        onClick={() => setOpen(v => !v)}
-        style={{
-          width: "100%", display: "flex", alignItems: "center", justifyContent: "space-between",
-          padding: "12px 16px", background: "none", border: "none", cursor: "pointer",
-          borderBottom: open ? `1px solid ${accent}18` : "none",
-        }}
-      >
-        <div style={{ display: "flex", alignItems: "center", gap: 8 }}>
-          <motion.div style={{ width: 7, height: 7, borderRadius: "50%", background: accent, boxShadow: `0 0 6px ${accent}` }}
-            animate={{ opacity: [0.5, 1, 0.5] }} transition={{ duration: 2, repeat: Infinity }} />
-          <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 11, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.15em", color: "rgba(255,255,255,0.7)" }}>
-            View Full Specifications
-          </span>
-        </div>
-        <motion.div animate={{ rotate: open ? 180 : 0 }} transition={{ duration: 0.28 }}>
-          <ChevronDown style={{ width: 14, height: 14, color: "rgba(255,255,255,0.35)" }} />
-        </motion.div>
-      </button>
-
-      <AnimatePresence initial={false}>
-        {open && (
-          <motion.div
-            initial={{ height: 0, opacity: 0 }} animate={{ height: "auto", opacity: 1 }}
-            exit={{ height: 0, opacity: 0 }} transition={{ duration: 0.32, ease: [0.4, 0, 0.2, 1] }}
-            style={{ overflow: "hidden" }}
-          >
-            <div style={{ overflowX: "auto" }}>
-              <table style={{ width: "100%", borderCollapse: "collapse" }}>
-                <thead>
-                  <tr style={{ background: "rgba(255,255,255,0.025)" }}>
-                    {headers.map((h, i) => (
-                      <th key={i} style={{ padding: "8px 14px", textAlign: "left", fontFamily: "'DM Sans',sans-serif", fontSize: 9, textTransform: "uppercase", letterSpacing: "0.15em", color: i === 0 ? "rgba(255,255,255,0.35)" : accent, fontWeight: 700 }}>{h}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {rows.map((row, ri) => (
-                    <motion.tr key={ri} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: ri * 0.025 }}
-                      style={{ borderTop: "1px solid rgba(255,255,255,0.035)" }}>
-                      {row.map((cell, ci) => (
-                        <td key={ci} style={{ padding: "8px 14px", fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: ci === 0 ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.38)" }}>{cell}</td>
-                      ))}
-                    </motion.tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+      <div style={{ overflowX: "auto" }}>
+        <table style={{ width: "100%", borderCollapse: "collapse" }}>
+          <thead>
+            <tr style={{ background: "rgba(255,255,255,0.025)" }}>
+              {headers.map((h, i) => (
+                <th key={i} style={{ padding: "8px 14px", textAlign: "left", fontFamily: "'DM Sans',sans-serif", fontSize: 9, textTransform: "uppercase", letterSpacing: "0.15em", color: i === 0 ? "rgba(255,255,255,0.35)" : accent, fontWeight: 700 }}>{h}</th>
+              ))}
+            </tr>
+          </thead>
+          <tbody>
+            {rows.map((row, ri) => (
+              <motion.tr key={ri} initial={{ opacity: 0, x: -6 }} animate={{ opacity: 1, x: 0 }} transition={{ delay: ri * 0.025 }}
+                style={{ borderTop: "1px solid rgba(255,255,255,0.035)" }}>
+                {row.map((cell, ci) => (
+                  <td key={ci} style={{ padding: "8px 14px", fontFamily: "'DM Sans',sans-serif", fontSize: 11, color: ci === 0 ? "rgba(255,255,255,0.65)" : "rgba(255,255,255,0.38)" }}>{cell}</td>
+                ))}
+              </motion.tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
     </motion.div>
   );
 }
@@ -479,7 +448,7 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
   );
 
   // Shared: title block
-  const TitleBlock = (fs = 18) => (
+  const TitleBlock = (fs = 18) => ( 
     <div>
       <span style={{ fontFamily: "'DM Sans',sans-serif", fontSize: 10, fontWeight: 700, textTransform: "uppercase", letterSpacing: "0.22em", color: product.accent, display: "block", marginBottom: 6 }}>
         {product.tag}
@@ -518,7 +487,7 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
   const RightPanel = (
     <>
       {product.variants.map((v, i) => <VariantCard key={v.name} variant={v} accent={product.accent} delay={i * 0.08} />)}
-      <SpecsAccordion headers={product.tableHeaders} rows={product.tableRows} accent={product.accent} delay={0.16} />
+      <SpecsTable headers={product.tableHeaders} rows={product.tableRows} accent={product.accent} delay={0.16} />
       <a href="/products" style={{ display: "inline-flex", alignItems: "center", gap: 7, fontSize: 12, fontWeight: 700, color: product.accent, fontFamily: "'DM Sans',sans-serif", textDecoration: "none" }}>
         Explore Full Details
         <div style={{ width: 22, height: 22, borderRadius: "50%", display: "flex", alignItems: "center", justifyContent: "center", background: `${product.accent}14`, border: `1px solid ${product.accent}30` }}>
@@ -540,7 +509,7 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
           transition={{ duration: 0.5 }}
           style={{ marginBottom: 20 }}
         >
-          {TitleBlock(22)}
+          {TitleBlock(22)}  
         </motion.div>
 
         {/* Orbital showcase — full width, ScaleBox handles sizing */}
@@ -667,7 +636,7 @@ const DetailsSection = (
       />
     ))}
 
-    <SpecsAccordion
+    <SpecsTable
       headers={product.tableHeaders}
       rows={product.tableRows}
       accent={product.accent}

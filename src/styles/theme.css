@@ -3,7 +3,7 @@
 :root {
   --font-size: 16px;
   --background: #0A0F1C;
-  --foreground: #ffffff;
+  /* --foreground: #ffffff; */
   --card: #ffffff;
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
@@ -11,7 +11,7 @@
   --primary: #00C853;
   --primary-foreground: #0A0F1C;
   --secondary: #121212;
-  --secondary-foreground: #ffffff;
+  /* --secondary-foreground: #ffffff; */
   --muted: #ececf0;
   --muted-foreground: #717182;
   --accent: #00E5FF;

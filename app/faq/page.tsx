@@ -41,7 +41,7 @@ type Product = {
   description: string;
   image: string;
   accent: string;
-  accentText: string;
+  accentText: string; 
   accentBorder: string;
   features: { icon: LucideIcon; text: string }[];
   specs: Spec[];

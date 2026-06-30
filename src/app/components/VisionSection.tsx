@@ -1,5 +1,6 @@
 ﻿'use client'
 
+import Link from 'next/link'
 import { useRef, useState } from 'react'
 import { motion, useInView } from 'motion/react'
 import { Eye, Lightbulb, TrendingUp, Sparkles, ArrowRight } from 'lucide-react'
@@ -37,11 +38,7 @@ const visionCards = [
   },
 ]
 
-const stats = [
-  { value: '2030', label: 'Carbon Neutral Target', accent: '#00C853' },
-  { value: '1M+',  label: 'EVs on Indian Roads',   accent: '#00E5FF' },
-  { value: '10K+', label: 'Charging Stations',      accent: '#00C853' },
-]
+
 
 type VisionCardData = {
   icon: LucideIcon
@@ -402,12 +399,7 @@ export function VisionSection() {
               </h3>
             </motion.div>
 
-            {/* ── Stat Cards ── */}
-            <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
-              {stats.map((s, i) => (
-                <StatCard key={s.label} stat={s} index={i} inView={bottomInView} />
-              ))}
-            </div>
+           
 
           </div>
         </div>

@@ -7,22 +7,18 @@ import { motion, AnimatePresence } from 'motion/react'
 import { Menu, X } from 'lucide-react'
 
 const navItems = [
-  { name: 'Home',       href: '/'          },
-  { name: 'Products',   href: '/products'  },
-  { name: 'Blogs',      href: '/blogs'     },
-  { name: 'Technology', href: '/technology' },
-  { name: 'Contact',    href: '/contact'   },
-  { name: 'FAQ',        href: '/faq'       },
+  { name: 'Home',     href: '/'        },
+  { name: 'Products', href: '/products' },
+  { name: 'Blogs',    href: '/vision'  },
+  { name: 'Journey',  href: '/journey' },
+  { name: 'Contact',  href: '/contact' },
+  { name: 'FAQ',      href: '/faq'     },
 ]
 
 export function Navigation() {
   const [scrolled, setScrolled]     = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
   const pathname = usePathname()
-
-  if (pathname.startsWith('/admin')) {
-    return null
-  }
 
   useEffect(() => {
     const fn = () => setScrolled(window.scrollY > 40)

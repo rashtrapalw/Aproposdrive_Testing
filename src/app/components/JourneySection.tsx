@@ -44,7 +44,7 @@ export function JourneySection() {
         <div className="relative z-10 max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* ── Journey Timeline ── */}
-          <JourneyTimeline />
+          {/* <JourneyTimeline /> */}
 
           {/* ── Video Section ── */}
           <motion.div

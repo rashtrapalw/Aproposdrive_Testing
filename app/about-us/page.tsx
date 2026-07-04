@@ -5,6 +5,7 @@ import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 import { Leaf, ShieldCheck, Zap, Globe } from 'lucide-react'
 
+
 interface Feature {
   icon: React.ElementType
   title: string
@@ -48,12 +49,6 @@ function FeatureChip({ feature, index }: { feature: Feature; index: number }) {
     </motion.div>
   )
 }
-
-
-
-
-
-
 
 
 
@@ -299,13 +294,13 @@ function FoundersSection() {
     {
       name: 'vedika sharma',
       role: 'Founder & Principal',
-      image: '/photos/nimish-sir.png',
+      image: '/photos/saurabh-removebg-preview.png',
       side: 'left' as const,
     },
     {
       name: 'neha sharma',
       role: 'Founder & Principal',
-      image: '/photos/nimish-sir.png',
+      image: '/photos/nimish-removebg-preview.png',
       side: 'right' as const,
     },
   ]
@@ -687,6 +682,15 @@ return (
 
 
 
+// #################################################################################################################################
+
+
+
+
+
+
+
+
 // ── Page export ───────────────────────────────────────────────────────────────
 export default function AboutPage() {
   return (
@@ -694,6 +698,9 @@ export default function AboutPage() {
       <AboutSection />
       <MissionSection />
       <FoundersSection />
+      {/* <SupportersSection /> */}
+      {/* <InvestorsSection /> */}
+    
     </main>
   )
 }

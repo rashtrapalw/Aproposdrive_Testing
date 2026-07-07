@@ -4,6 +4,8 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 import { Leaf, ShieldCheck, Zap, Globe } from 'lucide-react'
+import SupportersSection from '../../src/app/components/SupporterSection'
+import { JourneyTimeline } from '@/app/components/JourneyTimeline'
 
 
 interface Feature {
@@ -15,19 +17,19 @@ interface Feature {
 const features: Feature[] = [
   { icon: Leaf,        title: 'Rare Earth Free',  desc: 'For a sustainable future' },
   { icon: ShieldCheck, title: 'Built to Last',     desc: 'Rugged. Reliable. Road-Ready.' },
-  { icon: Zap,         title: 'High Performance',  desc: 'Maximum efficiency, minimum compromise.' },
+  // { icon: Zap,         title: 'High Performance',  desc: 'Maximum efficiency, minimum compromise.' },
   { icon: Globe,       title: 'Made in India',     desc: 'Proudly designed and manufactured.' },
 ]
 
 const goals = [
   {
-    title: 'Our Mission',
-    body: 'To drive the world towards a sustainable future by delivering innovative, efficient and cost-effective electric mobility solutions through rare earth-free technologies.',
+    title: 'Our Mission & Goal',
+    body: 'To drive the world towards a sustainable future by delivering innovative, efficient and cost-effective electric mobility solutions through rare earth-free technologies. To become India’s leading provider of rare earth-free EV powertrain technology — enabling a cleaner, more reliable, and self-reliant electric mobility ecosystem.',
   },
-  {
-    title: 'Our Goal',
-    body: "To become India's leading provider of rare earth-free EV powertrain technology — enabling a cleaner, more reliable, and self-reliant electric mobility ecosystem.",
-  },
+  // {
+  //   title: 'Our Goal',
+  //   body: "To become India's leading provider of rare earth-free EV powertrain technology — enabling a cleaner, more reliable, and self-reliant electric mobility ecosystem.",
+  // },
 ]
 
 // ── Feature Chip ──────────────────────────────────────────────────────────────
@@ -41,141 +43,109 @@ function FeatureChip({ feature, index }: { feature: Feature; index: number }) {
       transition={{ delay: 0.55 + index * 0.08, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
       className="flex flex-col items-center sm:items-start gap-1.5 text-center sm:text-left"
     >
-      <div className="w-10 h-10 rounded-xl bg-green-50 border border-green-100 flex items-center justify-center flex-shrink-0">
+      <div className="w-10 h-10 rounded-xl bg-green-50 border border-green-100 flex items-center justify-center flex-shrink-0" style={{ color: '#10044c' }}>
         <Icon className="w-5 h-5 text-green-600" strokeWidth={1.8} />
       </div>
-      <p className="text-sm font-semibold text-gray-800 leading-tight">{feature.title}</p>
-      <p className="text-xs text-gray-400 leading-snug max-w-[120px]">{feature.desc}</p>
+      <p className="text-sm font-semibold text-green-800 leading-tight" style={{ color: '#10044c' }}>
+        {feature.title}
+      </p>
+      {/* <p className="text-xs text-gray-400 leading-snug max-w-[120px]">{feature.desc}</p> */}
     </motion.div>
   )
 }
 
 
 
-
-
-// ── About Section ─────────────────────────────────────────────────────────────
-
 function AboutSection() {
-  const contentRef = useRef<HTMLDivElement>(null)
-  const inView = useInView(contentRef, { once: true, margin: '-10% 0px' })
-
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-8% 0px' })
+ 
   return (
-    <section className="relative w-full bg-white py-16 md:py-24 lg:py-28 overflow-hidden">
-
-      {/* BG image — right half, desktop only */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8, ease: 'easeOut' }}
-        className="hidden lg:block absolute top-0 right-0 w-1/2 h-full pointer-events-none"
-      >
+    <section className="relative w-full overflow-hidden" style={{ minHeight: 580 }}>
+ 
+      {/* Full-screen background image */}
+      <div className="absolute inset-0">
         <img
-          src="/photos/about-main.jpeg"
-          alt="AproposDrive manufacturing facility"
-          className="w-full h-full object-cover"
+          src="/photos/about-bg.jpeg"
+          alt=""
+          aria-hidden="true"
+          className="w-full h-full object-cover object-center"
         />
-        <div
-          className="absolute inset-0"
-          style={{
-            background:
-              'linear-gradient(to right, rgba(255,255,255,0.6) 0%, rgba(255,255,255,0.1) 28%, transparent 50%)',
-          }}
-        />
-        <motion.div
-          initial={{ opacity: 0, y: 10 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.7, duration: 0.4 }}
-          className="absolute bottom-6 left-6 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-lg px-3.5 py-2 shadow-sm pointer-events-auto"
-        >
-          <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse block" />
-          <span className="text-xs font-bold text-gray-800 uppercase tracking-widest">
-            AproposDrive
-          </span>
-        </motion.div>
-      </motion.div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 xl:gap-16 items-center">
-
-          {/* LEFT: content */}
-          <div ref={contentRef} className="flex flex-col">
-            <motion.p
-              initial={{ opacity: 0, y: 12 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ duration: 0.4, ease: 'easeOut' }}
-              className="text-xs font-bold uppercase tracking-[0.2em] text-green-600 mb-4"
-            >
-              About AproposDrive
-            </motion.p>
-
-            <motion.h2
-              initial={{ opacity: 0, y: 20 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.1, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-              className="text-4xl sm:text-5xl lg:text-[52px] xl:text-[58px] font-black leading-[1.08] tracking-tight text-gray-900 mb-5"
-            >
-              Powering Innovation{' '}Through{' '}
-              <span className="text-green-600">Engineering.</span>
-            </motion.h2>
-
-            <motion.p
-              initial={{ opacity: 0, y: 16 }}
-              animate={inView ? { opacity: 1, y: 0 } : {}}
-              transition={{ delay: 0.22, duration: 0.5, ease: 'easeOut' }}
-              className="text-base text-gray-500 leading-relaxed max-w-lg mb-10"
-            >
-              Our passion for engineering drives us to build high-performance motor and controller
-              technologies that empower industries to embrace the future of electric mobility.
-            </motion.p>
-
-            <motion.div
-              initial={{ scaleX: 0 }}
-              animate={inView ? { scaleX: 1 } : {}}
-              style={{ originX: 0 }}
-              transition={{ delay: 0.38, duration: 0.5, ease: 'easeOut' }}
-              className="h-px bg-gray-100 mb-8"
-            />
-
-            <div className="grid grid-cols-2 sm:grid-cols-4 lg:grid-cols-2 xl:grid-cols-4 gap-6 sm:gap-8">
-              {features.map((f, i) => (
-                <FeatureChip key={f.title} feature={f} index={i} />
-              ))}
-            </div>
-          </div>
-
-          {/* RIGHT: mobile image */}
-          <motion.div
-            initial={{ opacity: 0, x: 32 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true, margin: '-10% 0px' }}
-            transition={{ delay: 0.15, duration: 0.65, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="relative w-full aspect-[4/3] rounded-2xl overflow-hidden shadow-xl shadow-gray-200/80 lg:hidden"
+      </div>
+ 
+      {/* Left overlay — content readable, right image shows through */}
+      <div
+        className="absolute inset-0"
+        style={{
+          background:
+            'linear-gradient(to right, rgba(255,255,255,0.97) 0%, rgba(255,255,255,0.93) 28%, rgba(255,255,255,0.6) 52%, rgba(255,255,255,0.0) 78%)',
+        }}
+      />
+ 
+      {/* Brand badge — bottom right, desktop */}
+      {/* <div className="absolute bottom-8 right-8 z-10 hidden lg:flex items-center gap-2 bg-white/80 backdrop-blur-sm rounded-lg px-3.5 py-2 shadow-sm">
+        <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse block" />
+        <span className="text-xs font-bold text-gray-800 uppercase tracking-widest">AproposDrive</span>
+      </div> */}
+ 
+      {/* Content — left side only */}
+      <div
+        ref={ref}
+        className="relative z-10 max-w-7xl mx-auto px-5 sm:px-8 lg:px-12"
+        style={{ paddingTop: 'clamp(100px, 13vw, 144px)', paddingBottom: 'clamp(56px, 8vw, 100px)' }}
+      >
+        <div style={{ maxWidth: 500 }}>
+ 
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ duration: 0.4 }}
+            className="text-[11px] font-bold uppercase tracking-[0.24em] mb-4"
+            style={{ color: '#00a550' }}
           >
-            <img
-              src="/photos/about-main.jpeg"
-              alt="AproposDrive manufacturing facility"
-              className="w-full h-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-green-900/20 via-transparent to-transparent" />
-            <div className="absolute bottom-4 left-4 flex items-center gap-2 bg-white/90 backdrop-blur-sm rounded-lg px-3.5 py-2 shadow-sm">
-              <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse block" />
-              <span className="text-xs font-bold text-gray-800 uppercase tracking-widest">
-                AproposDrive
-              </span>
-            </div>
-          </motion.div>
-
-          {/* Desktop spacer */}
-          <div className="hidden lg:block" aria-hidden="true" />
+            About AproposDrive
+          </motion.p>
+ 
+          <motion.h2
+            initial={{ opacity: 0, y: 18 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.1, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+            className="font-black leading-[1.08] tracking-tight text-gray-900 mb-5"
+            style={{ fontSize: 'clamp(30px, 3.5vw, 50px)' }}
+          >
+            Powering Innovation<br />
+            Through <span className="text-green-600" style={{ color: '#00a550' }}>Engineering.</span>
+          </motion.h2>
+ 
+          <motion.p
+            initial={{ opacity: 0, y: 14 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2, duration: 0.5 }}
+            className="text-sm sm:text-[15px] text-gray-600 leading-relaxed mb-8"
+          >
+            Our passion for engineering drives us to build high-performance motor and controller
+            technologies that empower industries to embrace the future of electric mobility.
+          </motion.p>
+ 
+          <motion.div
+            initial={{ scaleX: 0 }}
+            animate={inView ? { scaleX: 1 } : {}}
+            style={{ originX: 0, background: 'rgba(0,0,0,0.1)', height: 1, marginBottom: 32 }}
+            transition={{ delay: 0.32, duration: 0.5, ease: 'easeOut' }}
+          />
+ 
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-7">
+            {features.map((f, i) => (
+              <FeatureChip key={f.title} feature={f} index={i} />
+            ))}
+          </div>
+ 
         </div>
       </div>
+ 
     </section>
   )
 }
-
 
 
 
@@ -292,13 +262,13 @@ function FoundersSection() {
 
   const founders = [
     {
-      name: 'vedika sharma',
+      name: 'saurabh ',
       role: 'Founder & Principal',
       image: '/photos/saurabh-removebg-preview.png',
       side: 'left' as const,
     },
     {
-      name: 'neha sharma',
+      name: 'Nimish',
       role: 'Founder & Principal',
       image: '/photos/nimish-removebg-preview.png',
       side: 'right' as const,
@@ -568,9 +538,9 @@ return (
                 fontSize: "clamp(40px,6vw,72px)",
               }}
             >
-              Meet The
+              Meet Two
               <br />
-              Founders
+               visionaries
             </h2>
 
             <p
@@ -698,6 +668,8 @@ export default function AboutPage() {
       <AboutSection />
       <MissionSection />
       <FoundersSection />
+      <SupportersSection />
+      <JourneyTimeline />
       {/* <SupportersSection /> */}
       {/* <InvestorsSection /> */}
     

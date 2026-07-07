@@ -14,7 +14,7 @@ const JourneySection = dynamic(() =>
   import('./components/JourneySection').then((mod) => mod.JourneySection),
 )
 const InvestorsSection = dynamic(() =>
-  import('./components/InvestorsSection').then((mod) => mod.InvestorsSection),
+  import('./components/SupporterSection').then((mod) => mod.InvestorsSection),
 )
 const FAQSection = dynamic(() =>
   import('./components/FAQSection').then((mod) => mod.FAQSection),

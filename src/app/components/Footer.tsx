@@ -434,7 +434,7 @@ export function Footer() {
         style={{ background: '#FAF9F6', fontFamily: 'DM Sans, sans-serif', borderTop: '1px solid #e2eaf2' }}
       >
         <div className="absolute inset-0 pointer-events-none">
-          
+
           <div className="absolute inset-0"/>
           <div
             className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full"
@@ -465,13 +465,14 @@ export function Footer() {
                 <motion.div
                   className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
                   style={{
-                    background: '#00a550',
-                    boxShadow: '0 2px 12px rgba(0,165,80,0.25)',
+                    // background: '#00a550',
+                    // boxShadow: '0 2px 12px rgba(0,165,80,0.25)',
                   }}
                   whileHover={{ rotate: 10, scale: 1.08 }}
                   transition={{ duration: 0.22 }}
                 >
-                  <Zap className="w-5 h-5 text-white" />
+                  {/* <Zap className="w-5 h-5 text-white" /> */}
+                  <img src="/photos/logo2.png" alt="Aproposdrive Logo" style={{ width: 55, height: 40 }} />
                 </motion.div>
                 <span className="font-black text-lg tracking-tight whitespace-nowrap">
                   <span style={{ color: '#0d1b2a' }}>Apropos</span>

@@ -105,9 +105,10 @@ export default function ContactPage() {
                 <div className="flex items-center gap-3">
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    style={{ background: '#00a550', boxShadow: '0 2px 12px rgba(0,165,80,0.28)' }}
+                    // style={{ background: '#00a550', boxShadow: '0 2px 12px rgba(0,165,80,0.28)' }}
                   >
-                    <Zap style={{ width: 19, height: 19, color: '#fff' }} />
+                    {/* <Zap style={{ width: 19, height: 19, color: '#fff' }} /> */}
+                    <img src="/photos/logo2.png" alt="Aproposdrive Logo" style={{ width: 45, height: 40 }} />
                   </div>
                   <div>
                     <p style={{ fontWeight: 900, fontSize: 17, color: '#0d1b2a', lineHeight: 1.2 }}>Aproposdrive</p>
@@ -185,7 +186,7 @@ export default function ContactPage() {
               </div>
 
               {/* Mini stats row */}
-              <div className="grid grid-cols-3 gap-3">
+              {/* <div className="grid grid-cols-3 gap-3">
                 {[
                   ['24h', 'Response', '#00a550'],
                   ['500+', 'Clients', '#0077b6'],
@@ -210,7 +211,7 @@ export default function ContactPage() {
                     </span>
                   </div>
                 ))}
-              </div>
+              </div> */}
             </motion.div>
 
             {/* ══ RIGHT: Form ══ */}

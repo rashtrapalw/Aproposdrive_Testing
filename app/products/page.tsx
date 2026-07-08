@@ -12,7 +12,7 @@ import type { LucideIcon } from 'lucide-react';
 import { ImageWithFallback } from '../../src/app/components/figma/ImageWithFallback';
 
 // ─── ORBITAL CANVAS CONSTANTS ─────────────────────────────────────────────────
-const C = 560;
+const C = 460;
 const CX = C / 2;
 const CY = C / 2;
 const R = 230;
@@ -590,9 +590,9 @@ export default function ProductsPage() {
               <span style={{ color: '#0d1b2a' }}>EV Powertrain &amp; </span>
               <span style={{ color: '#00a550' }}>Motor Controller</span>
             </h2>
-            <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 16, color: 'rgba(13,27,42,0.55)', maxWidth: 520, margin: '0 auto', lineHeight: 1.7 }}>
+            {/* <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 16, color: 'rgba(13,27,42,0.55)', maxWidth: 520, margin: '0 auto', lineHeight: 1.7 }}>
               Advanced electric mobility systems engineered for Indian roads — built for efficiency, reliability, and scale.
-            </p>
+            </p> */}
           </motion.div>
 
           {/* ── Products ── */}

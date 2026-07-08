@@ -389,7 +389,7 @@ export function Navigation() {
                 whileHover={{ scale: 1.05 }}
                 transition={{ duration: 0.2 }}
               />
-              <span className="font-black text-base sm:text-xl tracking-tight leading-none block whitespace-nowrap">
+              <span className="font-black text-xl sm:text-xl tracking-tight leading-none block whitespace-nowrap">
                 <span style={{ color: '#0d1b2a' }}>Apropos</span>
                 <span style={{ color: '#00a550' }}>drive</span>
               </span>

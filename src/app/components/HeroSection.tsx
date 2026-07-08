@@ -24,7 +24,7 @@ export function HeroSection() {
         </div>
       </div> */}
 
-      <div className="absolute inset-0 bg-[linear-gradient(rgba(10,15,28,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(10,15,28,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" />
+      {/* <div className="absolute inset-0 bg-[linear-gradient(rgba(10,15,28,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(10,15,28,0.03)_1px,transparent_1px)] dark:bg-[linear-gradient(rgba(255,255,255,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.03)_1px,transparent_1px)] bg-[size:64px_64px]" /> */}
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -76,7 +76,7 @@ export function HeroSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.4 }}
-              className="overlock-regular text-lg md:text-xl text-white/70 leading-relaxed max-w-xl tracking-wide"
+              className="text-lg md:text-xl text-white/70 leading-relaxed max-w-xl tracking-wide"
             >
               Revolutionizing Indian transportation with cutting-edge electric vehicle technology.
               Sustainable, powerful, and built for tomorrow.

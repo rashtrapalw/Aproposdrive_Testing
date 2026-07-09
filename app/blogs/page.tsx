@@ -23,7 +23,7 @@ const BLOG_POSTS: BlogPost[] = [
     title: 'Why Rare Earth-Free Motors Are the Future of Indian EVs',
     excerpt:
       'Switched Reluctance Motors eliminate dependence on imported rare earth magnets, cutting cost and supply-chain risk while matching the efficiency of conventional PMSM designs.',
-    image: '/photos/blog-srm-motor.jpg',
+    image: '/photos/controller.png',
     date: 'Jun 12, 2026',
     readTime: '6 min read',
     accent: '#00a550',
@@ -34,7 +34,7 @@ const BLOG_POSTS: BlogPost[] = [
     title: 'Inside Our Integrated Powertrain: Motor, Gearbox & Controller in One',
     excerpt:
       'A look at how combining three separate components into a single air-cooled unit reduces weight, simplifies assembly, and improves long-term reliability for two-wheelers.',
-    image: '/photos/blog-powertrain.jpg',
+    image: '/photos/integreted-p.jpeg',
     date: 'May 28, 2026',
     readTime: '8 min read',
     accent: '#0077b6',
@@ -45,7 +45,7 @@ const BLOG_POSTS: BlogPost[] = [
     title: "India's EV Adoption Curve: What the Next Five Years Look Like",
     excerpt:
       'From policy incentives to charging infrastructure, we break down the trends shaping electric two- and three-wheeler adoption across urban and rural markets.',
-    image: '/photos/blog-industry.jpg',
+    image: '/photos/a-c-sytem.png',
     date: 'May 14, 2026',
     readTime: '5 min read',
     accent: '#00a550',
@@ -56,7 +56,7 @@ const BLOG_POSTS: BlogPost[] = [
     title: 'IP67 Sealing Explained: Building Motors for Indian Monsoons',
     excerpt:
       'Water and dust ingress are among the top causes of EV powertrain failure. Here is how our sealing standards keep motors reliable through the harshest weather.',
-    image: '/photos/blog-ip67.jpg',
+    image: '/photos/tech_hero-removebg.png',
     date: 'Apr 30, 2026',
     readTime: '4 min read',
     accent: '#0077b6',
@@ -67,7 +67,7 @@ const BLOG_POSTS: BlogPost[] = [
     title: 'The Environmental Case for Rare Earth-Free Manufacturing',
     excerpt:
       'Mining rare earth elements carries a heavy ecological cost. We explore how ferrite-based SRM technology offers a cleaner path to scaling electric mobility.',
-    image: '/photos/blog-sustainability.jpg',
+    image: '/photos/a-c-sytem.png',
     date: 'Apr 9, 2026',
     readTime: '7 min read',
     accent: '#00a550',
@@ -78,7 +78,7 @@ const BLOG_POSTS: BlogPost[] = [
     title: 'Ride Modes & Hill Hold: Smarter Control for Everyday Riders',
     excerpt:
       'Our motor controller brings three configurable ride modes, cruise control, and hill hold assist together — designed around how people actually ride in Indian cities.',
-    image: '/photos/blog-controller.jpg',
+    image: '/photos/w-rare-earth.jpeg',
     date: 'Mar 22, 2026',
     readTime: '5 min read',
     accent: '#0077b6',

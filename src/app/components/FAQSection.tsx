@@ -2,7 +2,7 @@
 
 import { useState, useRef } from 'react'
 import Link from 'next/link'
-import { motion, useInView, AnimatePresence } from 'motion/react'
+import { motion, useInView, AnimatePresence, type Variants } from 'motion/react'
 import { Plus, Minus } from 'lucide-react'
 
 const faqs = [
@@ -38,19 +38,19 @@ const faqs = [
   },
 ]
 
-const listVariants = {
+const listVariants: Variants = {
   hidden: {},
   show: {
     transition: { staggerChildren: 0.06 },
   },
 }
 
-const itemVariants = {
+const itemVariants: Variants = {
   hidden: { opacity: 0, y: 14 },
   show: {
     opacity: 1,
     y: 0,
-    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] },
+    transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] as const },
   },
 }
 
@@ -98,7 +98,7 @@ function FAQItem({ faq }: { faq: (typeof faqs)[0] }) {
             exit={{ height: 0, opacity: 0 }}
             transition={{
               duration: 0.3,
-              ease: [0.25, 0.46, 0.45, 0.94],
+              ease: [0.25, 0.46, 0.45, 0.94] as const,
             }}
             style={{ overflow: 'hidden' }}
           >
@@ -218,7 +218,7 @@ export function FAQSection() {
           <motion.div
             initial={{ opacity: 0, scale: 0.92 }}
             animate={headerInView ? { opacity: 1, scale: 1 } : {}}
-            transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] }}
+            transition={{ duration: 0.65, ease: [0.21, 0.47, 0.32, 0.98] as const }}
             className="hidden lg:flex items-center justify-center pt-8"
           >
             <FloatingIllustration />

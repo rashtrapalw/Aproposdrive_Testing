@@ -41,7 +41,8 @@ function FeatureChip({ feature, index }: { feature: Feature; index: number }) {
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-10% 0px' }}
       transition={{ delay: 0.55 + index * 0.08, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
-      className="flex flex-col items-center sm:items-start gap-1.5 text-center sm:text-left"
+      // className="flex flex-col items-center sm:items-start gap-1.5 text-center sm:text-left"
+      className="flex flex-col items-start gap-1.5 text-left"
     >
       <div className="w-10 h-10 rounded-xl bg-green-50 border border-green-100 flex items-center justify-center flex-shrink-0" style={{ color: '#10044c' }}>
         <Icon className="w-5 h-5 text-green-600" strokeWidth={1.8} />
@@ -121,7 +122,7 @@ function AboutSection() {
             initial={{ opacity: 0, y: 14 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.5 }}
-            className="text-sm sm:text-[15px] text-gray-600 leading-relaxed mb-8"
+            className="text-[20px] sm:text-lg lg:text-lg text-gray-600 leading-relaxed mb-8"
           >
             Our passion for engineering drives us to build high-performance motor and controller
             technologies that empower industries to embrace the future of electric mobility.
@@ -134,11 +135,11 @@ function AboutSection() {
             transition={{ delay: 0.32, duration: 0.5, ease: 'easeOut' }}
           />
  
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-x-10 gap-y-7">
-            {features.map((f, i) => (
-              <FeatureChip key={f.title} feature={f} index={i} />
-            ))}
-          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 gap-x-10 gap-y-7">
+  {features.map((f, i) => (
+    <FeatureChip key={f.title} feature={f} index={i} />
+  ))}
+</div>
  
         </div>
       </div>

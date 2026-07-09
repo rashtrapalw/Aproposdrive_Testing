@@ -67,7 +67,7 @@ export default function App() {
       {/* <JourneyTimeline /> */}
       <JourneySection />
       {/* <InvestorsSection /> */}
-      <FAQSection />
+      {/* <FAQSection /> */}
     </div>
   )
 }

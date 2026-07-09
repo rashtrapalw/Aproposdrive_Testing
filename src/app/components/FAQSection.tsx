@@ -173,22 +173,23 @@ const faqs = [
 // ── Single accordion item ──────────────────────────────────────────────────────
 function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
   const [open, setOpen] = useState(false)
-  const ref = useRef(null)
-  const inView = useInView(ref, { once: true, margin: '-4% 0px' })
 
   return (
     <motion.div
-      ref={ref}
       initial={{ opacity: 0, y: 14 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: index * 0.06, duration: 0.45, ease: [0.25, 0.46, 0.45, 0.94] }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{
+        delay: index * 0.06,
+        duration: 0.45,
+        ease: [0.25, 0.46, 0.45, 0.94],
+      }}
       className="overflow-hidden rounded-xl transition-all duration-200"
       style={{
         border: open ? '1px solid rgba(0,165,80,0.35)' : '1px solid #e2eaf2',
         background: '#ffffff',
       }}
     >
-      {/* Trigger row */}
       <button
         onClick={() => setOpen(!open)}
         className="flex w-full items-center justify-between gap-4 px-5 py-4 text-left transition-colors duration-200"
@@ -200,6 +201,7 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
         >
           {faq.question}
         </span>
+
         <span
           className="flex h-7 w-7 flex-shrink-0 items-center justify-center rounded-full transition-all duration-200"
           style={{
@@ -207,19 +209,24 @@ function FAQItem({ faq, index }: { faq: typeof faqs[0]; index: number }) {
             color: open ? '#00a550' : '#4a5a6a',
           }}
         >
-          {open ? <Minus size={14} strokeWidth={2.5} /> : <Plus size={14} strokeWidth={2.5} />}
+          {open ? (
+            <Minus size={14} strokeWidth={2.5} />
+          ) : (
+            <Plus size={14} strokeWidth={2.5} />
+          )}
         </span>
       </button>
 
-      {/* Answer */}
       <AnimatePresence initial={false}>
         {open && (
           <motion.div
-            key="answer"
             initial={{ height: 0, opacity: 0 }}
             animate={{ height: 'auto', opacity: 1 }}
             exit={{ height: 0, opacity: 0 }}
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{
+              duration: 0.3,
+              ease: [0.25, 0.46, 0.45, 0.94],
+            }}
             style={{ overflow: 'hidden' }}
           >
             <p
@@ -330,15 +337,15 @@ export function FAQSection() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true, amount: 0.6 }}
         transition={{ duration: 0.5 }}
-        style={{ background: '#0d1b2a' }}
+        style={{ background: '#43de4b9d' }}
       >
         <div className="mx-auto max-w-7xl px-4 py-8 sm:px-6 lg:px-10">
           <div className="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
             <div>
-              <p className="font-bold text-white" style={{ fontSize: 18 }}>
+              <p className="font-bold text-black" style={{ fontSize: 18 }}>
                 Still have questions?
               </p>
-              <p style={{ fontSize: 13.5, color: 'rgba(255,255,255,0.55)' }}>
+              <p style={{ fontSize: 13.5, color: 'rgb(20, 10, 10)' }}>
                 Our team is here to help you.
               </p>
             </div>

@@ -1,6 +1,10 @@
 ﻿
 'use client';
 import type { ReactNode } from 'react'
+import { useState, useEffect, useRef,  } from 'react'
+import { useInView } from 'framer-motion'
+import { Settings } from 'lucide-react';
+import { Wrench} from 'lucide-react'
 import { motion } from 'motion/react'
 import {
   ArrowRight,
@@ -23,7 +27,12 @@ import {
   Gauge as GaugeIcon,
   Magnet,
   CloudCog,
+  BarChart2,
+  ThermometerSun
 } from 'lucide-react'
+
+
+import {PmsmTechnology} from '@/app/components/pmsmTech'
 
 const themeStyles = {
   page: { backgroundColor: 'var(--color-background)', color: 'var(--color-foreground)' },
@@ -54,6 +63,7 @@ export default function TechnologyPage() {
       <Hero />
       {/* <TechnologyPillars /> */}
       <SrmTechnology />
+      <PmsmTechnology />
       {/* <KeyTech /> */}
       <SmartController />
       <IntegratedPlatform />
@@ -373,198 +383,256 @@ style={{
 
 
 
-
+// ── SrmTechnology — replace existing function in TechnologyPage.tsx ───────────
+// Imports needed (add to your existing imports if not present):
+// import { Check, Cpu, Zap, Gauge, Shield, Settings, Layers, BarChart2, ThermometerSun, Magnet, Box, Wrench } from 'lucide-react'
+// ── SrmTechnology — replace existing function in TechnologyPage.tsx ───────────
+// Required additional imports (add if missing):
+// import { BarChart2, Thermometer, Magnet, Wrench, Box, Settings, TrendingUp } from 'lucide-react'
 
 function SrmTechnology() {
-  const features = [
-    'Scarce and expensive resources',
-    'Environmentally intensive mining',
-    'Supply chain vulnerabilities',
-    'Strategic independence for India',
-  ];
+  const ref = useRef(null)
+  const inView = useInView(ref, { once: true, margin: '-6% 0px' })
+
+  // Simple breakpoint hook
+  const [isMobile, setIsMobile] = useState(false)
+  useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 768)
+    check()
+    window.addEventListener('resize', check)
+    return () => window.removeEventListener('resize', check)
+  }, [])
+
+  const motorFeatures = [
+    { icon: Zap,         label: 'High Power\nDensity' },
+    { icon: Gauge,       label: 'Superior\nEfficiency' },
+    { icon: Settings,    label: 'Smooth &\nQuiet Operation' },
+    { icon: TrendingUp,  label: 'High Speed\nCapability' },
+    { icon: Cpu,         label: 'Excellent Torque\nControl' },
+    { icon: ShieldCheck, label: 'Sensorless\nControl' },
+  ]
+
+  const capabilities = [
+    { icon: Magnet,      label: 'Electromagnetic Design' },
+    { icon: BarChart2,   label: 'Finite Element Analysis (FEA)' },
+    { icon: Gauge,       label: 'Torque–Speed Optimization' },
+    { icon: Zap,         label: 'Core & Copper Loss Analysis' },
+    { icon: Thermometer, label: 'Thermal Simulation' },
+    { icon: Cpu,         label: 'Inductance & Flux Analysis' },
+    { icon: Box,         label: 'CAD & 3D Modeling' },
+    { icon: Wrench,      label: 'Prototype Development' },
+  ]
+
+  const colStyle: React.CSSProperties = isMobile
+    ? { padding: '28px 20px', borderTop: '1px solid #e8eef4' }
+    : { padding: 'clamp(28px, 3.5vw, 52px)', flex: 1 }
 
   return (
-    <section className="py-16 sm:py-20" style={{ backgroundColor: '#ffffff' }}>
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
-        <div
+    <section
+      ref={ref}
+      className="py-4 sm:py-6 lg:py-8"
+      style={{ background: '#f8fafb' }}
+    >
+      <div className="mx-auto w-full max-w-[1600px] px-4 sm:px-6 lg:px-10 xl:px-14">
+
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{
-            display: 'grid',
-            gridTemplateColumns: '1.1fr 0.9fr',
-            gap: '40px',
-            alignItems: 'center',
-          }}
-        >
-          {/* ── LEFT: text content ── */}
-          <motion.div
-            style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.3 }}
-            variants={fadeUp}
-          >
-            <p style={{ fontSize: 12, fontWeight: 700, color: '#00a550', letterSpacing: '0.08em', textTransform: 'uppercase', margin: 0 }}>
-              Understanding Rare Earths
-            </p>
-
-            <h2 style={{ fontSize: 28, fontWeight: 700, color: '#0d1b2a', lineHeight: 1.2, margin: 0 }}>
-              Why Going Rare Earth-Free is the Future
-            </h2>
-
-            <p style={{ fontSize: 14, color: '#4a5a6a', lineHeight: 1.75, margin: 0, maxWidth: 360 }}>
-              Rare earth elements are limited, geopolitically sensitive, and environmentally damaging
-              to extract. We've built our technology to deliver the same—if not better—performance
-              without relying on them.
-            </p>
-
-            {/* Checklist — no card boxes, just icon + text */}
-            <ul style={{ listStyle: 'none', padding: 0, margin: '8px 0 0', display: 'flex', flexDirection: 'column', gap: '10px' }}>
-              {features.map((f, i) => (
-                <motion.li
-                  key={f}
-                  style={{ display: 'flex', alignItems: 'center', gap: '10px' }}
-                  custom={i}
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true, amount: 0.5 }}
-                  variants={fadeUp}
-                >
-                  <span
-                    className="transition-transform duration-300 hover:scale-110"
-                    style={{
-                      width: 22,
-                      height: 22,
-                      borderRadius: '50%',
-                      background: '#00a550',
-                      display: 'flex',
-                      alignItems: 'center',
-                      justifyContent: 'center',
-                      flexShrink: 0,
-                    }}
-                  >
-                    <Check size={13} color="#ffffff" strokeWidth={2.5} />
-                  </span>
-                  <span style={{ fontSize: 13.5, fontWeight: 600, color: '#0d1b2a' }}>{f}</span>
-                </motion.li>
-              ))}
-            </ul>
-          </motion.div>
-
-          {/* ── CENTER: floating image, no container box ── */}
-          <motion.div
-            style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
-            initial={{ opacity: 0, scale: 0.92 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true, amount: 0.4 }}
-            transition={{ duration: 0.6, ease: 'easeInOut' }}
-          >
-             <motion.img
-              src="/photos/w-rare-earth.jpeg"
-              alt="Rare earth mineral"
-              style={{
-                width: '100%',
-                maxWidth: 500,   // increase from 260
-                height: 'auto',
-                objectFit: 'contain',
-                filter: 'drop-shadow(0 18px 36px rgba(0,0,0,0.18))',
-                paddingTop: '30px',  // add some top padding
-              }}
-              animate={{ y: [0, -8, 0] }}
-              transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
-            />
-          </motion.div>
-
-          {/* ── RIGHT: stat card ── */}
-          
-        </div>
-      </div>
-    </section>
-  );
-}
-
-
-
-function KeyTech() {
-  const stats = [
-    { icon: <TrendingUp size={20} strokeWidth={1.8} />, value: '95%+', label: 'Peak Efficiency' },
-    { icon: <Zap size={20} strokeWidth={1.8} />, value: '18 – 150 kW', label: 'Power Range' },
-    { icon: <Gauge size={20} strokeWidth={1.8} />, value: '120 – 450 Nm', label: 'Torque Range' },
-    { icon: <ShieldCheck size={20} strokeWidth={1.8} />, value: 'IP67', label: 'Protection Rating' },
-    { icon: <Thermometer size={20} strokeWidth={1.8} />, value: '-40°C to 85°C', label: 'Operating Temp.' },
-    { icon: <CalendarDays size={20} strokeWidth={1.8} />, value: '10+ Years', label: 'Design Life' },
-  ];
-
-  return (
-    <section className="py-12 sm:py-14" style={{ backgroundColor: '#ffffff' }}>
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
-
-        <motion.p
-          style={{
-            fontSize: 12,
-            fontWeight: 700,
-            color: '#00a550',
-            letterSpacing: '0.08em',
-            textTransform: 'uppercase',
-            margin: '0 0 16px',
-          }}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.6 }}
-          variants={fadeUp}
-        >
-          Key Technologies
-        </motion.p>
-
-        <div
-          style={{
+            background: '#ffffff',
+            border: '1px solid #e8eef4',
+            borderRadius: 20,
+            boxShadow: '0 4px 32px rgba(0,0,0,0.07)',
             display: 'flex',
-            alignItems: 'center',
-            borderTop: '1px solid #e8eef4',
-            paddingTop: '24px',
+            flexDirection: isMobile ? 'column' : 'row',
+            minHeight: isMobile ? 'auto' : 'clamp(380px, 40vw, 500px)',
           }}
         >
-          {stats.map((s, i) => (
-            <motion.div
-              key={s.label}
-              style={{ display: 'flex', alignItems: 'center', flex: 1 }}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.4 }}
-              variants={fadeUp}
-            >
-              <div style={{ display: 'flex', alignItems: 'center', gap: '12px' }}>
-                <div className="transition-transform duration-300 hover:scale-110 lg:self-start"style={{ color: '#0d1b2a', flexShrink: 0 }}>
-                  {s.icon}
-                </div>
-                <div>
-                  <p style={{ fontSize: 16, fontWeight: 700, color: '#0d1b2a', margin: 0, lineHeight: 1.3 }}>
-                    {s.value}
-                  </p>
-                  <p style={{ fontSize: 12, color: '#6b7e8f', margin: 0, lineHeight: 1.4 }}>
-                    {s.label}
-                  </p>
-                </div>
-              </div>
 
-              {/* Vertical divider, skip after last */}
-              {i < stats.length - 1 && (
-                <div
-                  style={{
-                    width: 1,
-                    height: 36,
-                    background: '#e2eaf2',
-                    margin: '0 20px',
-                    flexShrink: 0,
-                  }}
-                />
-              )}
-            </motion.div>
-          ))}
-        </div>
+          {/* ══ LEFT: image ══ */}
+          <motion.div
+            initial={{ opacity: 0, x: isMobile ? 0 : -20 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{
+              flex: 1,
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              padding: 'clamp(28px, 4vw, 52px)',
+              background: 'linear-gradient(145deg, #f0faf5 0%, #eaf5ff 100%)',
+              borderRadius: isMobile ? '20px 20px 0 0' : '20px 0 0 20px',
+            }}
+          >
+            <div style={{
+              position: 'relative',
+              width: 'clamp(180px, 20vw, 280px)',
+              height: 'clamp(180px, 20vw, 280px)',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+            }}>
+              <div style={{
+                position: 'absolute',
+                inset: 0,
+                borderRadius: '50%',
+                background: 'radial-gradient(circle, rgba(0,165,80,0.10) 0%, transparent 72%)',
+                border: '1.5px solid rgba(0,165,80,0.18)',
+              }} />
+              <div style={{
+                position: 'absolute',
+                width: '75%', height: '75%',
+                borderRadius: '50%',
+                border: '1px dashed rgba(0,165,80,0.25)',
+                top: '50%', left: '50%',
+                transform: 'translate(-50%,-50%)',
+              }} />
+              <motion.img
+                src="/photos/srmtech.png"
+                alt="SRM Motor"
+                style={{
+                  width: '100%', height: '100%',
+                  objectFit: 'contain',
+                  position: 'relative', zIndex: 1,
+                  filter: 'drop-shadow(0 12px 28px rgba(0,0,0,0.14))',
+                }}
+                animate={{ y: [0, -8, 0] }}
+                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+              />
+            </div>
+          </motion.div>
+
+          {/* ══ CENTER: content ══ */}
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.1, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{
+              ...colStyle,
+              borderLeft: isMobile ? 'none' : '1px solid #e8eef4',
+              borderRight: isMobile ? 'none' : '1px solid #e8eef4',
+              display: 'flex',
+              flexDirection: 'column',
+              justifyContent: 'center',
+            }}
+          >
+            <p style={{ fontSize: 'clamp(12px, 1.1vw, 15px)', fontWeight: 700, color: '#00a550', marginBottom: 8 }}>
+              01
+            </p>
+            <h2 style={{
+              fontSize: 'clamp(17px, 1.9vw, 26px)',
+              fontWeight: 900, color: '#0d1b2a',
+              textTransform: 'uppercase', lineHeight: 1.2,
+              marginBottom: 10, letterSpacing: '-0.01em',
+            }}>
+              Switched Reluctance<br />Motor (SRM)
+            </h2>
+            <p style={{ fontSize: 'clamp(11.5px, 1vw, 14px)', fontWeight: 600, color: '#00a550', marginBottom: 12 }}>
+              Rare Earth-Free. High Efficiency. Robust.
+            </p>
+            <p style={{
+              fontSize: 'clamp(12px, 1.05vw, 14px)',
+              color: '#4a5a6a', lineHeight: 1.75,
+              marginBottom: 'clamp(16px, 2vw, 28px)',
+            }}>
+              SRM technology eliminates rare earth materials entirely, delivering outstanding
+              efficiency, superior fault tolerance, and dependable performance across all
+              operating conditions — ideal for next-generation electric mobility.
+            </p>
+
+            {/* 3×2 feature grid */}
+            <div style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(3, 1fr)',
+              gap: 'clamp(10px, 1.4vw, 20px)',
+            }}>
+              {motorFeatures.map((f, i) => {
+                const Icon = f.icon
+                return (
+                  <motion.div
+                    key={f.label}
+                    initial={{ opacity: 0, y: 8 }}
+                    animate={inView ? { opacity: 1, y: 0 } : {}}
+                    transition={{ delay: 0.25 + i * 0.055, duration: 0.35 }}
+                    style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, textAlign: 'center' }}
+                  >
+                    <div style={{
+                      width: 'clamp(30px, 2.8vw, 40px)',
+                      height: 'clamp(30px, 2.8vw, 40px)',
+                      borderRadius: '50%',
+                      background: 'rgba(0,165,80,0.07)',
+                      border: '1px solid rgba(0,165,80,0.2)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                    }}>
+                      <Icon size={13} color="#00a550" strokeWidth={1.8} />
+                    </div>
+                    <p style={{ fontSize: 'clamp(9px, 0.82vw, 11.5px)', color: '#4a5a6a', lineHeight: 1.4, whiteSpace: 'pre-line', margin: 0 }}>
+                      {f.label}
+                    </p>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </motion.div>
+
+          {/* ══ RIGHT: capabilities ══ */}
+          <motion.div
+            initial={{ opacity: 0, x: isMobile ? 0 : 20 }}
+            animate={inView ? { opacity: 1, x: 0 } : {}}
+            transition={{ delay: 0.18, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
+            style={{
+              ...colStyle,
+              borderRadius: isMobile ? '0 0 20px 20px' : '0 20px 20px 0',
+              display: 'flex', flexDirection: 'column', justifyContent: 'center',
+            }}
+          >
+            <p style={{
+              fontSize: 'clamp(9px, 0.82vw, 11px)',
+              fontWeight: 800, color: '#00a550',
+              letterSpacing: '0.14em', textTransform: 'uppercase',
+              marginBottom: 'clamp(12px, 1.4vw, 20px)',
+            }}>
+              Engineering Capabilities
+            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: 'clamp(8px, 1vw, 14px)' }}>
+              {capabilities.map((c, i) => {
+                const Icon = c.icon
+                return (
+                  <motion.div
+                    key={c.label}
+                    initial={{ opacity: 0, x: 10 }}
+                    animate={inView ? { opacity: 1, x: 0 } : {}}
+                    transition={{ delay: 0.28 + i * 0.05, duration: 0.32 }}
+                    style={{ display: 'flex', alignItems: 'center', gap: 10 }}
+                  >
+                    <div style={{
+                      width: 'clamp(22px, 1.8vw, 28px)',
+                      height: 'clamp(22px, 1.8vw, 28px)',
+                      borderRadius: 6,
+                      background: 'rgba(0,165,80,0.07)',
+                      border: '1px solid rgba(0,165,80,0.17)',
+                      display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                    }}>
+                      <Icon size={11} color="#00a550" strokeWidth={1.8} />
+                    </div>
+                    <span style={{ fontSize: 'clamp(11px, 1vw, 13.5px)', color: '#0d1b2a', lineHeight: 1.4 }}>
+                      {c.label}
+                    </span>
+                  </motion.div>
+                )
+              })}
+            </div>
+          </motion.div>
+
+        </motion.div>
       </div>
     </section>
-  );
+  )
 }
+
+
+
 
 
 function SmartController() {

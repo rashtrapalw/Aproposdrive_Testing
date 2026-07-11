@@ -200,48 +200,59 @@ lg:w-[440px] lg:h-[440px]"
   }}
  className="-mt-12 sm:-mt-14 lg:-mt-[100px]" 
 >
-  <div className="mx-auto max-w-7xl px-4 sm:px-8 lg:px-10">
-    <div
-      className="grid grid-cols-2 lg:grid-cols-4 gap-y-8 gap-x-4 w-full lg:max-w-[520px]"
-    >
+  <div className="w-full px-2">
+  <div
+    className="flex justify-between items-start text-center"
+  >
       {features.map((f, i) => (
-        <motion.div
-              key={i}
-              className="flex flex-col items-center text-center lg:items-start lg:text-left"
-              style={{
-                gap: '8px',
-                padding: '20px 10px',
-              }}
-              custom={i}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, amount: 0.4 }}
-              variants={fadeUp}
-            >
-                    <div className="flex justify-center lg:justify-start w-full">
-              <div
-                className="transition-transform duration-300 hover:scale-110"
-                style={{
-                  width: 38,
-                  height: 38,
-                  borderRadius: '50%',
-                  background: 'rgba(0,165,80,0.08)',
-                  color: '#00a550',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  flexShrink: 0,
-                }}
-              >
-                {f.icon}
-              </div>
-            </div>
-          <p style={{ fontSize: 13, fontWeight: 600, color: '#0d1b2a', margin: 0 }}>
-            {f.title}
-          </p>
-          <p style={{ fontSize: 11.5, color: '#6b7e8f', lineHeight: 1.5, margin: 0 }}>
-            {f.subtitle}
-          </p>
+  <motion.div
+    key={i}
+    className="flex-1 flex flex-col items-center text-center"
+    style={{
+      padding: '12px 4px',
+      gap: '6px',
+    }}
+    custom={i}
+    initial="hidden"
+    whileInView="visible"
+    viewport={{ once: true }}
+    variants={fadeUp}
+  >
+  <div
+  style={{
+    width: 38,
+    height: 38,
+    borderRadius: '50%',
+    background: 'rgba(0,165,80,0.08)',
+    color: '#00a550',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+  }}
+>
+  {f.icon}
+</div>
+          <p
+  style={{
+    fontSize: 12,
+    fontWeight: 600,
+    color: '#0d1b2a',
+    margin: 0,
+  }}
+>
+  {f.title}
+</p>
+
+<p
+  style={{
+    fontSize: 10,
+    color: '#6b7e8f',
+    lineHeight: 1.3,
+    margin: 0,
+  }}
+>
+  {f.subtitle}
+</p>
         </motion.div>
       ))}
     </div>

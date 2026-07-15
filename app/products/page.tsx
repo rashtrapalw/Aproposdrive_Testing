@@ -57,7 +57,7 @@ const PRODUCTS: Product[] = [
     title: 'Integrated EV Powertrain Platform',
     subtitle: 'Compact. Rare-earth-free. Purpose-built.',
     description: 'A single unified unit combining motor, gearbox, and controller — air-cooled, IP67-sealed, and engineered for electric scooters at scale.',
-    image: '/photos/no-bg-controller.png',
+    image: '/photos/motor-removebg.png',
     accent: '#00a550',
     features: [
       { icon: Leaf, text: 'Rare Earth-Free Motor Technology' },
@@ -92,7 +92,7 @@ const PRODUCTS: Product[] = [
     title: 'EV Motor Controller',
     subtitle: 'Precise. Thermal-stable. Intelligent.',
     description: 'High-performance vector field-oriented motor controller for light EVs — with ride modes, hill hold, and real-time diagnostics built in.',
-    image: '/photos/motor-removebg.png',
+    image: '/photos/no-bg-controller.png',
     accent: '#0077b6',
     features: [
       { icon: Cpu, text: 'Vector Field-Oriented Control Algorithm' },
@@ -103,16 +103,16 @@ const PRODUCTS: Product[] = [
       { icon: CheckCircle, text: 'Real-time Fault LED Diagnostics' },
     ],
     specs: [
-      { icon: Zap, label: 'Peak Current', value: '280A', color: '#0077b6', angle: 270 },
-      { icon: Activity, label: 'Power Range', value: '3–7 kW', color: '#0077b6', angle: 330 },
-      { icon: Thermometer, label: 'Temp Range', value: '±90°C', color: '#00a550', angle: 30 },
-      { icon: Shield, label: 'Protection', value: 'IP67', color: '#0077b6', angle: 90 },
-      { icon: Wifi, label: 'Comms', value: 'CAN+USB', color: '#00a550', angle: 150 },
-      { icon: Cpu, label: 'Control', value: 'PMSM FOC', color: '#0077b6', angle: 210 },
+      // { icon: Zap, label: 'Peak Current', value: '280A', color: '#0077b6', angle: 270 },
+      // { icon: Activity, label: 'Power Range', value: '3–7 kW', color: '#0077b6', angle: 330 },
+      // { icon: Thermometer, label: 'Temp Range', value: '±90°C', color: '#00a550', angle: 30 },
+      // { icon: Shield, label: 'Protection', value: 'IP67', color: '#0077b6', angle: 90 },
+      // { icon: Wifi, label: 'Comms', value: 'CAN+USB', color: '#00a550', angle: 150 },
+      // { icon: Cpu, label: 'Control', value: 'PMSM FOC', color: '#0077b6', angle: 210 },
     ],
     variants: [
-      { name: 'Variant 1', cols: [['Power', '1–4 kW'], ['Current', '160A'], ['Voltage', '48–72V']] },
-      { name: 'Variant 2', cols: [['Power', '3–7 kW'], ['Current', '280A'], ['Voltage', '48–72V']] },
+      // { name: 'Variant 1', cols: [['Power', '1–4 kW'], ['Current', '160A'], ['Voltage', '48–72V']] },
+      // { name: 'Variant 2', cols: [['Power', '3–7 kW'], ['Current', '280A'], ['Voltage', '48–72V']] },
     ],
     tableHeaders: ['Spec', 'Variant 1', 'Variant 2'],
     tableRows: [
@@ -121,7 +121,7 @@ const PRODUCTS: Product[] = [
       ['Dimensions', '165×109×45mm', '214×119×45mm'], ['Temp Range', '-20 to +90°C', '-20 to +90°C'],
       ['Protection', 'IP67', 'IP67'], ['Control', 'PMSM FOC', 'PMSM FOC'], ['Comms', 'CAN + USB', 'CAN + USB'],
     ],
-    platforms: ['2-wheelers (L2)', '3-wheelers (L3)', 'Custom EV Platforms'],
+    // platforms: ['2-wheelers (L2)', '3-wheelers (L3)', 'Custom EV Platforms'],
   },
 ];
 
@@ -200,14 +200,14 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         overflow: 'hidden',
       }}>
-        <motion.div style={{
+        {/* <motion.div style={{
           position: 'absolute', left: 0, right: 0, height: 1,
           background: `linear-gradient(90deg,transparent,${product.accent}99,transparent)`,
           zIndex: 20, pointerEvents: 'none',
         }}
           animate={{ top: ['0%', '100%'] }}
           transition={{ duration: 2.5, repeat: Infinity, ease: 'linear' }}
-        />
+        /> */}
         <ImageWithFallback
           src={product.image} alt={product.title}
           style={{
@@ -580,13 +580,10 @@ export default function ProductsPage() {
             ref={headerRef}
             initial={{ opacity: 0, y: 20 }} animate={headerInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
             transition={{ duration: 0.6 }}
-            style={{ textAlign: 'center', marginBottom: 64 }}
+            style={{ textAlign: 'center', marginBottom: 64, marginTop: 20, maxWidth: 720, marginLeft: 'auto', marginRight: 'auto' }}
           >
-            <div style={{ display: 'inline-flex', alignItems: 'center', gap: 8, padding: '8px 18px', borderRadius: 40, background: 'rgba(0,165,80,0.08)', border: '1px solid rgba(0,165,80,0.28)', marginBottom: 0 }}>
-              <span style={{ width: 7, height: 7, borderRadius: '50%', background: '#00a550', display: 'block' }} />
-              <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.25em', color: '#00a550' }}>Our Solutions</span>
-            </div>
-            <h2 style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 900, letterSpacing: '-1px', lineHeight: 1.15, marginBottom: 12, fontSize: 'clamp(30px,4.5vw,52px)' }}>
+           
+            <h2 style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 900, letterSpacing: '-1px', lineHeight: 1.15, marginBottom: 12, fontSize: 'clamp(30px,4.5vw,42px)' }}>
               <span style={{ color: '#0d1b2a' }}>EV Powertrain &amp; </span>
               <span style={{ color: '#00a550' }}>Motor Controller</span>
             </h2>

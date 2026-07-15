@@ -21,7 +21,7 @@ const products: Product[] = [
   {
     id: 1,
     tag: 'Product 01',
-    title: 'AproDriveEMX',
+    title: 'Wheel Traction Drive',
     subtitle: 'High-Efficiency Mid Drive Motor with Integrated Controller',
     description: '',
     image: '/photos/motor-main.png',
@@ -37,7 +37,7 @@ const products: Product[] = [
   {
     id: 2,
     tag: 'Product 02',
-    title: 'AproDriveIPCU',
+    title: 'Motor Controller',
     subtitle: 'Integrated Powertrain Control Unit',
     description: '',
     image: '/photos/controller-main.png',
@@ -203,12 +203,12 @@ export function ProductSection() {
               className="font-bold leading-tight mb-2"
               style={{ fontSize: 'clamp(26px,4vw,36px)', color: '#0d1b2a' }}
             >
-              High-Performance.  &  Future-Ready.
+              High - Performance.  &  Future-Ready.
             </h2>
-            <p style={{ fontSize: 14, color: '#4a5a6a', lineHeight: 1.7 }}>
+            {/* <p style={{ fontSize: 14, color: '#4a5a6a', lineHeight: 1.7 }}>
               Precision-engineered EV powertrain solutions for two wheelers, three wheelers, and
               light electric vehicles.
-            </p>
+            </p> */}
           </div>
 
           {/* Right: CTA button */}

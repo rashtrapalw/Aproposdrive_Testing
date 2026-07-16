@@ -902,7 +902,7 @@ function CtaBanner() {
             {/* Right CTA */}
             <div className="flex w-full lg:w-auto lg:justify-end flex-shrink-0">
               <a
-                href="#contact"
+                href="/contact"
                 className="group inline-flex min-w-[210px] items-center justify-center gap-2 rounded-full bg-[#00a550] px-7 py-4 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0F4725] hover:shadow-xl"
               >
                 Talk To Our Team

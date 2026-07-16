@@ -21,7 +21,7 @@ const products: Product[] = [
   {
     id: 1,
     tag: 'Product 01',
-    title: 'Powertrain',
+    title: 'EV Powertrain',
     subtitle: 'High-Efficiency Mid Drive Motor with Integrated Controller',
     description: '',
     image: '/photos/motor-main.png',

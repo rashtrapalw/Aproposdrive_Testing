@@ -34,6 +34,7 @@ import {
 
 import {PmsmTechnology} from '@/app/components/pmsmTech'
 import {SrmTechnology} from '@/app/components/srmTech'
+import { AptBenefits } from '@/app/components/AptBenefits'
 
 const themeStyles = {
   page: { backgroundColor: 'var(--color-background)', color: 'var(--color-foreground)' },
@@ -68,6 +69,7 @@ export default function TechnologyPage() {
   
       <SrmTechnology />
       {/* <KeyTech /> */}
+      <AptBenefits />
          <TechnologyPillars />
       <SmartController />
       <IntegratedPlatform />

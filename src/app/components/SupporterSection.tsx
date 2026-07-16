@@ -16,7 +16,7 @@ const supporters: Supporter[] = [
     name: 'Mr. Nimish Kothari',
     role: 'Co-Founder',
     qualification: 'M.Tech, IIT Bombay',
-    image: '/photos/nimish-removebg-preview.png',
+    image: '/photos/Nimish.jpeg',
     description:
       "A visionary leader and technical powerhouse, bringing advanced engineering expertise from one of India's premier institutions. With a deep specialisation in cutting-edge technology and robust systems design, they drive AproposDrive's core research, development, and technological breakthroughs — turning complex engineering challenges into scalable, real-world EV solutions.",
   },
@@ -24,7 +24,7 @@ const supporters: Supporter[] = [
     name: 'Dr. Saurabh Nikam',
     role: 'Co-Founder',
     qualification: 'Ph.D., IIT Bombay',
-    image: '/photos/saurabh-removebg-preview.png',
+    image: '/photos/Sourabh.jpeg',
     description:
       "A deep-tech innovator leading AproposDrive's technological frontier. Leveraging doctoral expertise from IIT Bombay, they solve the complex material science and electromagnetic challenges fundamental to pioneering rare earth-free motor technology. Their rigorous academic foundation and hands-on engineering acumen bridge the gap between breakthrough research and mass-market viability.",
   },

@@ -2,6 +2,7 @@
 
 import { motion } from 'motion/react';
 import { ArrowRight } from 'lucide-react';
+import Link from 'next/link'
 
 export function HeroSection() {
   return (
@@ -58,14 +59,27 @@ export function HeroSection() {
               transition={{ delay: 0.5 }}
               className="flex flex-wrap gap-4"
             >
-              <motion.button
+              {/* <motion.button
                 whileHover={{ scale: 1.05, boxShadow: '0 0 40px rgba(0, 200, 83, 0.4)' }}
                 whileTap={{ scale: 0.95 }}
                 className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#00C853] to-[#00E5FF] text-white font-['Inter'] font-medium text-sm flex items-center gap-2 shadow-lg shadow-[#00C853]/30"
               >
                 Explore Products
                 <ArrowRight className="w-4 h-4" />
-              </motion.button>
+              </motion.button> */}
+              <Link href="/products">
+  <motion.button
+    whileHover={{
+      scale: 1.05,
+      boxShadow: '0 0 40px rgba(0, 200, 83, 0.4)',
+    }}
+    whileTap={{ scale: 0.95 }}
+    className="px-5 py-2.5 rounded-full bg-gradient-to-r from-[#00C853] to-[#00E5FF] text-white font-['Inter'] font-medium text-sm flex items-center gap-2 shadow-lg shadow-[#00C853]/30"
+  >
+    Explore Products
+    <ArrowRight className="w-4 h-4" />
+  </motion.button>
+</Link>
 
             </motion.div>
 

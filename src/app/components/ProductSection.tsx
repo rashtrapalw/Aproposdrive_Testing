@@ -21,11 +21,11 @@ const products: Product[] = [
   {
     id: 1,
     tag: 'Product 01',
-    title: 'Wheel Traction Drive',
+    title: 'Powertrain',
     subtitle: 'High-Efficiency Mid Drive Motor with Integrated Controller',
     description: '',
     image: '/photos/motor-main.png',
-    href: '/products',
+    href: '/products#powertrain',
     features: [
       '1 – 7 kW Power Range',
       '94–95% Efficiency',
@@ -37,11 +37,11 @@ const products: Product[] = [
   {
     id: 2,
     tag: 'Product 02',
-    title: 'Motor Controller',
+    title: 'Controller',
     subtitle: 'Integrated Powertrain Control Unit',
     description: '',
     image: '/photos/controller-main.png',
-    href: '/products',
+    href: '/products#controller',
     features: [
       '3 – 7 kW Power Range',
       '200 Nm Peak Torque',

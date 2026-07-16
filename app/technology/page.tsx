@@ -70,9 +70,9 @@ export default function TechnologyPage() {
       <SrmTechnology />
       {/* <KeyTech /> */}
       <AptBenefits />
-         <TechnologyPillars />
-      <SmartController />
-      <IntegratedPlatform />
+         {/* <TechnologyPillars /> */}
+      {/* <SmartController /> */}
+      {/* <IntegratedPlatform /> */}
       <CtaBanner />
     </main>
   )
@@ -182,7 +182,7 @@ lg:w-[440px] lg:h-[440px]"
         stroke="rgba(0,165,80,0.1)" strokeWidth="1" />
     </motion.svg>
     <motion.img
-      src="/photos/tech_hero-removebg.png"
+      src="/photos/tech_hero-removebg2.png"
       alt="AproposDrive Motor & Controller"
       className="relative z-10 h-auto w-[80%] object-contain"
       style={{ filter: 'drop-shadow(0 16px 32px rgba(0,40,80,0.15)) ' }}
@@ -863,94 +863,57 @@ function IntegratedPlatform() {
 
 
 
+
 function CtaBanner() {
   return (
-    <section style={{ background: '#ffffff' }} className="py-10 sm:py-12 mb-20">
-      <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+    <section className="bg-[#FFFDF7] py-8">
+      <div className="w-full px-4 lg:px-8">
         <motion.div
-          style={{
-            position: 'relative',
-            overflow: 'hidden',
-            borderRadius: 20,
-            background: '#f6f8f9',
-            height: '100px',
-            border: '1px solid #e8eef4',
-          }}
-          className="flex flex-col gap-6 px-8 py-8 shadow-[0_8px_24px_rgba(0,0,0,0.05)] transition-shadow duration-300 hover:shadow-[0_16px_40px_rgba(0,0,0,0.1)] sm:flex-row sm:items-center sm:justify-between sm:px-10 sm:py-9"
-          initial={{ opacity: 0, y: 20 }}
+          initial={{ opacity: 0, y: 35 }}
           whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.4 }}
-          transition={{ duration: 0.55, ease: 'easeInOut' }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="relative overflow-hidden rounded-3xl border border-green-100 bg-gradient-to-r from-[#FFFDF7] via-[#F7F3E9] to-[#EEF8F1] px-6 py-6 shadow-md transition-all duration-500 hover:shadow-xl lg:px-10 lg:py-7"
         >
-          {/* Subtle background gradient accent on the right */}
-          <div
-            style={{
-              position: 'absolute',
-              right: 0,
-              top: 0,
-              bottom: 0,
-              width: '35%',
-              height: '100%',
-              background:
-                'radial-gradient(circle at 100% 50%, rgba(0,165,80,0.08) 0%, transparent 70%)',
-              pointerEvents: 'none',
-            }}
-          />
+          {/* Background Glow */}
+          <div className="absolute -right-20 top-1/2 h-60 w-60 -translate-y-1/2 rounded-full bg-green-600/10 blur-3xl" />
 
-          {/* Left: Heading */}
-          <h2
-            style={{
-              fontSize: 24,
-              fontWeight: 700,
-              color: '#0d1b2a',
-              lineHeight: 1.3,
-              margin: 0,
-              maxWidth: 320,
-              position: 'relative',
-              zIndex: 1,
-            }}
-          >
-            Let's Build the Future of Electric Mobility Together
-          </h2>
+          <div className="relative z-10 flex flex-col gap-6 lg:flex-row lg:items-center lg:justify-between">
+            {/* Left Content */}
+            <div className="flex-1 lg:pr-12">
+              <span className="mb-2 inline-flex rounded-full bg-green-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-green-700">
+                Partner With Us
+              </span>
 
-          {/* Middle: Description */}
-          <p
-            style={{
-              fontSize: 13,
-              color: '#6b7e8f',
-              lineHeight: 1.6,
-              margin: 0,
-              maxWidth: 220,
-              position: 'relative',
-              zIndex: 1,
-            }}
-          >
-            Partner with us to bring next-generation mobility solutions to life.
-          </p>
+              <h2 className="text-2xl font-bold leading-tight text-[#14361F] lg:text-3xl">
+                Let's Build the Future of{" "}
+                <span className="text-green-700">
+                  Electric Mobility Together
+                </span>
+              </h2>
 
-          {/* Right: Button */}
-          <a
-            href="#contact"
-            style={{
-              position: 'relative',
-              zIndex: 1,
-              display: 'inline-flex',
-              alignItems: 'center',
-              gap: 8,
-              borderRadius: 999,
-              padding: '12px 22px',
-              fontSize: 13.5,
-              fontWeight: 600,
-              color: '#ffffff',
-              background: '#0d3d20',
-              whiteSpace: 'nowrap',
-              flexShrink: 0,
-            }}
-            className="transition-all duration-300 hover:gap-3 hover:opacity-90 hover:shadow-[0_8px_20px_rgba(13,61,32,0.35)]"
-          >
-            Talk To Our Team
-            <ArrowRight size={15} />
-          </a>
+              <p className="mt-2 max-w-2xl text-sm leading-6 text-[#5E6D60]">
+                Collaborate with our engineering experts to create reliable,
+                scalable, and innovative EV solutions that drive the future of
+                sustainable transportation.
+              </p>
+            </div>
+
+            {/* Right CTA */}
+            <div className="flex w-full lg:w-auto lg:justify-end flex-shrink-0">
+              <a
+                href="#contact"
+                className="group inline-flex min-w-[210px] items-center justify-center gap-2 rounded-full bg-[#00a550] px-7 py-4 text-sm font-semibold text-white shadow-md transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#0F4725] hover:shadow-xl"
+              >
+                Talk To Our Team
+
+                <ArrowRight
+                  size={18}
+                  className="transition-transform duration-300 group-hover:translate-x-1"
+                />
+              </a>
+            </div>
+          </div>
         </motion.div>
       </div>
     </section>

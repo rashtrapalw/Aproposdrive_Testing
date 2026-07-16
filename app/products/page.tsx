@@ -35,6 +35,7 @@ type Variant = {
 
 type Product = {
   id: number;
+  slug: string;
   num: string;
   tag: string;
   title: string;
@@ -54,7 +55,8 @@ type Product = {
 const PRODUCTS: Product[] = [
   {
     id: 1, num: '01', tag: 'Powertrain',
-    title: 'Integrated EV Powertrain Platform',
+    slug: "powertrain",
+    title: 'Integrated EV Powertrain ',
     subtitle: 'Compact. Rare-earth-free. Purpose-built.',
     description: 'A single unified unit combining motor, gearbox, and controller — air-cooled, IP67-sealed, and engineered for electric scooters at scale.',
     image: '/photos/motor-removebg.png',
@@ -89,6 +91,7 @@ const PRODUCTS: Product[] = [
   },
   {
     id: 2, num: '02', tag: 'Controller',
+    slug: "controller",
     title: 'EV Motor Controller',
     subtitle: 'Precise. Thermal-stable. Intelligent.',
     description: 'High-performance vector field-oriented motor controller for light EVs — with ride modes, hill hold, and real-time diagnostics built in.',
@@ -491,7 +494,13 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
   );
 
   return (
-    <div ref={ref} style={{ marginBottom: isMobile ? 56 : 72 }}>
+  <section
+    id={product.id === 1 ? 'powertrain' : 'controller'}
+  
+    ref={ref}
+    className="scroll-mt-28"
+    style={{ marginBottom: isMobile ? 56 : 72 }}
+  >
       {LabelRow}
 
       <div
@@ -511,7 +520,7 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
 
       {/* Full-width specs table — always visible, no click needed */}
       <SpecsTable headers={product.tableHeaders} rows={product.tableRows} accent={product.accent} delay={0.1} />
-    </div>
+    </section>
   );
 }
 

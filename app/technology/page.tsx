@@ -61,10 +61,11 @@ export default function TechnologyPage() {
   return (
     <main className="min-h-screen antialiased" style={themeStyles.page}>
       <Hero />
-      {/* <TechnologyPillars /> */}
+   
       <SrmTechnology />
       <PmsmTechnology />
       {/* <KeyTech /> */}
+         <TechnologyPillars />
       <SmartController />
       <IntegratedPlatform />
       <CtaBanner />
@@ -194,13 +195,15 @@ lg:w-[440px] lg:h-[440px]"
 
       {/* ── Feature strip — left-aligned, confined to left half ── */}
 <div
+  className="-mt-12 sm:-mt-14 lg:-mt-[100px]"
   style={{
     borderTop: '1px solid #e0eaf2',
     background: '#ffffff',
   }}
- className="-mt-12 sm:-mt-14 lg:-mt-[100px]" 
 >
-  <div className="w-full px-2">
+<div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
+  <div className="grid lg:grid-cols-2">
+    <div>
   <div
     className="flex justify-between items-start text-center"
   >
@@ -210,6 +213,7 @@ lg:w-[440px] lg:h-[440px]"
     className="flex-1 flex flex-col items-center text-center"
     style={{
       padding: '12px 4px',
+      // marginLeft:'-40px',
       gap: '6px',
     }}
     custom={i}
@@ -220,8 +224,8 @@ lg:w-[440px] lg:h-[440px]"
   >
   <div
   style={{
-    width: 38,
-    height: 38,
+    width: 46,
+    height: 46,
     borderRadius: '50%',
     background: 'rgba(0,165,80,0.08)',
     color: '#00a550',
@@ -234,7 +238,7 @@ lg:w-[440px] lg:h-[440px]"
 </div>
           <p
   style={{
-    fontSize: 12,
+    fontSize: 14,
     fontWeight: 600,
     color: '#0d1b2a',
     margin: 0,
@@ -245,7 +249,7 @@ lg:w-[440px] lg:h-[440px]"
 
 <p
   style={{
-    fontSize: 10,
+    fontSize: 12,
     color: '#6b7e8f',
     lineHeight: 1.3,
     margin: 0,
@@ -258,11 +262,11 @@ lg:w-[440px] lg:h-[440px]"
     </div>
   </div>
 </div>
+</div>
+</div>
     </section>
   );
 }
-
-
 
 function TechnologyPillars() {
   const pillars = [
@@ -294,80 +298,92 @@ function TechnologyPillars() {
   ];
 
   return (
-    <section style={{ background: '#ffffff' }} className="py-16 sm:py-20">
+    <section
+      style={{ background: '#ffffff' }}
+      className="py-16 sm:py-20"
+    >
       <div className="mx-auto max-w-7xl px-6 sm:px-8 lg:px-10">
 
         {/* ── Centered heading ── */}
         <motion.div
-          className="mx-auto max-w-2xl text-center"
+          className="mx-auto max-w-3xl text-center"
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true, amount: 0.5 }}
           variants={fadeUp}
         >
           <p
-            style={{
-              fontSize: 12,
-              fontWeight: 700,
-              color: '#00a550',
-              letterSpacing: '0.08em',
-              textTransform: 'uppercase',
-              margin: '0 0 12px',
-            }}
+            className="text-xs sm:text-sm font-bold uppercase tracking-[0.08em] mb-3"
+            style={{ color: '#00a550' }}
           >
             Our Technology Pillars
           </p>
+
           <h2
-            style={{
-              fontSize: 26,
-              fontWeight: 700,
-              color: '#0d1b2a',
-              lineHeight: 1.3,
-              margin: 0,
-            }}
+            className="
+              text-2xl
+              sm:text-3xl
+              lg:text-4xl
+              font-bold
+              leading-tight
+            "
+            style={{ color: '#0d1b2a' }}
           >
             Built on Deep Engineering. Driven by Innovation.
           </h2>
         </motion.div>
 
-        {/* ── 5-column card row ── */}
+        {/* ── Responsive Grid ── */}
         <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: 'repeat(5, 1fr)',
-            gap: '16px',
-            marginTop: '40px',
-          }}
+          className="
+            grid
+            grid-cols-1
+            sm:grid-cols-2
+            md:grid-cols-3
+            lg:grid-cols-4
+            xl:grid-cols-5
+            gap-6
+            mt-10
+          "
         >
           {pillars.map((p, i) => (
             <motion.div
               key={i}
-             className="
-flex flex-col
-items-center text-center
-lg:items-start lg:text-left
-"
-style={{
-  gap: '8px',
-  padding: '18px 10px',
-}}
               custom={i}
               initial="hidden"
               whileInView="visible"
               viewport={{ once: true, amount: 0.3 }}
               variants={fadeUp}
+              className="
+                flex
+                flex-col
+                items-center
+                text-center
+                lg:items-start
+                lg:text-left
+                gap-3
+                px-3
+                py-5
+              "
             >
+              {/* Icon */}
               <div
-                className="transition-transform duration-300 hover:scale-105"
+                className="
+                  w-16
+                  h-16
+                  sm:w-20
+                  sm:h-20
+                  rounded-full
+                  flex
+                  items-center
+                  justify-center
+                  transition-transform
+                  duration-300
+                  hover:scale-105
+                "
                 style={{
-                  width: 80,
-                  height: 80,
-                  borderRadius: '50%',
                   border: '1.5px solid #d0e8d8',
                   background: '#f4fbf6',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
                   color: '#00a550',
                   flexShrink: 0,
                 }}
@@ -375,10 +391,19 @@ style={{
                 {p.icon}
               </div>
 
-              <p style={{ fontSize: 14, fontWeight: 700, color: '#0d1b2a', margin: 0, lineHeight: 1.4 }}>
+              {/* Title */}
+              <p
+                className="text-base font-bold leading-snug m-0"
+                style={{ color: '#0d1b2a' }}
+              >
                 {p.title}
               </p>
-              <p style={{ fontSize: 12.5, color: '#6b7e8f', margin: 0, lineHeight: 1.6 }}>
+
+              {/* Description */}
+              <p
+                className="text-sm leading-6 m-0"
+                style={{ color: '#6b7e8f' }}
+              >
                 {p.body}
               </p>
             </motion.div>
@@ -389,7 +414,6 @@ style={{
     </section>
   );
 }
-
 
 
 

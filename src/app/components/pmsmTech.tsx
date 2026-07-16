@@ -306,18 +306,19 @@ export function PmsmTechnology() {
           initial={{ opacity: 0, y: 20 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
+
           style={{
             background: '#ffffff',
             border: '1px solid #e8eef4',
             borderRadius: 20,
             boxShadow: '0 4px 32px rgba(0,0,0,0.07)',
-            display: 'flex',
-            /*
-             * LAYOUT CHANGE:
-             * Desktop → row (left-to-right: Image | Content | Capabilities)
-             * Mobile  → column (top-to-bottom controlled by `order` below)
-             */
-            flexDirection: isMobile ? 'column' : 'row',
+
+            display: isMobile ? 'flex' : 'grid',
+
+            gridTemplateColumns: isMobile ? undefined : '30% 40% 30%',
+
+            flexDirection: isMobile ? 'column' : undefined,
+
             minHeight: isMobile ? 'auto' : 'clamp(380px, 40vw, 500px)',
           }}
         >
@@ -333,12 +334,14 @@ export function PmsmTechnology() {
                * flex: 3  → Image takes 30% of the row (3 out of 3+4+3=10 parts)
                * order: 2 → on mobile column, image appears second (after Content)
                */
-              flex: 3,
+              // flex: 3,
               order: isMobile ? 2 : 0,
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
-              padding: 'clamp(28px, 4vw, 52px)',
+              // padding: 'clamp(28px, 4vw, 52px)',
+              padding: 0,
+              overflow: 'hidden',
               background: 'linear-gradient(145deg, #f0faf5 0%, #eaf5ff 100%)',
               /*
                * LAYOUT CHANGE: border-radius adapts to position.
@@ -349,34 +352,30 @@ export function PmsmTechnology() {
               borderTop: isMobile ? '1px solid #e8eef4' : 'none',
             }}
           >
-            <div style={{
+           
+            <div
+            style={{
               position: 'relative',
-              width: 'clamp(180px, 20vw, 280px)',
-              height: 'clamp(180px, 20vw, 280px)',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-            }}>
-              <div style={{
-                position: 'absolute', inset: 0, borderRadius: '50%',
-                background: 'radial-gradient(circle, rgba(0,165,80,0.10) 0%, transparent 72%)',
-                border: '1.5px solid rgba(0,165,80,0.18)',
-              }} />
-              <div style={{
-                position: 'absolute', width: '75%', height: '75%', borderRadius: '50%',
-                border: '1px dashed rgba(0,165,80,0.25)',
-                top: '50%', left: '50%', transform: 'translate(-50%,-50%)',
-              }} />
+              width: '100%',
+              height: '100%',
+              minHeight: isMobile ? '320px' : '100%',
+              overflow: 'hidden',
+            }}
+          >
+
               <motion.img
-                src="/photos/pmsmtech.png"
+                src="/photos/pmsm2.jpeg"
                 alt="PMSM Motor"
+               
                 style={{
-                  width: '100%', height: '100%', objectFit: 'contain',
-                  position: 'relative', zIndex: 1,
-                  filter: 'drop-shadow(0 12px 28px rgba(0,0,0,0.14))',
+                  width: '100%',
+                  height: '100%',
+                  display: 'block',
+                  objectFit: 'cover',
                 }}
-                animate={{ y: [0, -8, 0] }}
-                transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
+
+                // animate={{ y: [0, -8, 0] }}
+                // transition={{ duration: 4.2, repeat: Infinity, ease: 'easeInOut' }}
               />
             </div>
           </motion.div>
@@ -392,7 +391,7 @@ export function PmsmTechnology() {
                * flex: 4  → Content takes 40% of the row (4 out of 10 parts)
                * order: 1 → on mobile column, content appears first (top)
                */
-              flex: 4,
+              // flex: 4,
               order: isMobile ? 1 : 0,
               ...basePadding,
               /*
@@ -405,9 +404,6 @@ export function PmsmTechnology() {
               display: 'flex', flexDirection: 'column', justifyContent: 'center',
             }}
           >
-            <p style={{ fontSize: 'clamp(12px, 1.1vw, 15px)', fontWeight: 700, color: '#00a550', marginBottom: 8 }}>
-              01
-            </p>
             <h2 style={{
               fontSize: 'clamp(17px, 1.9vw, 26px)', fontWeight: 900, color: '#0d1b2a',
               textTransform: 'uppercase', lineHeight: 1.2, marginBottom: 10, letterSpacing: '-0.01em',
@@ -467,7 +463,7 @@ export function PmsmTechnology() {
                * order: 3 → on mobile column, capabilities appears last (bottom)
                * Matches Image width since both have flex: 3
                */
-              flex: 3,
+              // flex: 3,
               order: isMobile ? 3 : 0,
               ...basePadding,
               /*
@@ -479,7 +475,7 @@ export function PmsmTechnology() {
             }}
           >
             <p style={{
-              fontSize: 'clamp(9px, 0.82vw, 11px)', fontWeight: 800, color: '#00a550',
+              fontSize: 'clamp(10px, 0.82vw, 15px)', fontWeight: 800, color: '#00a550',
               letterSpacing: '0.14em', textTransform: 'uppercase',
               marginBottom: 'clamp(12px, 1.4vw, 20px)',
             }}>

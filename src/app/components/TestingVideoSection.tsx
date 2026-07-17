@@ -160,6 +160,9 @@
 // }
 
 
+
+
+
 'use client'
 
 import { motion } from 'motion/react'
@@ -251,22 +254,20 @@ export function TestingVideoSection() {
                   background: 'linear-gradient(135deg,#050c14,#0a1628 55%,#061410)',
                 }}
               >
-                {/* S3-hosted video — plays directly, no cover/thumbnail */}
-                <video
-                  className="absolute inset-0 w-full h-full object-cover"
-                  controls
-                  autoPlay
-                  muted
-                  loop
-                  playsInline
-                >
-                  <source src="https://YOUR-S3-BUCKET.s3.amazonaws.com/videos/testing-video.mp4" type="video/mp4" />
-                  Your browser does not support the video tag.
-                </video>
+                {/* YouTube embed — replaces the local video file */}
+                <iframe
+                  className="absolute inset-0 w-full h-full"
+                  src="https://www.youtube.com/embed/e9T8e6VX2KI?si=aSKT0GGBg9wHj1Eg"
+                  title="YouTube video player"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerPolicy="strict-origin-when-cross-origin"
+                  allowFullScreen
+                ></iframe>
               </div>
 
               {/* Info bar */}
-              <div
+              {/* <div
                 className="px-5 py-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3"
                 style={{ borderTop: '1px solid rgba(255,255,255,0.055)' }}
               >
@@ -296,12 +297,12 @@ export function TestingVideoSection() {
                     </div>
                   ))}
                 </div>
-              </div>
+              </div> */}
             </div>
           </motion.div>
 
           {/* ── Scroll cue ── */}
-          <div className="flex justify-center mt-10">
+          {/* <div className="flex justify-center mt-10">
             <div
               className="w-5 h-8 rounded-full border-2 flex items-start justify-center p-1.5"
               style={{ borderColor: 'rgba(255,255,255,0.18)' }}
@@ -313,7 +314,7 @@ export function TestingVideoSection() {
                 transition={{ duration: 1.4, repeat: Infinity, ease: 'easeInOut' }}
               />
             </div>
-          </div>
+          </div> */}
 
         </div>
       </section>

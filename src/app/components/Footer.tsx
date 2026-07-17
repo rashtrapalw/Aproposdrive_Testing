@@ -163,7 +163,7 @@ export function Footer() {
                   whileHover={{ rotate: 10, scale: 1.08 }}
                   transition={{ duration: 0.22 }}
                 >
-                  <img src="/photos/logo2.png" alt="Aproposdrive Logo" style={{ width: 55, height: 40 }} />
+                  <img src="/photos/logo2.png" alt="Aproposdrive Logo" style={{ width: 40, height: 30 }} />
                 </motion.div>
                 <span className="font-black text-lg tracking-tight whitespace-nowrap">
                   <span style={{ color: '#0d1b2a' }}>Apropos</span>
@@ -279,7 +279,7 @@ export function Footer() {
               // CHANGED: text slightly bigger and darker
               style={{ fontSize: 12, color: 'rgba(13, 27, 42, 0.91)', textAlign: 'center' }}
             >
-              © 2024 Aproposdrive Technologies Pvt. Ltd. All rights reserved.
+              © 2026 Aproposdrive Technologies Pvt. Ltd. All rights reserved.
             </motion.p>
 
             <div className="flex items-center gap-2.5 flex-wrap justify-center">

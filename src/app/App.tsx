@@ -10,8 +10,8 @@ const ProductSection = dynamic(() =>
 const WhyChooseSection = dynamic(() =>
   import('./components/WhyChooseSection').then((mod) => mod.WhyChooseSection),
 )
-const JourneySection = dynamic(() =>
-  import('./components/JourneySection').then((mod) => mod.JourneySection),
+const TestingVideoSection = dynamic(() =>
+  import('./components/TestingVideoSection').then((mod) => mod.TestingVideoSection),
 )
 // const InvestorsSection = dynamic(() =>
 //   import('./components/SupporterSection').then((mod) => mod.InvestorsSection),
@@ -65,7 +65,7 @@ export default function App() {
       {/* <VisionSection /> */}
       <WhyChooseSection />
       {/* <JourneyTimeline /> */}
-      <JourneySection />
+      <TestingVideoSection />
       {/* <InvestorsSection /> */}
       <FAQSection />
     </div>

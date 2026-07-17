@@ -1,10 +1,9 @@
 'use client'
 
 import { motion } from 'motion/react'
-import { Play } from 'lucide-react'
 import { JourneyTimeline } from './JourneyTimeline'
 
-export function JourneySection() {
+export function TestingVideoSection() {
   return (
     <>
       <style>{`
@@ -13,7 +12,7 @@ export function JourneySection() {
       `}</style>
 
       <section
-        id="journey"
+        id="testing-video"
         className="relative py-20 overflow-hidden"
         style={{ fontFamily: "'DM Sans',sans-serif", background: '#0A0F1C' }}
       >
@@ -90,39 +89,18 @@ export function JourneySection() {
                   background: 'linear-gradient(135deg,#050c14,#0a1628 55%,#061410)',
                 }}
               >
-                {/* Subtle scan lines */}
-                <div
-                  className="absolute inset-0"
-                  style={{
-                    backgroundImage: 'repeating-linear-gradient(0deg,rgba(0,229,255,0.4) 0,transparent 1px,transparent 3px)',
-                    backgroundSize: '100% 4px',
-                    opacity: 0.022,
-                  }}
-                />
-                {/* Ripple rings */}
-                {[0, 1, 2].map(i => (
-                  <motion.div
-                    key={i}
-                    className="absolute rounded-full"
-                    style={{ width: 64, height: 64, border: '1.5px solid rgba(0,229,255,0.22)' }}
-                    animate={{ width: [64, 200], height: [64, 200], opacity: [0.6, 0] }}
-                    transition={{ duration: 2.5, repeat: Infinity, delay: i * 0.85, ease: 'easeOut' }}
-                  />
-                ))}
-                {/* Play button */}
-                <motion.button
-                  whileHover={{ scale: 1.08 }}
-                  whileTap={{ scale: 0.94 }}
-                  className="relative z-10 w-14 h-14 rounded-full flex items-center justify-center"
-                  style={{
-                    background: 'linear-gradient(135deg,#00C853,#00E5FF)',
-                    boxShadow: '0 0 20px rgba(0,229,255,0.45)',
-                    border: 'none',
-                    cursor: 'pointer',
-                  }}
+                {/* S3-hosted video — plays directly, no cover/thumbnail */}
+                <video
+                  className="absolute inset-0 w-full h-full object-cover"
+                  controls
+                  autoPlay
+                  muted
+                  loop
+                  playsInline
                 >
-                  <Play className="w-5 h-5 text-white ml-0.5" fill="white" />
-                </motion.button>
+                  <source src="/videos/WTD Main Video.mp4" type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
 
               {/* Info bar */}

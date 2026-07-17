@@ -2,50 +2,68 @@
 
 import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
-import { Zap, Mail, Phone, MapPin, Facebook, Twitter, Instagram, Linkedin, Youtube, ArrowRight } from 'lucide-react'
+import { Mail, Phone, MapPin, Linkedin, Youtube, ArrowRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
 
+// ─── DATA ─────────────────────────────────────────────────────────────────────
+
+// CHANGED: updated + expanded link sections to match the actual project pages
 const footerLinks = {
-  Product: ['VoltDrive X1', 'Specifications', 'Test Drive', 'Compare'],
-  Company: ['About Us', 'Careers',  'Blog'],
-  // Support: ['Help Center', 'Warranty', 'Service Centers', 'Contact'],
-  // Legal: ['Privacy Policy', 'Terms of Service', 'Cookie Policy', 'Disclaimer'],
+  Company: [
+    { label: 'About Us',   href: '/contact'    },
+    // { label: 'Our Team',   href: '/contact'    },
+    { label: 'Careers',    href: '/contact'    },
+    { label: 'Blog',       href: '/blogs'      },
+    { label: 'Technology',      href: '/technology'},
+  ],
+  // Products: [
+  //   { label: 'EV Powertrain',   href: '/products' },
+  //   { label: 'Motor Controller',href: '/products' },
+    // { label: 'Specifications',  href: '/products' },
+    // { label: 'Technology',      href: '/technology'},
+  // ],
+  Support: [
+    { label: 'Contact Us',  href: '/contact' },
+    { label: 'FAQ',         href: '/faq'     },
+    // { label: 'Partnership', href: '/contact' },
+  ],
 }
 
 const socialLinks = [
-  // { icon: Facebook, href: '#', label: 'Facebook' },
-  // { icon: Twitter, href: '#', label: 'Twitter' },
-  // { icon: Instagram, href: '#', label: 'Instagram' },
   { icon: Linkedin, href: '#', label: 'LinkedIn' },
-  { icon: Youtube, href: '#', label: 'YouTube' },
+  { icon: Youtube,  href: '#', label: 'YouTube'  },
 ]
 
 const badges = ['Made in India']
 
 const contactItems = [
-  { icon: Mail, href: 'mailto:contact@aproposdrive.com', text: 'contact@aproposdrive.com' },
-  { icon: Phone, href: 'https://www.aproposdrive.com', text: 'www.aproposdrive.com' },
-  { icon: MapPin, href: null, text: 'India' },
+  { icon: Mail,   href: 'mailto:contact@aproposdrive.com', text: 'contact@aproposdrive.com' },
+  { icon: Phone,  href: 'https://www.aproposdrive.com',    text: 'www.aproposdrive.com'     },
+  { icon: MapPin, href: null,                              text: 'Pune, India'               },
 ]
 
-function FooterLink({ text, delay }: { text: string; delay: number }) {
+// ─── FOOTER LINK ──────────────────────────────────────────────────────────────
+function FooterLink({ text, href, delay }: { text: string; href: string; delay: number }) {
   return (
     <motion.li
       initial={{ opacity: 0, x: -8 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: false, margin: '-5% 0px' }}
       transition={{ delay, duration: 0.35 }}
-    > 
+    >
       <a
-        href="#"
-        className="group inline-flex items-center gap-1 text-xs transition-colors duration-200"
-        style={{ color: 'rgba(13,27,42,0.5)', fontFamily: 'DM Sans, sans-serif' }}
-        onMouseEnter={(e) => {
-          e.currentTarget.style.color = '#00a550'
+        href={href}
+        className="group inline-flex items-center gap-1 transition-colors duration-200"
+        style={{
+          // CHANGED: text-xs → text-sm, darker color rgba 0.5 → 0.65
+          fontSize: 13,
+          fontWeight: 500,
+          color: 'rgba(13,27,42,0.65)',
+          fontFamily: 'DM Sans, sans-serif',
+          textDecoration: 'none',
         }}
-        onMouseLeave={(e) => {
-          e.currentTarget.style.color = 'rgba(13,27,42,0.5)'
-        }}
+        onMouseEnter={e => { e.currentTarget.style.color = '#00a550' }}
+        onMouseLeave={e => { e.currentTarget.style.color = 'rgba(13,27,42,0.65)' }}
       >
         {text}
         <ArrowRight
@@ -57,16 +75,9 @@ function FooterLink({ text, delay }: { text: string; delay: number }) {
   )
 }
 
-function SocialBtn({
-  icon: Icon,
-  href,
-  label,
-  delay,
-}: {
-  icon: LucideIcon
-  href: string
-  label: string
-  delay: number
+// ─── SOCIAL BUTTON ────────────────────────────────────────────────────────────
+function SocialBtn({ icon: Icon, href, label, delay }: {
+  icon: LucideIcon; href: string; label: string; delay: number
 }) {
   return (
     <motion.a
@@ -78,17 +89,13 @@ function SocialBtn({
       transition={{ delay, type: 'spring', stiffness: 200, damping: 18 }}
       whileHover={{ y: -4, scale: 1.1 }}
       className="w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 flex-shrink-0"
-      style={{
-        background: 'rgba(0,165,80,0.06)',
-        border: '1px solid rgba(0,165,80,0.16)',
-        color: 'rgba(13,27,42,0.5)',
-      }}
-      onMouseEnter={(e) => {
+      style={{ background: 'rgba(0,165,80,0.06)', border: '1px solid rgba(0,165,80,0.16)', color: 'rgba(13, 27, 42, 0.98)' }}
+      onMouseEnter={e => {
         e.currentTarget.style.background = 'rgba(0,165,80,0.14)'
         e.currentTarget.style.borderColor = 'rgba(0,165,80,0.4)'
         e.currentTarget.style.color = '#00a550'
       }}
-      onMouseLeave={(e) => {
+      onMouseLeave={e => {
         e.currentTarget.style.background = 'rgba(0,165,80,0.06)'
         e.currentTarget.style.borderColor = 'rgba(0,165,80,0.16)'
         e.currentTarget.style.color = 'rgba(13,27,42,0.5)'
@@ -99,6 +106,7 @@ function SocialBtn({
   )
 }
 
+// ─── FOOTER ───────────────────────────────────────────────────────────────────
 export function Footer() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: false, margin: '-5% 0px' })
@@ -111,48 +119,50 @@ export function Footer() {
 
       <footer
         ref={ref}
-        className="relative overflow-hidden overflow-x-hidden w-full"
+        className="relative overflow-hidden w-full"
         style={{ background: '#FAF9F6', fontFamily: 'DM Sans, sans-serif', borderTop: '1px solid #e2eaf2' }}
       >
+        {/* Background blobs — unchanged */}
         <div className="absolute inset-0 pointer-events-none">
-
-          <div className="absolute inset-0"/>
-          <div
-            className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full"
-            style={{ background: '#00a550', filter: 'blur(128px)', opacity: 0.08 }}
-          />
-          <div
-            className="absolute -top-16 right-0 w-72 h-72 rounded-full"
-            style={{ background: '#00a550', filter: 'blur(128px)', opacity: 0.05 }}
-          />
+          <div className="absolute inset-0" />
+          <div className="absolute -bottom-16 -left-16 w-80 h-80 rounded-full"
+            style={{ background: '#00a550', filter: 'blur(128px)', opacity: 0.08 }} />
+          <div className="absolute -top-16 right-0 w-72 h-72 rounded-full"
+            style={{ background: '#00a550', filter: 'blur(128px)', opacity: 0.05 }} />
         </div>
 
+        {/* Top accent line — unchanged */}
         <div
           className="absolute top-0 inset-x-0 h-px"
-          style={{
-            background: 'linear-gradient(90deg,transparent,rgba(0,165,80,0.4),rgba(0,165,80,0.2),transparent)',
-          }}
+          style={{ background: 'linear-gradient(90deg,transparent,rgba(0,165,80,0.4),rgba(0,165,80,0.2),transparent)' }}
         />
 
-        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-14 pb-8 w-full">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-6 gap-10 mb-12">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 pb-7 w-full">
+
+          {/*
+           * CHANGED: grid layout
+           * Desktop: logo col (2 cols) + 3 link sections = lg:grid-cols-5
+           * Tablet (sm): 2 columns
+           * Mobile: SINGLE column (no multi-col) to prevent excess scroll
+           *   — but we collapse all 3 link sections into a 2-col sub-grid
+           *     so they sit side by side even on mobile, halving scroll depth
+           */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-8 mb-10">
+
+            {/* ── Brand / contact col ── */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
               transition={{ duration: 0.55 }}
               className="lg:col-span-2 flex flex-col gap-5 min-w-0"
             >
+              {/* Logo */}
               <a href="#home" className="flex items-center gap-2.5 self-start group">
                 <motion.div
                   className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
-                  style={{
-                    // background: '#00a550',
-                    // boxShadow: '0 2px 12px rgba(0,165,80,0.25)',
-                  }}
                   whileHover={{ rotate: 10, scale: 1.08 }}
                   transition={{ duration: 0.22 }}
                 >
-                  {/* <Zap className="w-5 h-5 text-white" /> */}
                   <img src="/photos/logo2.png" alt="Aproposdrive Logo" style={{ width: 55, height: 40 }} />
                 </motion.div>
                 <span className="font-black text-lg tracking-tight whitespace-nowrap">
@@ -161,7 +171,12 @@ export function Footer() {
                 </span>
               </a>
 
+              {/* Tagline */}
+              {/* <p style={{ fontSize: 12.5, color: 'rgba(13,27,42,0.5)', lineHeight: 1.6, maxWidth: 260 }}>
+                Rare earth-free EV powertrain technology — built for India's roads.
+              </p> */}
 
+              {/* Contact items */}
               <div className="flex flex-col gap-2.5 min-w-0">
                 {contactItems.map(({ icon: Icon, href, text }, i) => (
                   <motion.div
@@ -174,32 +189,26 @@ export function Footer() {
                     {href ? (
                       <a
                         href={href}
-                        className="group flex items-center gap-2.5 text-xs transition-colors duration-200 min-w-0"
-                        style={{ color: 'rgba(13,27,42,0.5)' }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.color = '#00a550'
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.color = 'rgba(13,27,42,0.5)'
-                        }}
+                        className="flex items-center gap-2.5 transition-colors duration-200 min-w-0"
+                        // CHANGED: text-xs → 12.5px, darker color
+                        style={{ fontSize: 12.5, color: 'rgba(13,27,42,0.6)', textDecoration: 'none' }}
+                        onMouseEnter={e => { e.currentTarget.style.color = '#00a550' }}
+                        onMouseLeave={e => { e.currentTarget.style.color = 'rgba(13,27,42,0.6)' }}
                       >
-                        <div
-                          className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0"
-                          style={{ background: 'rgba(0,165,80,0.1)', border: '1px solid rgba(0,165,80,0.2)' }}
-                        >
+                        <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0"
+                          style={{ background: 'rgba(0,165,80,0.1)', border: '1px solid rgba(0,165,80,0.2)' }}>
                           <Icon className="w-3 h-3" style={{ color: '#00a550' }} />
                         </div>
-                        <span className="break-words">{text}</span>
+                        <span className="break-all">{text}</span>
                       </a>
                     ) : (
-                      <div className="flex items-center gap-2.5 text-xs min-w-0" style={{ color: 'rgba(13,27,42,0.5)' }}>
-                        <div
-                          className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0"
-                          style={{ background: 'rgba(0,165,80,0.1)', border: '1px solid rgba(0,165,80,0.2)' }}
-                        >
+                      <div className="flex items-center gap-2.5 min-w-0"
+                        style={{ fontSize: 12.5, color: 'rgba(13,27,42,0.6)' }}>
+                        <div className="w-6 h-6 rounded-lg flex items-center justify-center flex-shrink-0"
+                          style={{ background: 'rgba(0,165,80,0.1)', border: '1px solid rgba(0,165,80,0.2)' }}>
                           <Icon className="w-3 h-3" style={{ color: '#00a550' }} />
                         </div>
-                        <span className="break-words">{text}</span>
+                        <span>{text}</span>
                       </div>
                     )}
                   </motion.div>
@@ -207,47 +216,70 @@ export function Footer() {
               </div>
             </motion.div>
 
-            {Object.entries(footerLinks).map(([category, links], ci) => (
-              <motion.div
-                key={category}
-                initial={{ opacity: 0, y: 16 }}
-                animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
-                transition={{ delay: ci * 0.07 + 0.15, duration: 0.45 }}
-                className="min-w-0"
-              >
-                <div className="flex items-center gap-2 mb-4">
-                  <div
-                    className="w-1 h-3 rounded-full"
-                    style={{ background: '#00a550', boxShadow: '0 0 6px rgba(0,165,80,0.4)' }}
-                  />
-                  <span className="text-[10px] font-bold uppercase tracking-[0.22em]" style={{ color: '#00a550' }}>
-                    {category}
-                  </span>
-                </div>
-                <ul className="flex flex-col gap-2.5">
-                  {links.map((link, li) => (
-                    <FooterLink key={link} text={link} delay={li * 0.05 + ci * 0.04 + 0.2} />
-                  ))}
-                </ul>
-              </motion.div>
-            ))}
+            {/*
+             * CHANGED: on mobile, all 3 link columns sit inside a 2-col sub-grid
+             * so they take up less vertical space. On sm+ they spread naturally.
+             * sm:col-span-1 lg:col-span-1 keeps desktop layout identical.
+             *
+             * We wrap all 3 link groups in a single div on mobile (col-span-1)
+             * that uses a 2-col inner grid — so Company+Products are side by side,
+             * Support sits below them (not a separate full-width row).
+             */}
+            <div className="col-span-1 sm:contents lg:contents">
+              {/*
+               * Mobile sub-grid wrapper — 2 cols on mobile, then each section
+               * becomes its own grid cell on sm/lg via sm:contents
+               */}
+              <div className="grid grid-cols-2 gap-6 sm:contents lg:contents">
+                {Object.entries(footerLinks).map(([category, links], ci) => (
+                  <motion.div
+                    key={category}
+                    initial={{ opacity: 0, y: 16 }}
+                    animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+                    transition={{ delay: ci * 0.07 + 0.15, duration: 0.45 }}
+                    className="min-w-0"
+                  >
+                    {/* Section label */}
+                    <div className="flex items-center gap-2 mb-3">
+                      <div className="w-1 h-3 rounded-full"
+                        style={{ background: '#00a550', boxShadow: '0 0 6px rgba(0,165,80,0.4)' }} />
+                      {/* CHANGED: tracking slightly reduced, font slightly bigger */}
+                      <span style={{ fontSize: 11, fontWeight: 800, color: '#00a550', textTransform: 'uppercase', letterSpacing: '0.18em' }}>
+                        {category}
+                      </span>
+                    </div>
+
+                    <ul className="flex flex-col gap-2">
+                      {links.map((link, li) => (
+                        <FooterLink
+                          key={link.label}
+                          text={link.label}
+                          href={link.href}
+                          delay={li * 0.05 + ci * 0.04 + 0.2}
+                        />
+                      ))}
+                    </ul>
+                  </motion.div>
+                ))}
+              </div>
+            </div>
+
           </div>
 
-          <div
-            className="h-px w-full mb-8"
-            style={{ background: 'linear-gradient(90deg,transparent,rgba(13,27,42,0.1),transparent)' }}
-          />
+          {/* Divider — unchanged */}
+          <div className="h-px w-full mb-7"
+            style={{ background: 'linear-gradient(90deg,transparent,rgba(13,27,42,0.1),transparent)' }} />
 
-          <div className="flex flex-col md:flex-row items-center justify-between gap-5">
+          {/* Bottom row — unchanged structure */}
+          <div className="flex flex-col md:flex-row items-center justify-between gap-4">
             <motion.p
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : { opacity: 0 }}
               transition={{ delay: 0.3, duration: 0.5 }}
-              className="text-[11px] text-center md:text-left px-2"
-              style={{ color: 'rgba(13,27,42,0.4)' }}
+              // CHANGED: text slightly bigger and darker
+              style={{ fontSize: 12, color: 'rgba(13, 27, 42, 0.91)', textAlign: 'center' }}
             >
-              © 2024 Aproposdrive Technologies Pvt. Ltd. All rights reserved.{' '}
-              {/* <span style={{ color: 'rgba(13,27,42,0.28)' }}>Powering Smarter Electric Mobility.</span> */}
+              © 2024 Aproposdrive Technologies Pvt. Ltd. All rights reserved.
             </motion.p>
 
             <div className="flex items-center gap-2.5 flex-wrap justify-center">
@@ -257,11 +289,12 @@ export function Footer() {
             </div>
           </div>
 
+          {/* Badge — unchanged */}
           <motion.div
             initial={{ opacity: 0, y: 10 }}
             animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
             transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex flex-wrap justify-center gap-3 mt-7"
+            className="flex flex-wrap justify-center gap-3 mt-6"
           >
             {badges.map((badge, i) => (
               <motion.div
@@ -269,15 +302,9 @@ export function Footer() {
                 whileHover={{ y: -2, scale: 1.04 }}
                 transition={{ duration: 0.2 }}
                 className="px-4 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap"
-                style={{
-                  background: 'rgba(0,165,80,0.05)',
-                  border: '1px solid rgba(0,165,80,0.18)',
-                  color: '#00a550',
-                }}
+                style={{ background: 'rgba(0,165,80,0.05)', border: '1px solid rgba(0,165,80,0.18)', color: '#00a550' }}
               >
                 {i === 0 && <span className="mr-1">🇮🇳</span>}
-                {i === 1 && <span className="mr-1">🌿</span>}
-                {i === 2 && <span className="mr-1">⭐</span>}
                 {badge}
               </motion.div>
             ))}

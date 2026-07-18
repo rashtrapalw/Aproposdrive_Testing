@@ -28,6 +28,22 @@ type Spec = {
   angle: number;
 };
 
+// Feature now carries a short description — used as a hero Highlight card
+// around the orbital image.
+type Feature = {
+  icon: LucideIcon;
+  text: string;
+  description: string;
+};
+
+// KeyFeaturePoint — separate, simpler data for the Key Features panel next
+// to the specs table. Just an icon + a one-liner, independent of the hero
+// highlight cards above.
+type KeyFeaturePoint = {
+  icon: LucideIcon;
+  text: string;
+};
+
 type Variant = {
   name: string;
   cols: string[][];
@@ -43,7 +59,8 @@ type Product = {
   description: string;
   image: string;
   accent: string;
-  features: { icon: LucideIcon; text: string }[];
+  features: Feature[];
+  keyFeatures: KeyFeaturePoint[];
   specs: Spec[];
   variants: Variant[];
   tableHeaders: string[];
@@ -62,12 +79,20 @@ const PRODUCTS: Product[] = [
     image: '/photos/motor-removebg.png',
     accent: '#00a550',
     features: [
-      { icon: Leaf, text: 'Rare Earth-Free Motor Technology' },
-      { icon: Package, text: 'Motor + Controller + Gearbox in One Unit' },
-      { icon: Wind, text: 'Natural Air Cooling — No Liquid Needed' },
-      { icon: TrendingUp, text: '94–95% Efficiency, Extended Range' },
-      { icon: Shield, text: 'IP67 Sealed — All-Weather Reliable' },
-      { icon: Zap, text: 'Lower System Cost for Mass Adoption' },
+      { icon: Leaf, text: 'Rare Earth-Free Motor Technology', description: 'Engineered without rare-earth magnets, cutting supply-chain risk while delivering reliable, consistent torque.' },
+      { icon: Package, text: 'Motor + Controller + Gearbox in One Unit', description: 'A single integrated housing replaces three separate components, saving space, weight, and assembly cost.' },
+      { icon: Wind, text: 'Natural Air Cooling — No Liquid Needed', description: 'Passive air cooling keeps temperatures stable without pumps, hoses, or coolant maintenance.' },
+      { icon: TrendingUp, text: '94–95% Efficiency, Extended Range', description: 'High system efficiency translates directly into longer rides per charge and lower running costs.' },
+      { icon: Shield, text: 'IP67 Sealed — All-Weather Reliable', description: 'Fully sealed against dust and water, built to perform through monsoons, heat, and rough terrain.' },
+      { icon: Zap, text: 'Lower System Cost for Mass Adoption', description: 'Simplified architecture reduces bill-of-materials cost, making EVs more accessible at scale.' },
+    ],
+    keyFeatures: [
+      { icon: Leaf, text: 'Rare Earth-Free Motor' },
+      { icon: Package, text: 'All-in-One Unit' },
+      { icon: Wind, text: 'Air Cooled' },
+      { icon: TrendingUp, text: '94–95% Efficiency' },
+      { icon: Shield, text: 'IP67 Sealed' },
+      { icon: Zap, text: 'Lower System Cost' },
     ],
     specs: [
       // { icon: Gauge, label: 'Peak Power', value: '6.5 kW', color: '#00a550', angle: 270 },
@@ -98,12 +123,20 @@ const PRODUCTS: Product[] = [
     image: '/photos/no-bg-controller.png',
     accent: '#0077b6',
     features: [
-      { icon: Cpu, text: 'Vector Field-Oriented Control Algorithm' },
-      { icon: Activity, text: 'Hall Sensor / Resolver Position Feedback' },
-      { icon: Gauge, text: '3 Ride Modes + Cruise Control' },
-      { icon: Shield, text: 'Hill Hold Assist + Parking Assist' },
-      { icon: Wifi, text: 'CAN + USB Communication Interface' },
-      { icon: CheckCircle, text: 'Real-time Fault LED Diagnostics' },
+      { icon: Cpu, text: 'Vector Field-Oriented Control Algorithm', description: 'Advanced FOC delivers smoother acceleration, better torque control, and higher overall efficiency.' },
+      { icon: Activity, text: 'Hall Sensor / Resolver Position Feedback', description: 'Precise rotor position sensing enables accurate, responsive control across every ride mode.' },
+      { icon: Gauge, text: '3 Ride Modes + Cruise Control', description: 'Switch between Eco, Normal, and Sport modes, plus cruise control for long, comfortable rides.' },
+      { icon: Shield, text: 'Hill Hold Assist + Parking Assist', description: 'Prevents rollback on inclines and simplifies parking with dedicated assist functions.' },
+      { icon: Wifi, text: 'CAN + USB Communication Interface', description: 'Seamless integration with vehicle dashboards and diagnostic tools via industry-standard protocols.' },
+      { icon: CheckCircle, text: 'Real-time Fault LED Diagnostics', description: 'Instant visual fault indication makes troubleshooting and servicing faster and easier.' },
+    ],
+    keyFeatures: [
+      { icon: Cpu, text: 'Vector FOC Algorithm' },
+      { icon: Activity, text: 'Precise Position Feedback' },
+      { icon: Gauge, text: '3 Ride Modes + Cruise' },
+      { icon: Shield, text: 'Hill Hold + Parking Assist' },
+      { icon: Wifi, text: 'CAN + USB Interface' },
+      { icon: CheckCircle, text: 'Real-time Diagnostics' },
     ],
     specs: [
       // { icon: Zap, label: 'Peak Current', value: '280A', color: '#0077b6', angle: 270 },
@@ -203,14 +236,7 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         display: 'flex', alignItems: 'center', justifyContent: 'center',
         overflow: 'hidden',
       }}>
-        {/* <motion.div style={{
-          position: 'absolute', left: 0, right: 0, height: 1,
-          background: `linear-gradient(90deg,transparent,${product.accent}99,transparent)`,
-          zIndex: 20, pointerEvents: 'none',
-        }}
-          animate={{ top: ['0%', '100%'] }}
-          transition={{ duration: 2.5, repeat: Infinity, ease: 'linear' }}
-        /> */}
+
         <ImageWithFallback
           src={product.image} alt={product.title}
           style={{
@@ -291,26 +317,135 @@ function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIco
   );
 }
 
-// ─── FEATURE ROW — no box, no border, big & dark ──────────────────────────────
-function FeatureRow({ icon: Icon, text, color, delay }: { icon: LucideIcon; text: string; color: string; delay: number }) {
+// ─── PRODUCT HIGHLIGHT CARD — reusable, used both around the hero image ──────
+// and inside the Key Features panel next to the specs table.
+function ProductHighlightCard({
+  icon: Icon,
+  heading,
+  description,
+  accent,
+  delay = 0,
+}: {
+  icon: LucideIcon;
+  heading: string;
+  description: string;
+  accent: string;
+  delay?: number;
+}) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: '-10% 0px' }}
+      transition={{ delay, duration: 0.45, ease: 'easeOut' }}
+      whileHover={{ y: -4, boxShadow: `0 14px 32px ${accent}22`, borderColor: `${accent}55` }}
+      style={{
+        minHeight: 132,
+        height: '100%',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 10,
+        padding: '18px',
+        borderRadius: 18,
+        background: '#ffffff',
+        border: `1px solid #e2eaf2`,
+        borderLeft: `3px solid ${accent}`,
+        boxShadow: '0 2px 14px rgba(13,27,42,0.05)',
+        transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+        <div style={{
+          width: 36, height: 36, borderRadius: 10, flexShrink: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          background: `${accent}16`, border: `1px solid ${accent}35`,
+        }}>
+          <Icon style={{ width: 17, height: 17, color: accent }} strokeWidth={2.3} />
+        </div>
+        <h4 style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 800, fontSize: 16.5, color: accent, margin: 0, lineHeight: 1.3 }}>
+          {heading}
+        </h4>
+      </div>
+      <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 13.5, lineHeight: 1.6, color: 'rgba(13,27,42,0.7)', margin: 0 }}>
+        {description}
+      </p>
+    </motion.div>
+  );
+}
+
+// ─── HIGHLIGHTS COLUMN — a vertical stack of 3 cards flanking the hero image ──
+function HighlightsColumn({ features, accent, startDelay = 0 }: { features: Feature[]; accent: string; startDelay?: number }) {
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
+      {features.map((f, i) => (
+        <ProductHighlightCard
+          key={f.text}
+          icon={f.icon}
+          heading={f.text}
+          description={f.description}
+          accent={accent}
+          delay={startDelay + i * 0.08}
+        />
+      ))}
+    </div>
+  );
+}
+
+// ─── KEY FEATURE ROW — simple icon + one-liner, used only in the panel ───────
+function KeyFeatureRow({ icon: Icon, text, accent, delay = 0 }: { icon: LucideIcon; text: string; accent: string; delay?: number }) {
   return (
     <motion.div
       initial={{ opacity: 0, x: -10 }}
       whileInView={{ opacity: 1, x: 0 }}
       viewport={{ once: false, margin: '-5% 0px' }}
       transition={{ delay, duration: 0.35 }}
-      style={{ display: 'flex', alignItems: 'flex-start', gap: 12, padding: '6px 0' }}
+      style={{ display: 'flex', alignItems: 'center', gap: 12, padding: '10px 0' }}
     >
       <div style={{
-        width: 30, height: 30, borderRadius: 9, flexShrink: 0, marginTop: 2,
+        width: 32, height: 32, borderRadius: 9, flexShrink: 0,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        background: `${color}14`,
+        background: `${accent}16`, border: `1px solid ${accent}35`,
       }}>
-        <Icon style={{ width: 16, height: 16, color }} strokeWidth={2.3} />
+        <Icon style={{ width: 15, height: 15, color: accent }} strokeWidth={2.3} />
       </div>
-      <span style={{ fontSize: 16, fontWeight: 600, fontFamily: 'DM Sans, sans-serif', color: '#0d1b2a', lineHeight: 1.5 }}>
+      <span style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 700, fontSize: 14.5, color: '#0d1b2a' }}>
         {text}
       </span>
+    </motion.div>
+  );
+}
+
+// ─── KEY FEATURES PANEL — right column (40%) next to the specs table ─────────
+function KeyFeaturesPanel({ points, accent }: { points: KeyFeaturePoint[]; accent: string }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: '-5% 0px' }}
+      transition={{ duration: 0.45, delay: 0.12 }}
+      style={{
+        width: '100%',
+        borderRadius: 20,
+        border: '1px solid #e2eaf2',
+        background: '#ffffff',
+        boxShadow: '0 2px 16px rgba(13,27,42,0.05)',
+        padding: 20,
+        display: 'flex',
+        flexDirection: 'column',
+        gap: 4,
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+        <span style={{ width: 8, height: 8, borderRadius: '50%', background: accent, flexShrink: 0 }} />
+        <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#0d1b2a' }}>
+          Key Features
+        </span>
+      </div>
+      <div style={{ display: 'flex', flexDirection: 'column' }}>
+        {points.map((p, i) => (
+          <KeyFeatureRow key={p.text} icon={p.icon} text={p.text} accent={accent} delay={i * 0.05} />
+        ))}
+      </div>
     </motion.div>
   );
 }
@@ -345,7 +480,7 @@ function VariantCard({ variant, accent, delay }: { variant: Variant; accent: str
   );
 }
 
-// ─── FULL-WIDTH SPECS TABLE — always visible, no accordion ───────────────────
+// ─── FULL-WIDTH SPECS TABLE — always visible, no accordion (unchanged) ───────
 function SpecsTable({ headers, rows, accent, delay }: { headers: string[]; rows: string[][]; accent: string; delay: number }) {
   return (
     <motion.div
@@ -364,17 +499,17 @@ function SpecsTable({ headers, rows, accent, delay }: { headers: string[]; rows:
       <div style={{ overflowX: 'auto' }}>
         <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 480 }}>
           <thead>
-            <tr style={{ background: '#f4f7f6' }}>
+            <tr style={{ background: `${accent}0d` }}>
               {headers.map((h, i) => (
-                <th key={i} style={{ padding: '12px 20px', textAlign: 'left', fontFamily: 'DM Sans, sans-serif', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.14em', color: i === 0 ? 'rgba(13,27,42,0.5)' : accent, fontWeight: 700 }}>{h}</th>
+                <th key={i} style={{ padding: '12px 20px', textAlign: 'left', fontFamily: 'DM Sans, sans-serif', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.14em', color: i === 0 ? 'rgba(13,27,42,0.55)' : accent, fontWeight: 700 }}>{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {rows.map((row, ri) => (
-              <tr key={ri} style={{ borderTop: '1px solid #eef2f0' }}>
+              <tr key={ri} style={{ borderTop: '1px solid #eef2f0', background: ri % 2 === 1 ? '#f8faf9' : 'transparent' }}>
                 {row.map((cell, ci) => (
-                  <td key={ci} style={{ padding: '12px 20px', fontFamily: 'DM Sans, sans-serif', fontSize: 14, fontWeight: ci === 0 ? 700 : 500, color: ci === 0 ? '#0d1b2a' : 'rgba(13,27,42,0.65)' }}>{cell}</td>
+                  <td key={ci} style={{ padding: '12px 20px', fontFamily: 'DM Sans, sans-serif', fontSize: 14, fontWeight: 700, color: '#0d1b2a' }}>{cell}</td>
                 ))}
               </tr>
             ))}
@@ -401,43 +536,67 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: false, margin: '-6% 0px' });
   const width = useWindowWidth();
-  const isMobile = width < 900;
-  const isTablet = width < 1100;
-  const reverseLayout = index % 2 === 1;
+
+  // Hero layout breakpoints:
+  // - desktop: image centered with 3 highlight cards flanking each side
+  // - tablet: image on top, highlight cards flow into a 2-column grid below
+  // - mobile: everything stacks into a single column
+  const isMobile = width < 700;
+  const isDesktop = width >= 1180;
+
+  // Specs (60%) + Key Features (40%) row — stacks below a comfortable width,
+  // matching the existing table's own responsive/scroll behavior.
+  const specsStacked = width < 1100;
+
+  const leftFeatures = product.features.slice(0, 3);
+  const rightFeatures = product.features.slice(3, 6);
 
   const LabelRow = (
     <motion.div
       initial={{ opacity: 0, y: -10 }} animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
       transition={{ duration: 0.4 }}
-      style={{ display: 'flex', alignItems: 'center', gap: 12, marginBottom: isMobile ? 20 : 32 }}
+      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: isMobile ? 18 : 24 }}
     >
-      <div style={{ height: 2, width: 80, background: `linear-gradient(90deg,${product.accent},transparent)` }} />
+      <div style={{ height: 2, width: 80, background: `linear-gradient(90deg,transparent,${product.accent})` }} />
       <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.28em', color: product.accent }}>
         Product {product.num}
       </span>
+      <div style={{ height: 2, width: 80, background: `linear-gradient(90deg,${product.accent},transparent)` }} />
     </motion.div>
   );
 
-  const TitleBlock = (fs = 22) => (
-    <div>
-      <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.22em', color: product.accent, display: 'block', marginBottom: 8 }}>
+  // Centered title block — sits above the hero showcase.
+  const CenterTitle = (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
+      transition={{ duration: 0.5, delay: 0.05 }}
+      style={{ textAlign: 'center', maxWidth: 640, margin: `0 auto ${isMobile ? 28 : 40}px` }}
+    >
+      <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.22em', color: product.accent, display: 'block', marginBottom: 10 }}>
         {product.tag}
       </span>
-      <h3 style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 900, fontSize: fs, lineHeight: 1.2, color: '#0d1b2a', margin: '0 0 8px' }}>
+      <h3 style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 900, fontSize: isMobile ? 26 : 32, lineHeight: 1.2, color: '#0d1b2a', margin: '0 0 10px' }}>
         {product.title.split(' ').slice(0, -2).join(' ')}{' '}
         <span style={{ color: product.accent }}>{product.title.split(' ').slice(-2).join(' ')}</span>
       </h3>
-      <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 14, fontStyle: 'italic', color: product.accent, opacity: 0.85, margin: '0 0 10px' }}>{product.subtitle}</p>
-      {/* <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: isMobile ? 15 : 16, lineHeight: 1.7, color: 'rgba(13,27,42,0.62)', margin: 0 }}>{product.description}</p> */}
-    </div>
+      <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 14.5, fontStyle: 'italic', color: product.accent, opacity: 0.85, margin: 0 }}>
+        {product.subtitle}
+      </p>
+    </motion.div>
   );
 
-  const FeaturesList = (
-    <div style={{ display: 'flex', flexDirection: 'column' }}>
-      {product.features.map((f, i) => (
-        <FeatureRow key={i} icon={f.icon} text={f.text} color={product.accent} delay={i * 0.04} />
-      ))}
-    </div>
+  const CenterImage = (
+    <motion.div
+      initial={{ opacity: 0, scale: 0.9 }}
+      animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
+      transition={{ duration: 0.6, delay: 0.08 }}
+      style={{ width: '100%', maxWidth: C, display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+    >
+      <ScaleBox canvasSize={C}>
+        <OrbitalShowcase product={product} idx={index} />
+      </ScaleBox>
+    </motion.div>
   );
 
   const PlatformsBlock = product.platforms && (
@@ -451,75 +610,82 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
     </div>
   );
 
-  const ContentColumn = (
-    <motion.div
-      initial={{ opacity: 0, x: isMobile ? 0 : reverseLayout ? 24 : -24, y: isMobile ? 16 : 0 }}
-      animate={inView ? { opacity: 1, x: 0, y: 0 } : { opacity: 0, x: isMobile ? 0 : reverseLayout ? 24 : -24, y: isMobile ? 16 : 0 }}
-      transition={{ duration: 0.5, delay: 0.05 }}
-      style={{
-        width: isMobile ? '100%' : isTablet ? 420 : 500,
-        flexShrink: 0,
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 18,
-      }}
-    >
-      {TitleBlock(isMobile ? 26 : isTablet ? 22 : 26)}
-      {FeaturesList}
-      {PlatformsBlock}
-      {product.variants.map((v, i) => (
-        <VariantCard key={v.name} variant={v} accent={product.accent} delay={i * 0.08} />
-      ))}
-    </motion.div>
-  );
-
-  const ImageColumn = (
-    <motion.div
-      initial={{ opacity: 0, scale: 0.9 }}
-      animate={inView ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.9 }}
-      transition={{ duration: 0.6, delay: 0.08 }}
-      style={{
-        flex: isMobile ? undefined : 1,
-        width: isMobile ? '100%' : undefined,
-        minWidth: 0,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-      }}
-    >
-      <ScaleBox canvasSize={C}>
-        <OrbitalShowcase product={product} idx={index} />
-      </ScaleBox>
-    </motion.div>
-  );
-
   return (
-  <section
-    id={product.id === 1 ? 'powertrain' : 'controller'}
-  
-    ref={ref}
-    className="scroll-mt-28"
-    style={{ marginBottom: isMobile ? 56 : 72 }}
-  >
+    <section
+      id={product.id === 1 ? 'powertrain' : 'controller'}
+      ref={ref}
+      className="scroll-mt-28"
+      style={{ marginBottom: isMobile ? 56 : 72 }}
+    >
       {LabelRow}
+      {CenterTitle}
 
-      <div
-        style={{
-          display: 'flex',
-          flexDirection: isMobile ? 'column' : reverseLayout ? 'row-reverse' : 'row',
-          alignItems: 'center',
-          justifyContent: 'space-between',
-          gap: isMobile ? 24 : isTablet ? 28 : 48,
-          minWidth: 0,
-          marginBottom: 32,
-        }}
-      >
-        {ContentColumn}
-        {ImageColumn}
+      {/* ── Hero: centered image with highlight cards ── */}
+      <div style={{ marginBottom: isMobile ? 32 : 48 }}>
+        {isDesktop ? (
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: '1fr minmax(280px, 460px) 1fr',
+              alignItems: 'center',
+              gap: 28,
+              width: '100%',
+            }}
+          >
+            <HighlightsColumn features={leftFeatures} accent={product.accent} startDelay={0} />
+            <div style={{ display: 'flex', justifyContent: 'center' }}>{CenterImage}</div>
+            <HighlightsColumn features={rightFeatures} accent={product.accent} startDelay={0.24} />
+          </div>
+        ) : (
+          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 24 : 32 }}>
+            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>{CenterImage}</div>
+            <div
+              style={{
+                display: 'grid',
+                gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
+                gap: 16,
+                width: '100%',
+              }}
+            >
+              {product.features.map((f, i) => (
+                <ProductHighlightCard
+                  key={f.text}
+                  icon={f.icon}
+                  heading={f.text}
+                  description={f.description}
+                  accent={product.accent}
+                  delay={i * 0.06}
+                />
+              ))}
+            </div>
+          </div>
+        )}
       </div>
 
-      {/* Full-width specs table — always visible, no click needed */}
-      <SpecsTable headers={product.tableHeaders} rows={product.tableRows} accent={product.accent} delay={0.1} />
+      {/* ── Specs table (60%) + Key Features (40%) ── */}
+      <div
+        style={{
+          display: specsStacked ? 'flex' : 'grid',
+          flexDirection: specsStacked ? 'column' : undefined,
+          gridTemplateColumns: specsStacked ? undefined : '3fr 2fr',
+          gap: 20,
+          alignItems: 'start',
+          width: '100%',
+        }}
+      >
+        <SpecsTable headers={product.tableHeaders} rows={product.tableRows} accent={product.accent} delay={0.1} />
+        <KeyFeaturesPanel points={product.keyFeatures} accent={product.accent} />
+      </div>
+
+      {/* ── Platforms + Variants (only rendered if present) ── */}
+      {(product.platforms || product.variants.length > 0) && (
+        <div style={{ display: 'flex', flexDirection: 'column', gap: 16, marginTop: 24 }}>
+          {PlatformsBlock}
+          {product.variants.map((v, i) => (
+            <VariantCard key={v.name} variant={v} accent={product.accent} delay={i * 0.08} />
+          ))}
+        </div>
+      )}
     </section>
   );
 }
@@ -553,10 +719,10 @@ function ScaleBox({ canvasSize, children }: { canvasSize: number; children: Reac
 function Divider() {
   return (
     <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '48px 0' }}>
-      <div style={{ position: 'absolute', left: 0, right: 0, height: 1, background: 'linear-gradient(90deg,transparent,rgba(0,165,80,0.25),transparent)' }} />
+      {/* <div style={{ position: 'absolute', left: 0, right: 0, height: 1, background: 'linear-gradient(90deg,transparent,rgba(0,165,80,0.25),transparent)' }} />
       <div style={{ position: 'relative', zIndex: 1, padding: '7px 22px', borderRadius: 20, background: '#fafcfb', border: '1px solid #e2eaf2', fontFamily: 'DM Sans, sans-serif', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.25em', color: 'rgba(13,27,42,0.4)' }}>
         Next Product
-      </div>
+      </div> */}
     </div>
   );
 }
@@ -575,12 +741,7 @@ export default function ProductsPage() {
 
       <section id="products" style={{ position: 'relative', padding: '60px 0 80px', overflow: 'hidden', background: '#fafcfb', fontFamily: 'DM Sans, sans-serif' }}>
 
-        {/* ── Background — matches site theme ── */}
-        {/* <div style={{ position: 'absolute', inset: 0, pointerEvents: 'none' }}>
-          <div style={{ position: 'absolute', inset: 0, backgroundImage: 'linear-gradient(rgba(13,27,42,0.03) 1px,transparent 1px),linear-gradient(90deg,rgba(13,27,42,0.03) 1px,transparent 1px)', backgroundSize: '64px 64px' }} />
-          <div style={{ position: 'absolute', top: -96, left: -96, width: 384, height: 384, borderRadius: '50%', background: '#00a550', filter: 'blur(128px)', opacity: 0.1 }} />
-          <div style={{ position: 'absolute', top: 40, right: -60, width: 384, height: 384, borderRadius: '50%', background: '#0077b6', filter: 'blur(128px)', opacity: 0.08 }} />
-        </div> */}
+
 
         <div style={{ position: 'relative', zIndex: 10, maxWidth: 1280, margin: '0 auto', padding: '0 16px' }}>
 
@@ -596,9 +757,7 @@ export default function ProductsPage() {
               <span style={{ color: '#0d1b2a' }}>EV Powertrain &amp; </span>
               <span style={{ color: '#00a550' }}>Motor Controller</span>
             </h2>
-            {/* <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 16, color: 'rgba(13,27,42,0.55)', maxWidth: 520, margin: '0 auto', lineHeight: 1.7 }}>
-              Advanced electric mobility systems engineered for Indian roads — built for efficiency, reliability, and scale.
-            </p> */}
+
           </motion.div>
 
           {/* ── Products ── */}

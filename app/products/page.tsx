@@ -4,21 +4,21 @@ import type { ReactNode } from 'react';
 import { useState, useEffect, useRef } from 'react';
 import { motion, AnimatePresence, useInView, useSpring, useMotionValue } from 'motion/react';
 import {
-  Battery, Gauge, Zap, Shield, Cpu, Package,
+  Gauge, Zap, Shield, Cpu, Package,
   CheckCircle, Leaf, TrendingUp,
-  Activity, Thermometer, Wifi, Wind, Weight,
+  Activity, Wifi, Wind, Cog, IndianRupee,
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { ImageWithFallback } from '../../src/app/components/figma/ImageWithFallback';
 
 // ─── ORBITAL CANVAS CONSTANTS ─────────────────────────────────────────────────
-const C = 460;
+const C = 1000;
 const CX = C / 2;
 const CY = C / 2;
-const R = 230;
-const CW = 112;
-const CH = 88;
-const IMG = 400;
+const R = 340;
+const CW = 300;
+const CH = 130;
+const IMG = 380;
 
 type Spec = {
   icon: LucideIcon;
@@ -26,19 +26,12 @@ type Spec = {
   value: string;
   color: string;
   angle: number;
-};
-
-// Feature now carries a short description — used as a hero Highlight card
-// around the orbital image.
-type Feature = {
-  icon: LucideIcon;
-  text: string;
-  description: string;
+  description?: string;
 };
 
 // KeyFeaturePoint — separate, simpler data for the Key Features panel next
-// to the specs table. Just an icon + a one-liner, independent of the hero
-// highlight cards above.
+// to the specs table. Just an icon + a one-liner, independent of the
+// specs shown around the hero image.
 type KeyFeaturePoint = {
   icon: LucideIcon;
   text: string;
@@ -59,7 +52,6 @@ type Product = {
   description: string;
   image: string;
   accent: string;
-  features: Feature[];
   keyFeatures: KeyFeaturePoint[];
   specs: Spec[];
   variants: Variant[];
@@ -78,14 +70,6 @@ const PRODUCTS: Product[] = [
     description: 'A single unified unit combining motor, gearbox, and controller — air-cooled, IP67-sealed, and engineered for electric scooters at scale.',
     image: '/photos/motor-removebg.png',
     accent: '#00a550',
-    features: [
-      { icon: Leaf, text: 'Rare Earth-Free Motor Technology', description: 'Engineered without rare-earth magnets, cutting supply-chain risk while delivering reliable, consistent torque.' },
-      { icon: Package, text: 'Motor + Controller + Gearbox in One Unit', description: 'A single integrated housing replaces three separate components, saving space, weight, and assembly cost.' },
-      { icon: Wind, text: 'Natural Air Cooling — No Liquid Needed', description: 'Passive air cooling keeps temperatures stable without pumps, hoses, or coolant maintenance.' },
-      { icon: TrendingUp, text: '94–95% Efficiency, Extended Range', description: 'High system efficiency translates directly into longer rides per charge and lower running costs.' },
-      { icon: Shield, text: 'IP67 Sealed — All-Weather Reliable', description: 'Fully sealed against dust and water, built to perform through monsoons, heat, and rough terrain.' },
-      { icon: Zap, text: 'Lower System Cost for Mass Adoption', description: 'Simplified architecture reduces bill-of-materials cost, making EVs more accessible at scale.' },
-    ],
     keyFeatures: [
       { icon: Leaf, text: 'Rare Earth-Free Motor' },
       { icon: Package, text: 'All-in-One Unit' },
@@ -95,12 +79,12 @@ const PRODUCTS: Product[] = [
       { icon: Zap, text: 'Lower System Cost' },
     ],
     specs: [
-      // { icon: Gauge, label: 'Peak Power', value: '6.5 kW', color: '#00a550', angle: 270 },
-      // { icon: Activity, label: 'Peak Torque', value: '200 Nm', color: '#00a550', angle: 330 },
-      // { icon: TrendingUp, label: 'Efficiency', value: '95%', color: '#0077b6', angle: 30 },
-      // { icon: Weight, label: 'Weight', value: '7.5 kg', color: '#00a550', angle: 90 },
-      // { icon: Shield, label: 'Protection', value: 'IP67', color: '#0077b6', angle: 150 },
-      // { icon: Battery, label: 'Voltage', value: '48/60V', color: '#00a550', angle: 210 },
+      { icon: TrendingUp, label: 'Efficiency\nExtended Range', value: '94–95%', color: '#00a550', angle: -90, description: 'High system efficiency translates directly into longer rides per charge and lower running costs.' },
+      { icon: Shield, label: 'All-Weather\nReliable', value: 'IP67 Sealed', color: '#00a550', angle: -30, description: 'Fully sealed against dust and water, built to perform through monsoons, heat, and rough terrain.' },
+      { icon: IndianRupee, label: 'Mass\nAdoption', value: 'Lower Cost', color: '#00a550', angle: 30, description: 'Simplified architecture reduces bill-of-materials cost, making EVs more accessible at scale.' },
+      { icon: Cog, label: 'Motor + Controller\n+ Gearbox', value: 'All-in-One Unit', color: '#00a550', angle: 90, description: 'A single integrated housing replaces three separate components, saving space, weight, and assembly cost.' },
+      { icon: Wind, label: 'No Liquid\nNeeded', value: 'Air Cooling', color: '#00a550', angle: 150, description: 'Passive air cooling keeps temperatures stable without pumps, hoses, or coolant maintenance.' },
+      { icon: Leaf, label: 'Motor\nTechnology', value: 'Rare Earth-Free', color: '#00a550', angle: 210, description: 'Engineered without rare-earth magnets, cutting supply-chain risk while delivering reliable, consistent torque.' },
     ],
     variants: [
       // { name: 'Series 70', cols: [['Power', '2.5 kW'], ['Torque', '160 Nm'], ['Weight', '6.5 kg']] },
@@ -122,14 +106,6 @@ const PRODUCTS: Product[] = [
     description: 'High-performance vector field-oriented motor controller for light EVs — with ride modes, hill hold, and real-time diagnostics built in.',
     image: '/photos/no-bg-controller.png',
     accent: '#0077b6',
-    features: [
-      { icon: Cpu, text: 'Vector Field-Oriented Control Algorithm', description: 'Advanced FOC delivers smoother acceleration, better torque control, and higher overall efficiency.' },
-      { icon: Activity, text: 'Hall Sensor / Resolver Position Feedback', description: 'Precise rotor position sensing enables accurate, responsive control across every ride mode.' },
-      { icon: Gauge, text: '3 Ride Modes + Cruise Control', description: 'Switch between Eco, Normal, and Sport modes, plus cruise control for long, comfortable rides.' },
-      { icon: Shield, text: 'Hill Hold Assist + Parking Assist', description: 'Prevents rollback on inclines and simplifies parking with dedicated assist functions.' },
-      { icon: Wifi, text: 'CAN + USB Communication Interface', description: 'Seamless integration with vehicle dashboards and diagnostic tools via industry-standard protocols.' },
-      { icon: CheckCircle, text: 'Real-time Fault LED Diagnostics', description: 'Instant visual fault indication makes troubleshooting and servicing faster and easier.' },
-    ],
     keyFeatures: [
       { icon: Cpu, text: 'Vector FOC Algorithm' },
       { icon: Activity, text: 'Precise Position Feedback' },
@@ -139,12 +115,12 @@ const PRODUCTS: Product[] = [
       { icon: CheckCircle, text: 'Real-time Diagnostics' },
     ],
     specs: [
-      // { icon: Zap, label: 'Peak Current', value: '280A', color: '#0077b6', angle: 270 },
-      // { icon: Activity, label: 'Power Range', value: '3–7 kW', color: '#0077b6', angle: 330 },
-      // { icon: Thermometer, label: 'Temp Range', value: '±90°C', color: '#00a550', angle: 30 },
-      // { icon: Shield, label: 'Protection', value: 'IP67', color: '#0077b6', angle: 90 },
-      // { icon: Wifi, label: 'Comms', value: 'CAN+USB', color: '#00a550', angle: 150 },
-      // { icon: Cpu, label: 'Control', value: 'PMSM FOC', color: '#0077b6', angle: 210 },
+      { icon: Cpu, label: 'Control Algorithm', value: 'Vector FOC', color: '#0077b6', angle: -90, description: 'Advanced FOC delivers smoother acceleration, better torque control, and higher overall efficiency.' },
+      { icon: Activity, label: 'Hall Sensor / Resolver', value: 'Position Feedback', color: '#0077b6', angle: -30, description: 'Precise rotor position sensing enables accurate, responsive control across every ride mode.' },
+      { icon: Gauge, label: '+ Cruise Control', value: '3 Ride Modes', color: '#0077b6', angle: 30, description: 'Switch between Eco, Normal, and Sport modes, plus cruise control for long, comfortable rides.' },
+      { icon: Shield, label: '+ Parking Assist', value: 'Hill Hold Assist', color: '#0077b6', angle: 90, description: 'Prevents rollback on inclines and simplifies parking with dedicated assist functions.' },
+      { icon: Wifi, label: 'Communication Interface', value: 'CAN + USB', color: '#0077b6', angle: 150, description: 'Seamless integration with vehicle dashboards and diagnostic tools via industry-standard protocols.' },
+      { icon: CheckCircle, label: 'Fault LED Diagnostics', value: 'Real-time', color: '#0077b6', angle: 210, description: 'Instant visual fault indication makes troubleshooting and servicing faster and easier.' },
     ],
     variants: [
       // { name: 'Variant 1', cols: [['Power', '1–4 kW'], ['Current', '160A'], ['Voltage', '48–72V']] },
@@ -161,7 +137,13 @@ const PRODUCTS: Product[] = [
   },
 ];
 
-// ─── ORBITAL SHOWCASE (kept as-is — image + circular orbit points) ────────────
+// Rounds trig-derived coordinates to a fixed precision so the server-rendered
+// and client-rendered numbers always serialize identically — Math.cos/sin can
+// differ in their last decimal place between Node and the browser, which was
+// causing an SVG path hydration mismatch.
+const round = (n: number) => Math.round(n * 100) / 100;
+
+// ─── ORBITAL SHOWCASE — product image with specs arranged around it ──────────
 function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
   const floatY = useMotionValue(0);
   const springY = useSpring(floatY, { stiffness: 45, damping: 14 });
@@ -178,40 +160,51 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
     return () => cancelAnimationFrame(raf);
   }, [floatY, idx]);
 
+  // Connector midpoint angle between each adjacent pair of spec cards —
+  // this is where the small dot + short dashed arc sits, matching the
+  // reference layout (arcs run along the circle, not from the center out).
+  const connectors = product.specs.map((s, i) => {
+    const next = product.specs[(i + 1) % product.specs.length];
+    const nextAngle = i === product.specs.length - 1 ? next.angle + 360 : next.angle;
+    return (s.angle + nextAngle) / 2;
+  });
+
   return (
     <div style={{ position: 'relative', width: C, height: C, flexShrink: 0 }}>
-      {[R * 2 + 20, R * 2 + 90].map((d, i) => (
-        <motion.div key={d}
-          style={{
-            position: 'absolute',
-            width: d, height: d,
-            left: CX - d / 2, top: CY - d / 2,
-            borderRadius: '50%',
-            border: `1px solid ${product.accent}${i === 0 ? '25' : '10'}`,
-            pointerEvents: 'none',
-          }}
-          animate={{ rotate: i === 0 ? 360 : -360 }}
-          transition={{ duration: i === 0 ? 28 : 44, repeat: Infinity, ease: 'linear' }}
-        />
-      ))}
+      {/* Subtle ring hugging the product image */}
+      <div style={{
+        position: 'absolute',
+        width: IMG + 60, height: IMG + 60,
+        left: CX - (IMG + 60) / 2, top: CY - (IMG + 60) / 2,
+        borderRadius: '50%',
+        border: `1px solid ${product.accent}22`,
+        pointerEvents: 'none',
+      }} />
 
+      {/* Dashed arc connectors + dot markers between adjacent cards */}
       <svg style={{ position: 'absolute', inset: 0, width: C, height: C, overflow: 'visible', pointerEvents: 'none' }}>
-        {product.specs.map((s) => {
-          const rad = (s.angle * Math.PI) / 180;
-          const innerR = IMG / 2 + 8;
+        {connectors.map((m, i) => {
+          const pad = 16;
+          const a1 = ((m - pad) * Math.PI) / 180;
+          const a2 = ((m + pad) * Math.PI) / 180;
+          const sx = round(CX + Math.cos(a1) * R);
+          const sy = round(CY + Math.sin(a1) * R);
+          const ex = round(CX + Math.cos(a2) * R);
+          const ey = round(CY + Math.sin(a2) * R);
+          const dRad = (m * Math.PI) / 180;
+          const dx = round(CX + Math.cos(dRad) * R);
+          const dy = round(CY + Math.sin(dRad) * R);
           return (
-            <g key={s.label}>
-              <line
-                x1={CX + Math.cos(rad) * innerR} y1={CY + Math.sin(rad) * innerR}
-                x2={CX + Math.cos(rad) * (R - CW / 2 - 4)}
-                y2={CY + Math.sin(rad) * (R - CH / 2 - 4)}
-                stroke={s.color} strokeWidth="1" strokeDasharray="4 5" strokeOpacity="0.4"
+            <g key={i}>
+              <path
+                d={`M ${sx} ${sy} A ${R} ${R} 0 0 1 ${ex} ${ey}`}
+                fill="none"
+                stroke={product.accent}
+                strokeWidth="1.4"
+                strokeDasharray="4 6"
+                strokeOpacity="0.5"
               />
-              <circle
-                cx={CX + Math.cos(rad) * (R + CW / 2 + 6)}
-                cy={CY + Math.sin(rad) * (R + CH / 2 + 6)}
-                r="3" fill={s.color} opacity="0.65"
-              />
+              <circle cx={dx} cy={dy} r="4.5" fill={product.accent} opacity="0.8" />
             </g>
           );
         })}
@@ -219,11 +212,11 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
 
       <div style={{
         position: 'absolute',
-        width: IMG + 80, height: IMG + 80,
-        left: CX - (IMG + 80) / 2, top: CY - (IMG + 80) / 2,
+        width: IMG + 90, height: IMG + 90,
+        left: CX - (IMG + 90) / 2, top: CY - (IMG + 90) / 2,
         borderRadius: '50%',
-        background: `radial-gradient(circle, ${product.accent}28 0%, transparent 70%)`,
-        filter: 'blur(28px)',
+        background: `radial-gradient(circle, ${product.accent}22 0%, transparent 70%)`,
+        filter: 'blur(30px)',
         pointerEvents: 'none',
       }} />
 
@@ -240,7 +233,7 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         <ImageWithFallback
           src={product.image} alt={product.title}
           style={{
-            width: '100%', height: '100%', objectFit: 'contain',
+            width: '80%', height: '80%', objectFit: 'contain',
             filter: `drop-shadow(0 8px 32px ${product.accent}60)`,
           }}
         />
@@ -248,8 +241,8 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
 
       {product.specs.map((s, i) => {
         const rad = (s.angle * Math.PI) / 180;
-        const cx = CX + Math.cos(rad) * R;
-        const cy = CY + Math.sin(rad) * R;
+        const cx = round(CX + Math.cos(rad) * R);
+        const cy = round(CY + Math.sin(rad) * R);
         const Icon = s.icon;
         return (
           <OrbCard key={s.label} spec={s} Icon={Icon}
@@ -262,7 +255,7 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
   );
 }
 
-// ─── ORBITAL CARD (kept as-is) ────────────────────────────────────────────────
+// ─── ORBITAL CARD — white rectangular card, icon chip, single combined heading ─
 function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIcon; left: number; top: number; delay: number }) {
   const [hov, setHov] = useState(false);
   return (
@@ -273,121 +266,50 @@ function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIco
       transition={{ delay, type: 'spring', stiffness: 200, damping: 20 }}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      whileHover={{ scale: 1.1, y: -3 }}
+      whileHover={{ scale: 1.05, y: -3 }}
       style={{
         position: 'absolute',
         left, top,
         width: CW, height: CH,
         zIndex: 20,
         display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center',
-        gap: 5,
-        borderRadius: 16,
-        background: hov ? 'rgba(79, 193, 77, 0.88)' : 'rgba(110, 184, 110, 0.88)',
-        border: `1px solid ${hov ? spec.color + '65' : spec.color + '28'}`,
-        backdropFilter: 'blur(18px)',
-        boxShadow: hov
-          ? `0 0 22px ${spec.color}30, 0 8px 28px rgba(0,0,0,0.6), inset 0 1px 0 rgba(255,255,255,0.07)`
-          : `0 4px 16px rgba(0,0,0,0.5), inset 0 1px 0 rgba(255,255,255,0.04)`,
-        transition: 'background 0.2s, border-color 0.2s, box-shadow 0.2s',
-        cursor: 'default', userSelect: 'none',
-        overflow: 'hidden',
-      }}
-    >
-      {hov && (
-        <div style={{
-          position: 'absolute', inset: 0, borderRadius: 16, pointerEvents: 'none',
-          background: `radial-gradient(circle at 50% 0%, ${spec.color}18, transparent 70%)`,
-        }} />
-      )}
-      <div style={{
-        width: 30, height: 30, borderRadius: 8, flexShrink: 0,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        background: `${spec.color}1a`, border: `1px solid ${spec.color}44`,
-      }}>
-        <Icon style={{ width: 14, height: 14, color: spec.color }} />
-      </div>
-      <span style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 900, color: '#090606', fontSize: 13, lineHeight: 1 }}>
-        {spec.value}
-      </span>
-      <span style={{ fontFamily: 'DM Sans, sans-serif', color: 'rgba(34, 13, 13, 0.71)', fontSize: 9, textTransform: 'uppercase', letterSpacing: '0.1em', lineHeight: 1, textAlign: 'center', padding: '0 6px' }}>
-        {spec.label}
-      </span>
-    </motion.div>
-  );
-}
-
-// ─── PRODUCT HIGHLIGHT CARD — reusable, used both around the hero image ──────
-// and inside the Key Features panel next to the specs table.
-function ProductHighlightCard({
-  icon: Icon,
-  heading,
-  description,
-  accent,
-  delay = 0,
-}: {
-  icon: LucideIcon;
-  heading: string;
-  description: string;
-  accent: string;
-  delay?: number;
-}) {
-  return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, margin: '-10% 0px' }}
-      transition={{ delay, duration: 0.45, ease: 'easeOut' }}
-      whileHover={{ y: -4, boxShadow: `0 14px 32px ${accent}22`, borderColor: `${accent}55` }}
-      style={{
-        minHeight: 132,
-        height: '100%',
-        display: 'flex',
-        flexDirection: 'column',
-        gap: 10,
-        padding: '18px',
-        borderRadius: 18,
+        alignItems: 'center',
+        borderRadius: 20,
         background: '#ffffff',
-        border: `1px solid #e2eaf2`,
-        borderLeft: `3px solid ${accent}`,
-        boxShadow: '0 2px 14px rgba(13,27,42,0.05)',
-        transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
+        border: `1px solid ${hov ? spec.color + '55' : '#c7d2da'}`,
+        boxShadow: hov
+          ? `0 14px 30px ${spec.color}20, 0 2px 10px rgba(13,27,42,0.06)`
+          : `0 2px 14px rgba(13,27,42,0.06)`,
+        transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+        cursor: 'default', userSelect: 'none',
+        padding: '0 14px 14px',
+        textAlign: 'center',
+        overflow: 'visible',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-        <div style={{
-          width: 36, height: 36, borderRadius: 10, flexShrink: 0,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          background: `${accent}16`, border: `1px solid ${accent}35`,
-        }}>
-          <Icon style={{ width: 17, height: 17, color: accent }} strokeWidth={2.3} />
-        </div>
-        <h4 style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 800, fontSize: 16.5, color: accent, margin: 0, lineHeight: 1.3 }}>
-          {heading}
-        </h4>
+      {/* Icon badge — half overlaps the top edge of the card */}
+      <div style={{
+        position: 'absolute',
+        top: -26, left: '50%', transform: 'translateX(-50%)',
+        width: 52, height: 52, borderRadius: '50%', flexShrink: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        background: '#ffffff', border: `1px solid ${spec.color}35`,
+        boxShadow: '0 6px 16px rgba(13,27,42,0.10)',
+        zIndex: 2,
+      }}>
+        <Icon style={{ width: 20, height: 20, color: spec.color }} strokeWidth={2.3} />
       </div>
-      <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 13.5, lineHeight: 1.6, color: 'rgba(13,27,42,0.7)', margin: 0 }}>
-        {description}
-      </p>
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, paddingTop: 30, justifyContent: 'center', flex: 1 }}>
+        <span style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 800, color: '#0d1b2a', fontSize: 14, lineHeight: 1.35 }}>
+          {spec.value}{spec.label ? ` ${spec.label.replace(/\n/g, ' ')}` : ''}
+        </span>
+        {spec.description && (
+          <p style={{ fontFamily: 'DM Sans, sans-serif', color: 'rgba(13,27,42,0.72)', fontWeight: 500, fontSize: 11.5, lineHeight: 1.5, margin: '2px 0 0' }}>
+            {spec.description}
+          </p>
+        )}
+      </div>
     </motion.div>
-  );
-}
-
-// ─── HIGHLIGHTS COLUMN — a vertical stack of 3 cards flanking the hero image ──
-function HighlightsColumn({ features, accent, startDelay = 0 }: { features: Feature[]; accent: string; startDelay?: number }) {
-  return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 16, width: '100%' }}>
-      {features.map((f, i) => (
-        <ProductHighlightCard
-          key={f.text}
-          icon={f.icon}
-          heading={f.text}
-          description={f.description}
-          accent={accent}
-          delay={startDelay + i * 0.08}
-        />
-      ))}
-    </div>
   );
 }
 
@@ -537,41 +459,22 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
   const inView = useInView(ref, { once: false, margin: '-6% 0px' });
   const width = useWindowWidth();
 
-  // Hero layout breakpoints:
-  // - desktop: image centered with 3 highlight cards flanking each side
-  // - tablet: image on top, highlight cards flow into a 2-column grid below
-  // - mobile: everything stacks into a single column
+  // Hero: the specs orbit the product image at every breakpoint — ScaleBox
+  // already handles proportional scale-down, so no separate mobile layout
+  // branch is needed here.
   const isMobile = width < 700;
-  const isDesktop = width >= 1180;
 
   // Specs (60%) + Key Features (40%) row — stacks below a comfortable width,
   // matching the existing table's own responsive/scroll behavior.
   const specsStacked = width < 1100;
 
-  const leftFeatures = product.features.slice(0, 3);
-  const rightFeatures = product.features.slice(3, 6);
-
-  const LabelRow = (
-    <motion.div
-      initial={{ opacity: 0, y: -10 }} animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: -10 }}
-      transition={{ duration: 0.4 }}
-      style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 12, marginBottom: isMobile ? 18 : 24 }}
-    >
-      <div style={{ height: 2, width: 80, background: `linear-gradient(90deg,transparent,${product.accent})` }} />
-      <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.28em', color: product.accent }}>
-        Product {product.num}
-      </span>
-      <div style={{ height: 2, width: 80, background: `linear-gradient(90deg,${product.accent},transparent)` }} />
-    </motion.div>
-  );
-
-  // Centered title block — sits above the hero showcase.
+  // Title block — left-aligned, sits above the hero showcase.
   const CenterTitle = (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 16 }}
       transition={{ duration: 0.5, delay: 0.05 }}
-      style={{ textAlign: 'center', maxWidth: 640, margin: `0 auto ${isMobile ? 28 : 40}px` }}
+      style={{ textAlign: 'left', maxWidth: 640, margin: `0 0 ${isMobile ? 28 : 40}px` }}
     >
       <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 12, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.22em', color: product.accent, display: 'block', marginBottom: 10 }}>
         {product.tag}
@@ -617,49 +520,11 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
       className="scroll-mt-28"
       style={{ marginBottom: isMobile ? 56 : 72 }}
     >
-      {LabelRow}
       {CenterTitle}
 
-      {/* ── Hero: centered image with highlight cards ── */}
-      <div style={{ marginBottom: isMobile ? 32 : 48 }}>
-        {isDesktop ? (
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: '1fr minmax(280px, 460px) 1fr',
-              alignItems: 'center',
-              gap: 28,
-              width: '100%',
-            }}
-          >
-            <HighlightsColumn features={leftFeatures} accent={product.accent} startDelay={0} />
-            <div style={{ display: 'flex', justifyContent: 'center' }}>{CenterImage}</div>
-            <HighlightsColumn features={rightFeatures} accent={product.accent} startDelay={0.24} />
-          </div>
-        ) : (
-          <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: isMobile ? 24 : 32 }}>
-            <div style={{ display: 'flex', justifyContent: 'center', width: '100%' }}>{CenterImage}</div>
-            <div
-              style={{
-                display: 'grid',
-                gridTemplateColumns: isMobile ? '1fr' : 'repeat(2, 1fr)',
-                gap: 16,
-                width: '100%',
-              }}
-            >
-              {product.features.map((f, i) => (
-                <ProductHighlightCard
-                  key={f.text}
-                  icon={f.icon}
-                  heading={f.text}
-                  description={f.description}
-                  accent={product.accent}
-                  delay={i * 0.06}
-                />
-              ))}
-            </div>
-          </div>
-        )}
+      {/* ── Hero: specs orbiting the centered product image ── */}
+      <div style={{ display: 'flex', justifyContent: 'center', marginBottom: isMobile ? 32 : 48 }}>
+        {CenterImage}
       </div>
 
       {/* ── Specs table (60%) + Key Features (40%) ── */}
@@ -715,18 +580,6 @@ function ScaleBox({ canvasSize, children }: { canvasSize: number; children: Reac
   );
 }
 
-// ─── DIVIDER ──────────────────────────────────────────────────────────────────
-function Divider() {
-  return (
-    <div style={{ position: 'relative', display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '48px 0' }}>
-      {/* <div style={{ position: 'absolute', left: 0, right: 0, height: 1, background: 'linear-gradient(90deg,transparent,rgba(0,165,80,0.25),transparent)' }} />
-      <div style={{ position: 'relative', zIndex: 1, padding: '7px 22px', borderRadius: 20, background: '#fafcfb', border: '1px solid #e2eaf2', fontFamily: 'DM Sans, sans-serif', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.25em', color: 'rgba(13,27,42,0.4)' }}>
-        Next Product
-      </div> */}
-    </div>
-  );
-}
-
 // ─── PAGE ─────────────────────────────────────────────────────────────────────
 export default function ProductsPage() {
   const headerRef = useRef(null);
@@ -764,7 +617,6 @@ export default function ProductsPage() {
           {PRODUCTS.map((p, i) => (
             <div key={p.id}>
               <ProductBlock product={p} index={i} />
-              {i < PRODUCTS.length - 1 && <Divider />}
             </div>
           ))}
 

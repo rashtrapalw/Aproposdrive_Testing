@@ -14,11 +14,11 @@ import { ImageWithFallback } from '../../src/app/components/figma/ImageWithFallb
 // ─── ORBITAL CANVAS CONSTANTS ─────────────────────────────────────────────────
 const C = 1000;
 const CX = C / 2;
-const CY = C / 2;
-const R = 340;
+const CY = C / 2 ;
+const R = 500;
 const CW = 300;
 const CH = 130;
-const IMG = 380;
+const IMG = 500;
 
 type Spec = {
   icon: LucideIcon;
@@ -79,23 +79,29 @@ const PRODUCTS: Product[] = [
       { icon: Zap, text: 'Lower System Cost' },
     ],
     specs: [
-      { icon: TrendingUp, label: 'Efficiency\nExtended Range', value: '94–95%', color: '#00a550', angle: -90, description: 'High system efficiency translates directly into longer rides per charge and lower running costs.' },
-      { icon: Shield, label: 'All-Weather\nReliable', value: 'IP67 Sealed', color: '#00a550', angle: -30, description: 'Fully sealed against dust and water, built to perform through monsoons, heat, and rough terrain.' },
-      { icon: IndianRupee, label: 'Mass\nAdoption', value: 'Lower Cost', color: '#00a550', angle: 30, description: 'Simplified architecture reduces bill-of-materials cost, making EVs more accessible at scale.' },
-      { icon: Cog, label: 'Motor + Controller\n+ Gearbox', value: 'All-in-One Unit', color: '#00a550', angle: 90, description: 'A single integrated housing replaces three separate components, saving space, weight, and assembly cost.' },
-      { icon: Wind, label: 'No Liquid\nNeeded', value: 'Air Cooling', color: '#00a550', angle: 150, description: 'Passive air cooling keeps temperatures stable without pumps, hoses, or coolant maintenance.' },
-      { icon: Leaf, label: 'Motor\nTechnology', value: 'Rare Earth-Free', color: '#00a550', angle: 210, description: 'Engineered without rare-earth magnets, cutting supply-chain risk while delivering reliable, consistent torque.' },
+      { icon: TrendingUp, label: 'Efficiency\nExtended Range', value: '94–95%', color: '#00a550', angle: 0, description: 'High system efficiency translates directly into longer rides per charge and lower running costs.' },
+      { icon: Shield, label: 'All-Weather\nReliable', value: 'IP67 Sealed', color: '#00a550', angle: 30, description: 'Fully sealed against dust and water, built to perform through monsoons, heat, and rough terrain.' },
+      { icon: IndianRupee, label: 'Mass\nAdoption', value: 'Lower Cost', color: '#00a550', angle: 150, description: 'Simplified architecture reduces bill-of-materials cost, making EVs more accessible at scale.' },
+      { icon: Cog, label: 'Motor + Controller\n+ Gearbox', value: 'All-in-One Unit', color: '#00a550', angle: 180, description: 'A single integrated housing replaces three separate components, saving space, weight, and assembly cost.' },
+      { icon: Wind, label: 'No Liquid\nNeeded', value: 'Air Cooling', color: '#00a550', angle: 210, description: 'Passive air cooling keeps temperatures stable without pumps, hoses, or coolant maintenance.' },
+      { icon: Leaf, label: 'Motor\nTechnology', value: 'Rare Earth-Free', color: '#00a550', angle: 330, description: 'Engineered without rare-earth magnets, cutting supply-chain risk while delivering reliable, consistent torque.' },
     ],
     variants: [
       // { name: 'Series 70', cols: [['Power', '2.5 kW'], ['Torque', '160 Nm'], ['Weight', '6.5 kg']] },
       // { name: 'Series 85', cols: [['Power', '4 kW'], ['Torque', '200 Nm'], ['Weight', '7.5 kg']] },
     ],
-    tableHeaders: ['Spec', 'Series 70', 'Series 85'],
+   tableHeaders: ['Spec', '70', '85'],
+
     tableRows: [
-      ['Tyre Size', '12 inch', '12 inch'], ['Nominal Power', '2.5 kW', '4 kW'],
-      ['Peak Power', '5.5 kW', '6.5 kW'], ['Peak Torque', '160 Nm', '200 Nm'],
-      ['Efficiency', '94%', '95%'], ['Weight', '6.5 kg', '7.5 kg'],
-      ['Voltage', '48/60V', '48/60V'], ['Protection', 'IP67', 'IP67'], ['Cooling', 'Air', 'Air'],
+      ['Tyre Size', '12 Inch', '12 Inch'],
+      ['Nominal Power', '2.5 kW', '4 kW'],
+      ['Peak Power', '5.5 kW', '6.5 kW'],
+      ['Peak Torque', '160 Nm', '200 Nm'],
+      ['Peak Motor Efficiency', '94%', '95%'],
+      ['System Weight', '6.5 kg', '7.5 kg'],
+      ['System Voltage', '48 / 60 V', '48 / 60 V'],
+      ['Ingress Protection', 'IP67', 'IP67'],
+      ['Cooling', 'Natural Air', 'Natural Air'],
     ],
   },
   {
@@ -115,23 +121,32 @@ const PRODUCTS: Product[] = [
       { icon: CheckCircle, text: 'Real-time Diagnostics' },
     ],
     specs: [
-      { icon: Cpu, label: 'Control Algorithm', value: 'Vector FOC', color: '#0077b6', angle: -90, description: 'Advanced FOC delivers smoother acceleration, better torque control, and higher overall efficiency.' },
-      { icon: Activity, label: 'Hall Sensor / Resolver', value: 'Position Feedback', color: '#0077b6', angle: -30, description: 'Precise rotor position sensing enables accurate, responsive control across every ride mode.' },
-      { icon: Gauge, label: '+ Cruise Control', value: '3 Ride Modes', color: '#0077b6', angle: 30, description: 'Switch between Eco, Normal, and Sport modes, plus cruise control for long, comfortable rides.' },
-      { icon: Shield, label: '+ Parking Assist', value: 'Hill Hold Assist', color: '#0077b6', angle: 90, description: 'Prevents rollback on inclines and simplifies parking with dedicated assist functions.' },
-      { icon: Wifi, label: 'Communication Interface', value: 'CAN + USB', color: '#0077b6', angle: 150, description: 'Seamless integration with vehicle dashboards and diagnostic tools via industry-standard protocols.' },
-      { icon: CheckCircle, label: 'Fault LED Diagnostics', value: 'Real-time', color: '#0077b6', angle: 210, description: 'Instant visual fault indication makes troubleshooting and servicing faster and easier.' },
+      { icon: Cpu, label: 'Control Algorithm', value: 'Vector FOC', color: '#0077b6', angle: 0, description: 'Advanced FOC delivers smoother acceleration, better torque control, and higher overall efficiency.' },
+      { icon: Activity, label: 'Hall Sensor / Resolver', value: 'Position Feedback', color: '#0077b6', angle: 45, description: 'Precise rotor position sensing enables accurate, responsive control across every ride mode.' },
+      { icon: Gauge, label: '+ Cruise Control', value: '3 Ride Modes', color: '#0077b6', angle: 135, description: 'Switch between Eco, Normal, and Sport modes, plus cruise control for long, comfortable rides.' },
+      { icon: Shield, label: '+ Parking Assist', value: 'Hill Hold Assist', color: '#0077b6', angle: 180, description: 'Prevents rollback on inclines and simplifies parking with dedicated assist functions.' },
+      { icon: Wifi, label: 'Communication Interface', value: 'CAN + USB', color: '#0077b6', angle: 225, description: 'Seamless integration with vehicle dashboards and diagnostic tools via industry-standard protocols.' },
+      { icon: CheckCircle, label: 'Fault LED Diagnostics', value: 'Real-time', color: '#0077b6', angle: 315, description: 'Instant visual fault indication makes troubleshooting and servicing faster and easier.' },
     ],
     variants: [
       // { name: 'Variant 1', cols: [['Power', '1–4 kW'], ['Current', '160A'], ['Voltage', '48–72V']] },
       // { name: 'Variant 2', cols: [['Power', '3–7 kW'], ['Current', '280A'], ['Voltage', '48–72V']] },
     ],
-    tableHeaders: ['Spec', 'Variant 1', 'Variant 2'],
+   tableHeaders: ['Series', '1kW - 4kW', '3kW - 7kW'],
+
     tableRows: [
-      ['Power Range', '1–4 kW', '3–7 kW'], ['Peak Current', '160 Arms', '280 Arms'],
-      ['Rated Current', '50 Arms', '90 Arms'], ['Voltage', '48/60/72V', '48/60/72V'],
-      ['Dimensions', '165×109×45mm', '214×119×45mm'], ['Temp Range', '-20 to +90°C', '-20 to +90°C'],
-      ['Protection', 'IP67', 'IP67'], ['Control', 'PMSM FOC', 'PMSM FOC'], ['Comms', 'CAN + USB', 'CAN + USB'],
+      ['Peak Output Current', '160 Arms', '280 Arms'],
+      ['Rated Output Current', '50 Arms', '90 Arms'],
+      ['Voltage', '48/60/72 V', '48/60/72 V'],
+      ['Dimension', '165 × 109 × 45', '214 × 119 × 45'],
+      ['Max Operating Temperature', '-20°C to +90°C', '-20°C to +90°C'],
+      ['IP Rating', 'IP67', 'IP67'],
+      ['Control Type', 'PMSM', 'PMSM'],
+      ['Control Algorithm', 'Vector Field-Oriented Control', 'Vector Field-Oriented Control'],
+      ['Position Feedback', 'Hall Sensor / Resolver', 'Hall Sensor / Resolver'],
+      ['Functions', '3 Ride Modes, Cruise Mode, Parking Assist, Hill Hold Assist', '3 Ride Modes, Cruise Mode, Parking Assist, Hill Hold Assist'],
+      ['Communication', 'CAN, USB Interface for GUI Tool', 'CAN, USB Interface for GUI Tool'],
+      ['LED Indicator', 'Fault State', 'Fault State'],
     ],
     // platforms: ['2-wheelers (L2)', '3-wheelers (L3)', 'Custom EV Platforms'],
   },
@@ -143,7 +158,7 @@ const PRODUCTS: Product[] = [
 // causing an SVG path hydration mismatch.
 const round = (n: number) => Math.round(n * 100) / 100;
 
-// ─── ORBITAL SHOWCASE — product image with specs arranged around it ──────────
+// ─── ORBITAL SHOWCASE — product image with specs arranged around it (DESKTOP/TABLET) ──
 function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
   const floatY = useMotionValue(0);
   const springY = useSpring(floatY, { stiffness: 45, damping: 14 });
@@ -233,7 +248,7 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         <ImageWithFallback
           src={product.image} alt={product.title}
           style={{
-            width: '80%', height: '80%', objectFit: 'contain',
+            width: '100%', height: '100%', objectFit: 'contain',
             filter: `drop-shadow(0 8px 32px ${product.accent}60)`,
           }}
         />
@@ -310,6 +325,80 @@ function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIco
         )}
       </div>
     </motion.div>
+  );
+}
+
+// ─── MOBILE SPEC CARD — compact card used in the mobile grid layout ──────────
+// The orbital layout depends on a fixed 1000×1000 canvas that is scaled down
+// with a CSS transform to fit the screen. On phones that scale factor gets
+// so small (≈0.3×) that the card text becomes unreadable. Below the `isMobile`
+// breakpoint we swap to this simple, readable stacked grid instead.
+function MobileSpecCard({ spec, Icon, accent, delay }: { spec: Spec; Icon: LucideIcon; accent: string; delay: number }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 14 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: '-5% 0px' }}
+      transition={{ delay, duration: 0.35 }}
+      style={{
+        display: 'flex', flexDirection: 'column', gap: 8,
+        padding: '14px 12px',
+        borderRadius: 16,
+        background: '#ffffff',
+        border: '1px solid #e2eaf2',
+        boxShadow: '0 2px 12px rgba(13,27,42,0.05)',
+      }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
+        <div style={{
+          width: 34, height: 34, borderRadius: 10, flexShrink: 0,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          background: `${accent}14`, border: `1px solid ${accent}35`,
+        }}>
+          <Icon style={{ width: 15, height: 15, color: accent }} strokeWidth={2.3} />
+        </div>
+        <span style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 800, color: '#0d1b2a', fontSize: 12.5, lineHeight: 1.3 }}>
+          {spec.value}{spec.label ? ` ${spec.label.replace(/\n/g, ' ')}` : ''}
+        </span>
+      </div>
+      {spec.description && (
+        <p style={{ fontFamily: 'DM Sans, sans-serif', color: 'rgba(13,27,42,0.7)', fontWeight: 500, fontSize: 11, lineHeight: 1.5, margin: 0 }}>
+          {spec.description}
+        </p>
+      )}
+    </motion.div>
+  );
+}
+
+// ─── MOBILE HERO — product image + spec grid, replaces the orbital showcase on phones ─
+function MobileHero({ product, width }: { product: Product; width: number }) {
+  const columns = width < 420 ? 1 : 2;
+  return (
+    <div style={{ display: 'flex', flexDirection: 'column', gap: 22, width: '100%' }}>
+      <div style={{ position: 'relative', width: '100%', maxWidth: 320, margin: '0 auto', display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
+        <div style={{
+          position: 'absolute', inset: -10,
+          borderRadius: '50%',
+          background: `radial-gradient(circle, ${product.accent}22 0%, transparent 70%)`,
+          filter: 'blur(24px)',
+          pointerEvents: 'none',
+        }} />
+        <ImageWithFallback
+          src={product.image} alt={product.title}
+          style={{
+            position: 'relative',
+            width: '100%', maxHeight: 260,
+            objectFit: 'contain',
+            filter: `drop-shadow(0 8px 24px ${product.accent}55)`,
+          }}
+        />
+      </div>
+      <div style={{ display: 'grid', gridTemplateColumns: `repeat(${columns}, 1fr)`, gap: 12 }}>
+        {product.specs.map((s, i) => (
+          <MobileSpecCard key={s.label} spec={s} Icon={s.icon} accent={product.accent} delay={i * 0.05} />
+        ))}
+      </div>
+    </div>
   );
 }
 
@@ -402,8 +491,14 @@ function VariantCard({ variant, accent, delay }: { variant: Variant; accent: str
   );
 }
 
-// ─── FULL-WIDTH SPECS TABLE — always visible, no accordion (unchanged) ───────
-function SpecsTable({ headers, rows, accent, delay }: { headers: string[]; rows: string[][]; accent: string; delay: number }) {
+// ─── FULL-WIDTH SPECS TABLE — now with row + column grid lines, slightly ─────
+// smaller/tighter on all breakpoints, and an extra-compact mode on mobile.
+function SpecsTable({ headers, rows, accent, delay, compact }: { headers: string[]; rows: string[][]; accent: string; delay: number; compact?: boolean }) {
+  const cellPadding = compact ? '8px 10px' : '10px 16px';
+  const bodyFontSize = compact ? 12 : 13.5;
+  const headerFontSize = compact ? 9.5 : 10.5;
+  const tableMinWidth = compact ? 340 : 480;
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -412,26 +507,36 @@ function SpecsTable({ headers, rows, accent, delay }: { headers: string[]; rows:
       transition={{ delay, duration: 0.45 }}
       style={{ width: '100%', borderRadius: 20, overflow: 'hidden', border: `1px solid #e2eaf2`, background: '#ffffff', boxShadow: '0 2px 16px rgba(13,27,42,0.05)' }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '16px 20px', borderBottom: `1px solid #e2eaf2` }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: compact ? '13px 16px' : '16px 20px', borderBottom: `1px solid #e2eaf2` }}>
         <span style={{ width: 8, height: 8, borderRadius: '50%', background: accent, flexShrink: 0 }} />
         <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#0d1b2a' }}>
           Full Specifications
         </span>
       </div>
       <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: 480 }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: tableMinWidth }}>
           <thead>
             <tr style={{ background: `${accent}0d` }}>
               {headers.map((h, i) => (
-                <th key={i} style={{ padding: '12px 20px', textAlign: 'left', fontFamily: 'DM Sans, sans-serif', fontSize: 11, textTransform: 'uppercase', letterSpacing: '0.14em', color: i === 0 ? 'rgba(13,27,42,0.55)' : accent, fontWeight: 700 }}>{h}</th>
+                <th key={i} style={{
+                  padding: cellPadding, textAlign: 'left', fontFamily: 'DM Sans, sans-serif',
+                  fontSize: headerFontSize, textTransform: 'uppercase', letterSpacing: '0.12em',
+                  color: i === 0 ? 'rgba(13,27,42,0.55)' : accent, fontWeight: 700,
+                  border: '1px solid #e2eaf2',
+                  whiteSpace: 'nowrap',
+                }}>{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {rows.map((row, ri) => (
-              <tr key={ri} style={{ borderTop: '1px solid #eef2f0', background: ri % 2 === 1 ? '#f8faf9' : 'transparent' }}>
+              <tr key={ri} style={{ background: ri % 2 === 1 ? '#f8faf9' : 'transparent' }}>
                 {row.map((cell, ci) => (
-                  <td key={ci} style={{ padding: '12px 20px', fontFamily: 'DM Sans, sans-serif', fontSize: 14, fontWeight: 700, color: '#0d1b2a' }}>{cell}</td>
+                  <td key={ci} style={{
+                    padding: cellPadding, fontFamily: 'DM Sans, sans-serif',
+                    fontSize: bodyFontSize, fontWeight: 700, color: '#0d1b2a',
+                    border: '1px solid #eef2f0',
+                  }}>{cell}</td>
                 ))}
               </tr>
             ))}
@@ -459,9 +564,9 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
   const inView = useInView(ref, { once: false, margin: '-6% 0px' });
   const width = useWindowWidth();
 
-  // Hero: the specs orbit the product image at every breakpoint — ScaleBox
-  // already handles proportional scale-down, so no separate mobile layout
-  // branch is needed here.
+  // Below this breakpoint the orbital canvas scales down so far that its
+  // text becomes unreadable, so we swap to a stacked mobile-friendly layout.
+  // Desktop/tablet (>=700) keeps the original orbital showcase untouched.
   const isMobile = width < 700;
 
   // Specs (60%) + Key Features (40%) row — stacks below a comfortable width,
@@ -522,9 +627,9 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
     >
       {CenterTitle}
 
-      {/* ── Hero: specs orbiting the centered product image ── */}
+      {/* ── Hero: orbital layout on desktop/tablet, stacked grid on mobile ── */}
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: isMobile ? 32 : 48 }}>
-        {CenterImage}
+        {isMobile ? <MobileHero product={product} width={width} /> : CenterImage}
       </div>
 
       {/* ── Specs table (60%) + Key Features (40%) ── */}
@@ -538,7 +643,7 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
           width: '100%',
         }}
       >
-        <SpecsTable headers={product.tableHeaders} rows={product.tableRows} accent={product.accent} delay={0.1} />
+        <SpecsTable headers={product.tableHeaders} rows={product.tableRows} accent={product.accent} delay={0.1} compact={isMobile} />
         <KeyFeaturesPanel points={product.keyFeatures} accent={product.accent} />
       </div>
 

@@ -122,11 +122,11 @@ const PRODUCTS: Product[] = [
     ],
     specs: [
       { icon: Cpu, label: 'Control Algorithm', value: 'Vector FOC', color: '#0077b6', angle: 0, description: 'Advanced FOC delivers smoother acceleration, better torque control, and higher overall efficiency.' },
-      { icon: Activity, label: 'Hall Sensor / Resolver', value: 'Position Feedback', color: '#0077b6', angle: 45, description: 'Precise rotor position sensing enables accurate, responsive control across every ride mode.' },
-      { icon: Gauge, label: '+ Cruise Control', value: '3 Ride Modes', color: '#0077b6', angle: 135, description: 'Switch between Eco, Normal, and Sport modes, plus cruise control for long, comfortable rides.' },
+      { icon: Activity, label: 'Hall Sensor / Resolver', value: 'Position Feedback', color: '#0077b6', angle: 30, description: 'Precise rotor position sensing enables accurate, responsive control across every ride mode.' },
+      { icon: Gauge, label: '+ Cruise Control', value: '3 Ride Modes', color: '#0077b6', angle: 150, description: 'Switch between Eco, Normal, and Sport modes, plus cruise control for long, comfortable rides.' },
       { icon: Shield, label: '+ Parking Assist', value: 'Hill Hold Assist', color: '#0077b6', angle: 180, description: 'Prevents rollback on inclines and simplifies parking with dedicated assist functions.' },
-      { icon: Wifi, label: 'Communication Interface', value: 'CAN + USB', color: '#0077b6', angle: 225, description: 'Seamless integration with vehicle dashboards and diagnostic tools via industry-standard protocols.' },
-      { icon: CheckCircle, label: 'Fault LED Diagnostics', value: 'Real-time', color: '#0077b6', angle: 315, description: 'Instant visual fault indication makes troubleshooting and servicing faster and easier.' },
+      { icon: Wifi, label: 'Communication Interface', value: 'CAN + USB', color: '#0077b6', angle: 210, description: 'Seamless integration with vehicle dashboards and diagnostic tools via industry-standard protocols.' },
+      { icon: CheckCircle, label: 'Fault LED Diagnostics', value: 'Real-time', color: '#0077b6', angle: 330, description: 'Instant visual fault indication makes troubleshooting and servicing faster and easier.' },
     ],
     variants: [
       // { name: 'Variant 1', cols: [['Power', '1–4 kW'], ['Current', '160A'], ['Voltage', '48–72V']] },

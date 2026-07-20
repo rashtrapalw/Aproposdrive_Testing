@@ -225,34 +225,34 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
         })}
       </svg>
 
-      <div style={{
-        position: 'absolute',
-        width: IMG + 90, height: IMG + 90,
-        left: CX - (IMG + 90) / 2, top: CY - (IMG + 90) / 2,
-        borderRadius: '50%',
-        background: `radial-gradient(circle, ${product.accent}22 0%, transparent 70%)`,
-        filter: 'blur(30px)',
-        pointerEvents: 'none',
-      }} />
+        <div style={{
+          position: 'absolute',
+          width: IMG + 90, height: IMG + 90,
+          left: CX - (IMG + 90) / 2, top: CY - (IMG + 90) / 2,
+          borderRadius: '50%',
+          background: `radial-gradient(circle, ${product.accent}22 0%, transparent 70%)`,
+          filter: 'blur(30px)',
+          pointerEvents: 'none',
+        }} />
 
-      <motion.div style={{
-        position: 'absolute',
-        left: CX - IMG / 2, top: CY - IMG / 2,
-        width: IMG, height: IMG,
-        y: springY,
-        zIndex: 10,
-        display: 'flex', alignItems: 'center', justifyContent: 'center',
-        overflow: 'hidden',
-      }}>
+        <motion.div style={{
+          position: 'absolute',
+          left: CX - IMG / 2, top: CY - IMG / 2,
+          width: IMG, height: IMG,
+          y: springY,
+          zIndex: 10,
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          overflow: 'hidden',
+        }}>
 
-        <ImageWithFallback
-          src={product.image} alt={product.title}
-          style={{
-            width: '100%', height: '100%', objectFit: 'contain',
-            filter: `drop-shadow(0 8px 32px ${product.accent}60)`,
-          }}
-        />
-      </motion.div>
+          <ImageWithFallback
+            src={product.image} alt={product.title}
+            style={{
+              width: '100%', height: '100%', objectFit: 'contain',
+              // filter: `drop-shadow(0 8px 32px ${product.accent}60)`,
+            }}
+          />
+        </motion.div>
 
       {product.specs.map((s, i) => {
         const rad = (s.angle * Math.PI) / 180;

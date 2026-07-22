@@ -59,7 +59,7 @@ export function ChallengesSection() {
         }}>
 
           {/* Card 1 — dark: What Are Rare Earth Materials */}
-          {/* <motion.div
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.07, duration: 0.45 }}
@@ -69,32 +69,11 @@ export function ChallengesSection() {
               padding: 'clamp(18px,2.5vw,28px)',
               display: 'flex', flexDirection: 'column', gap: 12,
             }}
-          > */}
-          <motion.div
-  initial={{ opacity: 0, y: 20 }}
-  animate={inView ? { opacity: 1, y: 0 } : {}}
-  transition={{ delay: 0.07, duration: 0.45 }}
-  style={{
-    borderRadius: 16,
-    padding: 'clamp(18px,2.5vw,28px)',
-    display: 'flex',
-    flexDirection: 'column',
-    gap: 12,
-
-    // Background Image
-    backgroundImage: `
-      linear-gradient(rgba(13,27,42,0.82), rgba(13,27,42,0.82)),
-      url('/photos/RareEarth.jpeg')
-    `,
-    backgroundSize: 'cover',
-    backgroundPosition: 'center',
-    backgroundRepeat: 'no-repeat',
-  }}
->
+          >
             <h3 style={{ fontSize: 'clamp(14px,1.3vw,17px)', fontWeight: 800, color: '#ffffff', lineHeight: 1.3, margin: 0 }}>
               What Are Rare Earth Materials?
             </h3>
-            <p style={{ fontSize: 'clamp(11.5px,1vw,13px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.65, margin: 0 }}>
+            <p style={{ fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.68)', lineHeight: 1.7, margin: 0 }}>
               Elements like Neodymium (Nd), Dysprosium (Dy) and Terbium (Tb) are used in permanent magnets inside conventional motors.
             </p>
           </motion.div>
@@ -104,28 +83,30 @@ export function ChallengesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.13, duration: 0.45 }}
+            whileHover={{ y: -5, boxShadow: '0 16px 36px rgba(0,0,0,0.09)' }}
             style={{
               borderRadius: 16,
               background: '#f4f6f5',
               border: '1px solid #e2eaf2',
-              padding: 'clamp(18px,2.5vw,28px)',
-              display: 'flex', flexDirection: 'column', gap: 14,
+              padding: 'clamp(22px,3vw,34px)',
+              display: 'flex', flexDirection: 'column', gap: 16,
+              minHeight: 'clamp(200px, 22vw, 280px)',
             }}
           >
-            <h3 style={{ fontSize: 'clamp(13px,1.2vw,16px)', fontWeight: 800, color: '#0d1b2a', lineHeight: 1.3, margin: 0 }}>
+            <h3 style={{ fontSize: 'clamp(14.5px,1.3vw,18px)', fontWeight: 800, color: '#0d1b2a', lineHeight: 1.3, margin: 0 }}>
               The Problems With<br />Rare Earth Dependency
             </h3>
             <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '10px 14px' }}>
               {problems.map(({ icon: Icon, label }, i) => (
                 <div key={i} style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start', gap: 5 }}>
                   <div style={{
-                    width: 28, height: 28, borderRadius: 8,
+                    width: 32, height: 32, borderRadius: 9,
                     background: 'rgba(0,165,80,0.1)', border: '1px solid rgba(0,165,80,0.2)',
                     display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
                   }}>
-                    <Icon size={13} color="#00a550" strokeWidth={2} />
+                    <Icon size={15} color="#00a550" strokeWidth={2} />
                   </div>
-                  <span style={{ fontSize: 11, color: 'rgba(13,27,42,0.65)', lineHeight: 1.4, whiteSpace: 'pre-line' }}>{label}</span>
+                  <span style={{ fontSize: 12.5, color: 'rgba(13,27,42,0.7)', lineHeight: 1.45, whiteSpace: 'pre-line' }}>{label}</span>
                 </div>
               ))}
             </div>
@@ -136,18 +117,20 @@ export function ChallengesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.19, duration: 0.45 }}
+            whileHover={{ y: -5, boxShadow: '0 16px 36px rgba(0,165,80,0.10)', borderColor: 'rgba(0,165,80,0.35)' }}
             style={{
               borderRadius: 16,
               background: '#ffffff',
               border: '1.5px solid #e2eaf2',
-              padding: 'clamp(18px,2.5vw,28px)',
-              display: 'flex', flexDirection: 'column', gap: 12,
+              padding: 'clamp(22px,3vw,34px)',
+              display: 'flex', flexDirection: 'column', gap: 14,
+              minHeight: 'clamp(200px, 22vw, 280px)',
             }}
           >
-            <h3 style={{ fontSize: 'clamp(13px,1.2vw,16px)', fontWeight: 800, color: '#0d1b2a', lineHeight: 1.3, margin: 0 }}>
+            <h3 style={{ fontSize: 'clamp(14.5px,1.3vw,18px)', fontWeight: 800, color: '#0d1b2a', lineHeight: 1.3, margin: 0 }}>
               The Industry Needs<br />A Better Way
             </h3>
-            <p style={{ fontSize: 'clamp(11.5px,1vw,13px)', color: 'rgba(13,27,42,0.55)', lineHeight: 1.65, margin: 0 }}>
+            <p style={{ fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(13,27,42,0.6)', lineHeight: 1.7, margin: 0 }}>
               As EV demand grows, the world needs motors that are efficient, reliable, cost-effective and independent of rare earth materials.
             </p>
           </motion.div>
@@ -157,27 +140,29 @@ export function ChallengesSection() {
             initial={{ opacity: 0, y: 20 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.25, duration: 0.45 }}
+            whileHover={{ y: -5, scale: 1.02, boxShadow: '0 16px 36px rgba(0,165,80,0.32)' }}
             style={{
               borderRadius: 16,
               background: '#00a550',
-              padding: 'clamp(18px,2.5vw,28px)',
+              padding: 'clamp(22px,3vw,34px)',
               display: 'flex', flexDirection: 'column', justifyContent: 'space-between', gap: 20,
+              minHeight: 'clamp(200px, 22vw, 280px)',
             }}
           >
             <div>
-              <h3 style={{ fontSize: 'clamp(13px,1.2vw,16px)', fontWeight: 800, color: '#ffffff', lineHeight: 1.3, margin: '0 0 12px' }}>
+              <h3 style={{ fontSize: 'clamp(14.5px,1.3vw,18px)', fontWeight: 800, color: '#ffffff', lineHeight: 1.3, margin: '0 0 12px' }}>
                 Our Engineering<br />Question
               </h3>
-              <p style={{ fontSize: 'clamp(11.5px,1vw,13px)', color: 'rgba(255,255,255,0.82)', fontStyle: 'italic', lineHeight: 1.65, margin: 0 }}>
+              <p style={{ fontSize: 'clamp(13px,1.1vw,15px)', color: 'rgba(255,255,255,0.85)', fontStyle: 'italic', lineHeight: 1.7, margin: 0 }}>
                 Can we build world-class electric motors without depending on rare earth materials?
               </p>
             </div>
             {/* Big question mark */}
             <div style={{
-              width: 48, height: 48, borderRadius: '50%',
+              width: 56, height: 56, borderRadius: '50%',
               background: 'rgba(255,255,255,0.15)',
               display: 'flex', alignItems: 'center', justifyContent: 'center',
-              fontSize: 28, color: '#ffffff', fontWeight: 900, lineHeight: 1,
+              fontSize: 32, color: '#ffffff', fontWeight: 900, lineHeight: 1,
             }}>
               ?
             </div>

@@ -65,7 +65,7 @@ const fadeUp = {
 export default function TechnologyPage() {
   return (
     <main className="min-h-screen antialiased" style={themeStyles.page}>
-      <Hero /> 
+      {/* <Hero />  */}
       {/* <PmsmTechnology /> */} 
       {/* <SrmTechnology /> */}
       {/* <KeyTech /> */}   

@@ -120,11 +120,11 @@ export function Footer() {
 
   const firstDelay = setTimeout(() => {
     setShowTech(true)
-  }, 1800)
+  }, 2000) // change after 2 sec
 
   const interval = setInterval(() => {
     setShowTech(prev => !prev)
-  }, 3000)
+  }, 2000) // change every 2 sec
 
   return () => {
     clearTimeout(firstDelay)

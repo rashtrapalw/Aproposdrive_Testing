@@ -1,6 +1,7 @@
 ﻿'use client'
 
-import { useRef } from 'react'
+import { useRef, useEffect, useState } from 'react'
+import { AnimatePresence } from 'motion/react'
 import { motion, useInView } from 'motion/react'
 import { Mail, Phone, MapPin, Linkedin, Youtube, ArrowRight } from 'lucide-react'
 import type { LucideIcon } from 'lucide-react'
@@ -110,6 +111,40 @@ function SocialBtn({ icon: Icon, href, label, delay }: {
 export function Footer() {
   const ref = useRef(null)
   const inView = useInView(ref, { once: false, margin: '-5% 0px' })
+  const [showTech, setShowTech] = useState(false)
+  useEffect(() => {
+  if (!inView) {
+    setShowTech(false)
+    return
+  }
+
+  const firstDelay = setTimeout(() => {
+    setShowTech(true)
+  }, 1800)
+
+  const interval = setInterval(() => {
+    setShowTech(prev => !prev)
+  }, 3000)
+
+  return () => {
+    clearTimeout(firstDelay)
+    clearInterval(interval)
+  }
+}, [inView])
+
+  const [badgeText, setBadgeText] = useState('Made in India')
+  useEffect(() => {
+    if (!inView) {
+      setBadgeText('Made in India')
+      return
+    }
+
+    const timer = setTimeout(() => {
+      setBadgeText('Technology from India')
+    }, 1800) // change after 1.8 sec
+
+    return () => clearTimeout(timer)
+  }, [inView])
 
   return (
     <>
@@ -290,25 +325,65 @@ export function Footer() {
           </div>
 
           {/* Badge — unchanged */}
-          <motion.div
-            initial={{ opacity: 0, y: 10 }}
-            animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
-            transition={{ delay: 0.4, duration: 0.5 }}
-            className="flex flex-wrap justify-center gap-3 mt-6"
-          >
-            {badges.map((badge, i) => (
-              <motion.div
-                key={badge}
-                whileHover={{ y: -2, scale: 1.04 }}
-                transition={{ duration: 0.2 }}
-                className="px-4 py-1.5 rounded-full text-[11px] font-semibold whitespace-nowrap"
-                style={{ background: 'rgba(0,165,80,0.05)', border: '1px solid rgba(0,165,80,0.18)', color: '#00a550' }}
-              >
-                {i === 0 && <span className="mr-1">🇮🇳</span>}
-                {badge}
-              </motion.div>
-            ))}
-          </motion.div>
+              {/* Badge */}
+{/* Badge */}
+<motion.div
+  initial={{ opacity: 0, y: 10 }}
+  animate={inView ? { opacity: 1, y: 0 } : { opacity: 0, y: 10 }}
+  transition={{ delay: 0.4, duration: 0.5 }}
+  className="flex justify-center mt-6"
+>
+  <div
+    style={{
+      perspective: '1000px',
+    }}
+  >
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={showTech ? 'tech' : 'india'}
+        initial={{
+          rotateX: -90,
+          opacity: 0,
+        }}
+        animate={{
+          rotateX: 0,
+          opacity: 1,
+        }}
+        exit={{
+          rotateX: 90,
+          opacity: 0,
+        }}
+        transition={{
+          duration: 0.6,
+          ease: 'easeInOut',
+        }}
+        whileHover={{
+          y: -2,
+          scale: 1.04,
+        }}
+        className="px-5 py-2 rounded-full text-[11px] font-semibold whitespace-nowrap"
+        style={{
+          background: 'rgba(0,165,80,0.05)',
+          border: '1px solid rgba(0,165,80,0.18)',
+          color: '#00a550',
+          minWidth: 210,
+          textAlign: 'center',
+          transformStyle: 'preserve-3d',
+        }}
+      >
+        {showTech ? (
+          <>
+           Technology from India
+          </>
+        ) : (
+          <>
+             Made in India
+          </>
+        )}
+      </motion.div>
+    </AnimatePresence>
+  </div>
+</motion.div>
         </div>
       </footer>
     </>

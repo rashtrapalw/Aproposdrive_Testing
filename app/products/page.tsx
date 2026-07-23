@@ -74,7 +74,7 @@ const PRODUCTS: Product[] = [
       { icon: Leaf, text: 'Rare Earth-Free Motor' },
       { icon: Package, text: 'All-in-One Unit' },
       { icon: Wind, text: 'Air Cooled' },
-      { icon: TrendingUp, text: '94–95% Efficiency' },
+      { icon: TrendingUp, text: '95% Efficiency' },
       { icon: Shield, text: 'IP67 Sealed' },
       { icon: Zap, text: 'Lower System Cost' },
     ],

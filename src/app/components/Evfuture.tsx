@@ -63,6 +63,7 @@ export function EvFuture() {
             maxWidth: 1300,
             margin: '0 auto',
             padding: isMobile ? '30px 24px' : 'clamp(32px, 4vw, 56px) clamp(24px, 4vw, 40px)',
+        
             display: 'flex',
             justifyContent: isMobile ? 'center' : 'flex-end',
           }}
@@ -97,7 +98,7 @@ export function EvFuture() {
                 marginBottom: 14,
               }}
             >
-              The future of electric mobility will be defined by smarter, more sustainable and more independent technologies.
+              The future of electric mobility will be defined by smarter, more sustainable and more independent Application technologies.
             </p>
             <p
               style={{

@@ -138,7 +138,7 @@ paddingInline: 'clamp(16px,5vw,64px)',
       backgroundSize: 'cover',
       backgroundPosition: 'center',
       backgroundRepeat: 'no-repeat',
-      opacity: 0.40,//Adjust between 0.1 - 0.3
+      opacity: 0.50, // Adjust opacity to just between 0.1 - 0.3
       zIndex: 0,
     }}
   />

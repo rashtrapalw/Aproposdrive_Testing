@@ -58,6 +58,9 @@ type Product = {
   tableHeaders: string[];
   tableRows: string[][];
   platforms?: string[];
+  // Rectangular banner image shown between the orbital hero and the
+  // specs table — fills the extra whitespace left by the tighter layout.
+  bannerImage?: string;
 };
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
@@ -70,6 +73,7 @@ const PRODUCTS: Product[] = [
     description: 'A single unified unit combining motor, gearbox, and controller — air-cooled, IP67-sealed, and engineered for electric scooters at scale.',
     image: '/photos/EvPowertrain.png',
     accent: '#00a550',
+    bannerImage: '/photos/EvPowertrainVecles.jpeg',
     keyFeatures: [
       { icon: Leaf, text: 'Rare Earth-Free Motor' },
       { icon: Package, text: 'All-in-One Unit' },
@@ -112,6 +116,7 @@ const PRODUCTS: Product[] = [
     description: 'High-performance vector field-oriented motor controller for light EVs — with ride modes, hill hold, and real-time diagnostics built in.',
     image: '/photos/no-bg-controller.png',
     accent: '#0077b6',
+    bannerImage: '/photos/EvControllerVecles.jpeg',
     keyFeatures: [
       { icon: Cpu, text: 'Vector FOC Algorithm' },
       { icon: Activity, text: 'Precise Position Feedback' },
@@ -492,6 +497,58 @@ function VariantCard({ variant, accent, delay }: { variant: Variant; accent: str
   );
 }
 
+// ─── SECTION BANNER — rectangular image slotted between the hero showcase ────
+// and the specs table, filling the tightened-up gap left by the new layout.
+// Purely presentational: if a product has no bannerImage, nothing renders
+// and layout falls back to the previous spacing exactly.
+function SectionBanner({ src, alt, accent, isMobile }: { src: string; alt: string; accent: string; isMobile: boolean }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 16 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      viewport={{ once: false, margin: '-5% 0px' }}
+      transition={{ duration: 0.5 }}
+      style={{
+        width: '100%',
+        marginBottom: isMobile ? 24 : 32,
+        borderRadius: 20,
+        overflow: 'hidden',
+        border: '1px solid #e2eaf2',
+        background: '#ffffff',
+        boxShadow: '0 2px 16px rgba(13,27,42,0.05)',
+      }}
+    >
+      <div
+        style={{
+          position: 'relative',
+          width: '100%',
+          // Wider/shorter on desktop, taller relative ratio on mobile so the
+          // image doesn't get squashed on narrow screens.
+          aspectRatio: isMobile ? '16 / 9' : '21 / 6',
+        }}
+      >
+        <ImageWithFallback
+          src={src}
+          alt={alt}
+          style={{
+            position: 'absolute',
+            inset: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        />
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          background: `linear-gradient(180deg, transparent 60%, ${accent}14 100%)`,
+          pointerEvents: 'none',
+        }} />
+      </div>
+    </motion.div>
+  );
+}
+
 // ─── FULL-WIDTH SPECS TABLE — now with row + column grid lines, slightly ─────
 // smaller/tighter on all breakpoints, and an extra-compact mode on mobile.
 function SpecsTable({ headers, rows, accent, delay, compact }: { headers: string[]; rows: string[][]; accent: string; delay: number; compact?: boolean }) {
@@ -632,6 +689,16 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
       <div style={{ display: 'flex', justifyContent: 'center', marginBottom: isMobile ? 32 : 48 }}>
         {isMobile ? <MobileHero product={product} width={width} /> : CenterImage}
       </div>
+
+      {/* ── Banner image — fills the gap between the hero and the specs table ── */}
+      {product.bannerImage && (
+        <SectionBanner
+          src={product.bannerImage}
+          alt={`${product.title} overview`}
+          accent={product.accent}
+          isMobile={isMobile}
+        />
+      )}
 
       {/* ── Specs table (60%) + Key Features (40%) ── */}
       <div

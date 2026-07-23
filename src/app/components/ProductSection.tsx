@@ -27,10 +27,10 @@ const products: Product[] = [
     image: '/photos/motor-main.png',
     href: '/products#powertrain',
     features: [
-      'Boost 20%^ Vehicle Range',
+      'Boost 20% Vehicle Range',
       'Frees up 30% more battery space',
-      'Reduces Powertrain Costs by 50%l',
-      '94 - 95% Efficiency',
+      'Reduces Powertrain Costs by 50%',
+      '95% Efficiency',
       'PMSM FOC Control',
     ],
   },
@@ -45,7 +45,7 @@ const products: Product[] = [
     features: [
       '3 – 7 kW Power Range',
       '200 Nm Peak Torque',
-      '95% Efficiency',
+      '98% Efficiency',
       'Compact & Lightweight',
       'Air-Cooled Design',
     ],

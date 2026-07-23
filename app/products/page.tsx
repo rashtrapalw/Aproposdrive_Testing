@@ -14,8 +14,8 @@ import { ImageWithFallback } from '../../src/app/components/figma/ImageWithFallb
 // ─── ORBITAL CANVAS CONSTANTS ─────────────────────────────────────────────────
 const C = 1000;
 const CX = C / 2;
-const CY = C / 2 ;
-const R = 500;
+const CY = C / 2-150;
+const R = 450;
 const CW = 300;
 const CH = 130;
 const IMG = 500;
@@ -68,7 +68,7 @@ const PRODUCTS: Product[] = [
     title: 'Integrated EV Powertrain ',
     subtitle: 'Compact. Rare-earth-free. Purpose-built.',
     description: 'A single unified unit combining motor, gearbox, and controller — air-cooled, IP67-sealed, and engineered for electric scooters at scale.',
-    image: '/photos/motor-removebg.png',
+    image: '/photos/EvPowertrain.png',
     accent: '#00a550',
     keyFeatures: [
       { icon: Leaf, text: 'Rare Earth-Free Motor' },
@@ -199,6 +199,7 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
       {/* Dashed arc connectors + dot markers between adjacent cards */}
       <svg style={{ position: 'absolute', inset: 0, width: C, height: C, overflow: 'visible', pointerEvents: 'none' }}>
         {connectors.map((m, i) => {
+           if (i === 1 || i === 4) return null;
           const pad = 16;
           const a1 = ((m - pad) * Math.PI) / 180;
           const a2 = ((m + pad) * Math.PI) / 180;

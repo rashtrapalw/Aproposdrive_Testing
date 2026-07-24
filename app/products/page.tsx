@@ -518,74 +518,85 @@ function VariantCard({ variant, accent, delay }: { variant: Variant; accent: str
 // subheading below each, shown between the hero showcase and the specs table.
 // Always renders in a single row of 3, sized down on mobile so all three
 // still fit in one row.
-function ProductGallery({ images, isMobile }: { images: GalleryImage[]; isMobile: boolean }) {
+
+
+function ProductGallery({ images, isMobile, accent }: { images: GalleryImage[]; isMobile: boolean; accent: string }) {
   return (
-    <div
-      style={{
-        display: 'flex',
-        flexDirection: 'row',
-        flexWrap: 'nowrap',
-        justifyContent: 'center',
-        alignItems: 'flex-start',
-        gap: isMobile ? 12 : 40,
-        width: '100%',
-        marginBottom: isMobile ? 32 : 48,
-      }}
-    >
-      {images.map((img, i) => (
-        <motion.div
-          key={img.name}
-          initial={{ opacity: 0, y: 14 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: false, margin: '-5% 0px' }}
-          transition={{ delay: i * 0.08, duration: 0.4 }}
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            alignItems: 'center',
-            gap: isMobile ? 6 : 10,
-            flex: '1 1 0',
-            minWidth: 0,
-            maxWidth: isMobile ? 116 : 190,
-          }}
-        >
-          <ImageWithFallback
-            src={img.src}
-            alt={img.name}
+    <div style={{ width: '100%', marginBottom: isMobile ? 32 : 48 }}>
+      <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: isMobile ? 14 : 18 }}>
+        <span style={{ width: 8, height: 8, borderRadius: '50%', background: accent, flexShrink: 0 }} />
+        <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#0d1b2a' }}>
+          Applications
+        </span>
+      </div>
+      <div
+        style={{
+          display: 'flex',
+          flexDirection: 'row',
+          flexWrap: 'nowrap',
+          justifyContent: 'center',
+          alignItems: 'flex-start',
+          gap: isMobile ? 12 : 40,
+          width: '100%',
+        }}
+      >
+        {images.map((img, i) => (
+          <motion.div
+            key={img.name}
+            initial={{ opacity: 0, y: 14 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: false, margin: '-5% 0px' }}
+            transition={{ delay: i * 0.08, duration: 0.4 }}
             style={{
-              width: '100%',
-              maxWidth: isMobile ? 104 : 170,
-              height: isMobile ? 104 : 170,
-              objectFit: 'contain',
+              display: 'flex',
+              flexDirection: 'column',
+              alignItems: 'center',
+              gap: isMobile ? 6 : 10,
+              flex: '1 1 0',
+              minWidth: 0,
+              maxWidth: isMobile ? 116 : 190,
             }}
-          />
-          <span style={{
-            fontFamily: 'DM Sans, sans-serif',
-            fontWeight: 700,
-            fontSize: isMobile ? 11 : 13,
-            color: '#0d1b2a',
-            textAlign: 'center',
-            lineHeight: 1.3,
-          }}>
-            {img.name}
-          </span>
-          {img.subheading && (
+          >
+            <ImageWithFallback
+              src={img.src}
+              alt={img.name}
+              style={{
+                width: '100%',
+                maxWidth: isMobile ? 104 : 170,
+                height: isMobile ? 104 : 170,
+                objectFit: 'contain',
+              }}
+            />
             <span style={{
               fontFamily: 'DM Sans, sans-serif',
-              fontWeight: 500,
-              fontSize: isMobile ? 9.5 : 11.5,
-              color: 'rgba(13,27,42,0.55)',
+              fontWeight: 700,
+              fontSize: isMobile ? 11 : 13,
+              color: '#0d1b2a',
               textAlign: 'center',
               lineHeight: 1.3,
             }}>
-              {img.subheading}
+              {img.name}
             </span>
-          )}
-        </motion.div>
-      ))}
+            {img.subheading && (
+              <span style={{
+                fontFamily: 'DM Sans, sans-serif',
+                fontWeight: 500,
+                fontSize: isMobile ? 9.5 : 11.5,
+                color: 'rgba(13,27,42,0.55)',
+                textAlign: 'center',
+                lineHeight: 1.3,
+              }}>
+                {img.subheading}
+              </span>
+            )}
+          </motion.div>
+        ))}
+      </div>
     </div>
   );
 }
+
+
 
 // ─── FULL-WIDTH SPECS TABLE — now with row + column grid lines, slightly ─────
 // smaller/tighter on all breakpoints, and an extra-compact mode on mobile.
@@ -729,9 +740,9 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
       </div>
 
       {/* ── 3-image gallery row — fills the gap between the hero and the specs table ── */}
-      {product.galleryImages && product.galleryImages.length > 0 && (
-        <ProductGallery images={product.galleryImages} isMobile={isMobile} />
-      )}
+     {product.galleryImages && product.galleryImages.length > 0 && (
+  <ProductGallery images={product.galleryImages} isMobile={isMobile} accent={product.accent} />
+)}
 
       {/* ── Specs table (60%) + Key Features (40%) ── */}
       <div

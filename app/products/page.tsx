@@ -12,9 +12,9 @@ import type { LucideIcon } from 'lucide-react';
 import { ImageWithFallback } from '../../src/app/components/figma/ImageWithFallback';
 
 // ─── ORBITAL CANVAS CONSTANTS ─────────────────────────────────────────────────
-const C = 1000;
+const C = 600; // orbital canvas width/height
 const CX = C / 2;
-const CY = C / 2-150;
+const CY = C / 2;
 const R = 450;
 const CW = 300;
 const CH = 130;
@@ -35,6 +35,15 @@ type Spec = {
 type KeyFeaturePoint = {
   icon: LucideIcon;
   text: string;
+};
+
+// GalleryImage — small unstyled image + name (and optional subheading) shown
+// below it, used in the 3-image row between the hero showcase and the specs
+// table.
+type GalleryImage = {
+  src: string;
+  name: string;
+  subheading?: string;
 };
 
 type Variant = {
@@ -58,9 +67,9 @@ type Product = {
   tableHeaders: string[];
   tableRows: string[][];
   platforms?: string[];
-  // Rectangular banner image shown between the orbital hero and the
-  // specs table — fills the extra whitespace left by the tighter layout.
-  bannerImage?: string;
+  // Row of 3 small images (with names) shown between the orbital hero and
+  // the specs table — fills the extra whitespace left by the tighter layout.
+  galleryImages?: GalleryImage[];
 };
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
@@ -73,7 +82,11 @@ const PRODUCTS: Product[] = [
     description: 'A single unified unit combining motor, gearbox, and controller — air-cooled, IP67-sealed, and engineered for electric scooters at scale.',
     image: '/photos/EvPowertrain.png',
     accent: '#00a550',
-    bannerImage: '/photos/EvPowertrainVecles.jpeg',
+    galleryImages: [
+      { src: '/photos/Scooty_product.png', name: 'ELECTRIC SCOOTER', subheading: ' 2W / Electric' },
+      { src: '/photos/Auto_product.png', name: 'ELECTRIC PASSENGER RIKSHAW', subheading: '3W / Electric' },
+      { src: '/photos/Product_Car.png', name: 'SMALL EV CAR', subheading: '3W / Electric' },
+    ],
     keyFeatures: [
       { icon: Leaf, text: 'Rare Earth-Free Motor' },
       { icon: Package, text: 'All-in-One Unit' },
@@ -116,7 +129,11 @@ const PRODUCTS: Product[] = [
     description: 'High-performance vector field-oriented motor controller for light EVs — with ride modes, hill hold, and real-time diagnostics built in.',
     image: '/photos/no-bg-controller.png',
     accent: '#0077b6',
-    bannerImage: '/photos/EvControllerVecles.jpeg',
+    galleryImages: [
+      { src: '/photos/Scooty_product.png', name: 'ELECTRIC SCOOTER', subheading: ' 2W / Electric' },
+      { src: '/photos/Auto_product.png', name: 'ELECTRIC PASSENGER RIKSHAW', subheading: '3W / Electric' },
+      { src: '/photos/SmallTempo_product.png', name: ' L5 TEMPO', subheading: '4W / Electric' },
+    ],
     keyFeatures: [
       { icon: Cpu, text: 'Vector FOC Algorithm' },
       { icon: Activity, text: 'Precise Position Feedback' },
@@ -497,55 +514,76 @@ function VariantCard({ variant, accent, delay }: { variant: Variant; accent: str
   );
 }
 
-// ─── SECTION BANNER — rectangular image slotted between the hero showcase ────
-// and the specs table, filling the tightened-up gap left by the new layout.
-// Purely presentational: if a product has no bannerImage, nothing renders
-// and layout falls back to the previous spacing exactly.
-function SectionBanner({ src, alt, accent, isMobile }: { src: string; alt: string; accent: string; isMobile: boolean }) {
+// ─── PRODUCT GALLERY — 3 plain images (no border/card) with a name + optional ─
+// subheading below each, shown between the hero showcase and the specs table.
+// Always renders in a single row of 3, sized down on mobile so all three
+// still fit in one row.
+function ProductGallery({ images, isMobile }: { images: GalleryImage[]; isMobile: boolean }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 16 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: false, margin: '-5% 0px' }}
-      transition={{ duration: 0.5 }}
+    <div
       style={{
+        display: 'flex',
+        flexDirection: 'row',
+        flexWrap: 'nowrap',
+        justifyContent: 'center',
+        alignItems: 'flex-start',
+        gap: isMobile ? 12 : 40,
         width: '100%',
-        marginBottom: isMobile ? 24 : 32,
-        borderRadius: 20,
-        overflow: 'hidden',
-        border: '1px solid #e2eaf2',
-        background: '#ffffff',
-        boxShadow: '0 2px 16px rgba(13,27,42,0.05)',
+        marginBottom: isMobile ? 32 : 48,
       }}
     >
-      <div
-        style={{
-          position: 'relative',
-          width: '100%',
-          // Wider/shorter on desktop, taller relative ratio on mobile so the
-          // image doesn't get squashed on narrow screens.
-          aspectRatio: isMobile ? '16 / 9' : '21 / 6',
-        }}
-      >
-        <ImageWithFallback
-          src={src}
-          alt={alt}
+      {images.map((img, i) => (
+        <motion.div
+          key={img.name}
+          initial={{ opacity: 0, y: 14 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: false, margin: '-5% 0px' }}
+          transition={{ delay: i * 0.08, duration: 0.4 }}
           style={{
-            position: 'absolute',
-            inset: 0,
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
+            display: 'flex',
+            flexDirection: 'column',
+            alignItems: 'center',
+            gap: isMobile ? 6 : 10,
+            flex: '1 1 0',
+            minWidth: 0,
+            maxWidth: isMobile ? 116 : 190,
           }}
-        />
-        <div style={{
-          position: 'absolute',
-          inset: 0,
-          background: `linear-gradient(180deg, transparent 60%, ${accent}14 100%)`,
-          pointerEvents: 'none',
-        }} />
-      </div>
-    </motion.div>
+        >
+          <ImageWithFallback
+            src={img.src}
+            alt={img.name}
+            style={{
+              width: '100%',
+              maxWidth: isMobile ? 104 : 170,
+              height: isMobile ? 104 : 170,
+              objectFit: 'contain',
+            }}
+          />
+          <span style={{
+            fontFamily: 'DM Sans, sans-serif',
+            fontWeight: 700,
+            fontSize: isMobile ? 11 : 13,
+            color: '#0d1b2a',
+            textAlign: 'center',
+            lineHeight: 1.3,
+          }}>
+            {img.name}
+          </span>
+          {img.subheading && (
+            <span style={{
+              fontFamily: 'DM Sans, sans-serif',
+              fontWeight: 500,
+              fontSize: isMobile ? 9.5 : 11.5,
+              color: 'rgba(13,27,42,0.55)',
+              textAlign: 'center',
+              lineHeight: 1.3,
+            }}>
+              {img.subheading}
+            </span>
+          )}
+        </motion.div>
+      ))}
+    </div>
   );
 }
 
@@ -690,14 +728,9 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
         {isMobile ? <MobileHero product={product} width={width} /> : CenterImage}
       </div>
 
-      {/* ── Banner image — fills the gap between the hero and the specs table ── */}
-      {product.bannerImage && (
-        <SectionBanner
-          src={product.bannerImage}
-          alt={`${product.title} overview`}
-          accent={product.accent}
-          isMobile={isMobile}
-        />
+      {/* ── 3-image gallery row — fills the gap between the hero and the specs table ── */}
+      {product.galleryImages && product.galleryImages.length > 0 && (
+        <ProductGallery images={product.galleryImages} isMobile={isMobile} />
       )}
 
       {/* ── Specs table (60%) + Key Features (40%) ── */}

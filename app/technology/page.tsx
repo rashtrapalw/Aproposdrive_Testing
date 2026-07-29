@@ -38,6 +38,7 @@ import { AptBenefits } from '@/app/components/AptBenefits'
 import { ChallengesSection } from '@/app/components/ChallengesSection';
 import { OurTechnology } from '@/app/components/OurTechnology'
 import { EvFuture } from '@/app/components/Evfuture'
+import { RareEarthUsesSection } from '@/app/components/RareEarthUsesSection'
 
 const themeStyles = {
   page: { backgroundColor: 'var(--color-background)', color: 'var(--color-foreground)' },
@@ -72,6 +73,7 @@ export default function TechnologyPage() {
       <ChallengesSection />
       <OurTechnology />
       <AptBenefits />
+      <RareEarthUsesSection />
       {/* <TechnologyPillars /> */}
       {/* <SmartController /> */}
       {/* <IntegratedPlatform /> */}

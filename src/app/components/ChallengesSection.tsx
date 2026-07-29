@@ -391,12 +391,15 @@ paddingInline: 'clamp(16px,5vw,64px)',
   </div>
 </div>
 
+
+
       {/* ══ BOTTOM HALF — dark green ══════════════════════════════════════════ */}
+       {/* ══ BOTTOM HALF — dark green ══════════════════════════════════════════ */}
       <div
         ref={solRef}
         style={{
           background: '#0d2b1a',
-          padding: 'clamp(36px,5vw,64px) clamp(16px,5vw,64px)',
+          padding: 'clamp(52px,7vw,96px) clamp(16px,5vw,64px)', /* CHANGED: taller */
           position: 'relative',
           overflow: 'hidden',
         }}
@@ -404,12 +407,12 @@ paddingInline: 'clamp(16px,5vw,64px)',
         {/* Subtle glow */}
         <div style={{
           position: 'absolute', right: '10%', top: '50%', transform: 'translateY(-50%)',
-          width: 'clamp(200px,30vw,380px)', height: 'clamp(200px,30vw,380px)',
+          width: 'clamp(280px,38vw,520px)', height: 'clamp(280px,38vw,520px)',
           borderRadius: '50%',
           background: 'radial-gradient(circle, rgba(0,165,80,0.35) 0%, transparent 70%)',
           pointerEvents: 'none',
         }} />
-
+ 
         <div style={{
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
@@ -417,7 +420,7 @@ paddingInline: 'clamp(16px,5vw,64px)',
           alignItems: 'center',
           position: 'relative', zIndex: 1,
         }}>
-
+ 
           {/* Left: solution text + features */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -426,16 +429,16 @@ paddingInline: 'clamp(16px,5vw,64px)',
             style={{ display: 'flex', flexDirection: 'column', gap: 20 }}
           >
             <div>
-              <p style={{ fontSize: 'clamp(18px,2vw,24px)', fontWeight: 900, color: '#ffffff', margin: '0 0 6px' }}>
+              <p style={{ fontSize: 'clamp(26px,3.2vw,38px)', fontWeight: 900, color: '#ffffff', margin: '0 0 10px' }}>
                 <span style={{ color: '#00a550' }}>Our </span>Solution
               </p>
-              <p style={{ fontSize: 'clamp(12px,1.05vw,14px)', color: 'rgba(255,255,255,0.6)', lineHeight: 1.7, margin: 0, maxWidth: 400 }}>
+              <p style={{ fontSize: 'clamp(13.5px,1.15vw,15.5px)', color: 'rgba(255,255,255,0.62)', lineHeight: 1.75, margin: 0, maxWidth: 420 }}>
                 At AproposDrive, we engineer rare earth-free motor and controller technologies that deliver outstanding performance, high efficiency, and long-term reliability.
               </p>
             </div>
-
+ 
             {/* 2×2 feature chips */}
-            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 14 }}>
               {solutionFeatures.map(({ icon: Icon, text, sub }, i) => (
                 <motion.div
                   key={i}
@@ -444,27 +447,27 @@ paddingInline: 'clamp(16px,5vw,64px)',
                   transition={{ delay: 0.15 + i * 0.07, duration: 0.38 }}
                   style={{
                     display: 'flex', alignItems: 'flex-start', gap: 10,
-                    padding: '10px 12px', borderRadius: 12,
+                    padding: 'clamp(14px,1.6vw,20px) clamp(12px,1.4vw,16px)', borderRadius: 16,
                     background: 'rgba(255,255,255,0.06)',
                     border: '1px solid rgba(255,255,255,0.1)',
                   }}
                 >
                   <div style={{
-                    width: 28, height: 28, borderRadius: 8, flexShrink: 0,
+                    width: 'clamp(36px,3.4vw,46px)' as any, height: 'clamp(36px,3.4vw,46px)' as any, borderRadius: 11, flexShrink: 0,
                     display: 'flex', alignItems: 'center', justifyContent: 'center',
                     background: 'rgba(0,165,80,0.18)', border: '1px solid rgba(0,165,80,0.3)',
                   }}>
-                    <Icon size={13} color="#4ade80" strokeWidth={2} />
+                    <Icon size={19} color="#4ade80" strokeWidth={2} />
                   </div>
                   <div>
-                    <p style={{ fontSize: 12, fontWeight: 700, color: '#ffffff', margin: '0 0 2px' }}>{text}</p>
-                    <p style={{ fontSize: 10.5, color: 'rgba(255,255,255,0.48)', margin: 0, lineHeight: 1.4 }}>{sub}</p>
+                    <p style={{ fontSize: 'clamp(13.5px,1.15vw,15.5px)', fontWeight: 700, color: '#ffffff', margin: '0 0 4px' }}>{text}</p>
+                    <p style={{ fontSize: 'clamp(11.5px,1vw,13.5px)', color: 'rgba(255,255,255,0.52)', margin: 0, lineHeight: 1.45 }}>{sub}</p>
                   </div>
                 </motion.div>
               ))}
             </div>
           </motion.div>
-
+ 
           {/* Right: product image on glow disc */}
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -476,31 +479,31 @@ paddingInline: 'clamp(16px,5vw,64px)',
               {/* Glow disc */}
               <div style={{
                 position: 'absolute',
-                width: 'clamp(220px,28vw,340px)',
-                height: 'clamp(220px,28vw,340px)',
+                width: 'clamp(300px,38vw,480px)',
+                height: 'clamp(300px,38vw,480px)',
                 borderRadius: '50%',
                 background: 'radial-gradient(circle, rgba(0,165,80,0.4) 0%, rgba(0,165,80,0.15) 45%, transparent 72%)',
                 filter: 'blur(4px)',
               }} />
               <motion.img
-                src="/photos/tech_hero-removebg.png"
+                src="/photos/tech_hero-removebg2.png"
                 alt="AproposDrive Motor & Controller"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
                 style={{
-                  width: 'clamp(200px,26vw,320px)',
+                  width: 'clamp(280px,36vw,460px)',
                   height: 'auto',
                   objectFit: 'contain',
                   position: 'relative', zIndex: 1,
-                  filter: 'drop-shadow(0 12px 32px rgba(0,165,80,0.35))',
+                  filter: 'drop-shadow(0 18px 44px rgba(0,165,80,0.42))',
                 }}
               />
             </div>
           </motion.div>
-
+ 
         </div>
       </div>
-
+ 
     </section>
   )
 }

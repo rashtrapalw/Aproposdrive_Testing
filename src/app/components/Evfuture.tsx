@@ -29,7 +29,8 @@ export function EvFuture() {
       <div
         style={{
           position: 'relative',
-          minHeight: isSmall ? 300 : isMobile ? 320 : 'clamp(320px, 34vw, 420px)',
+          // minHeight: isSmall ? 300 : isMobile ? 320 : 'clamp(320px, 34vw, 420px)',
+          minHeight: isSmall ? 360 : isMobile ? 420 : 'clamp(450px, 45vw, 600px)',
           display: 'flex',
           alignItems: 'center',
           overflow: 'hidden',

@@ -486,7 +486,7 @@ paddingInline: 'clamp(16px,5vw,64px)',
                 filter: 'blur(4px)',
               }} />
               <motion.img
-                src="/photos/tech_hero-removebg2.png"
+                src="/photos/OurSolutions.png"
                 alt="AproposDrive Motor & Controller"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}

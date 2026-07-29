@@ -20,14 +20,14 @@ type UseCard = {
 }
 
 const USE_CARDS: UseCard[] = [
-//   { num: 1, icon: Smartphone,    title: 'Smartphones',       description: 'Tiny powerful magnets drive speakers, vibration motors and camera autofocus.',                    tag: 'Compact · Powerful',  image: '/photos/Scooty_product.png',       imageAlt: 'Smartphone'        },
+  { num: 1, icon: Smartphone,    title: 'Mixer',       description: 'Tiny powerful magnets drive speakers, vibration motors and camera autofocus.',                    tag: 'Compact · Powerful',  image: '/photos/mixer.png',       imageAlt: 'Smartphone'        },
   { num: 2, icon: WashingMachine,title: 'Washing Machines',  description: 'Direct-drive motors use powerful magnets for quieter and more efficient operation.',              tag: 'Efficient Motor',     image: '/photos/WashingMachine.png',  imageAlt: 'Washing Machine'   },
   { num: 3, icon: Wind,          title: 'Air Conditioners',  description: 'Compressors and fan motors use rare earth magnets for higher efficiency.',                        tag: 'Energy Efficient',    image: '/photos/AC-removebg-preview.png',  imageAlt: 'Air Conditioner'   },
   { num: 4, icon: Zap,           title: 'Vacuum Cleaners',   description: 'Compact high-speed motors generate powerful suction.',                                            tag: 'High-Speed Motor',    image: '/photos/vacume-cleaner.png',   imageAlt: 'Vacuum Cleaner'    },
   { num: 5, icon: Car,           title: 'Electric Vehicles', description: 'Permanent magnets create strong torque with high efficiency.',                                    tag: 'Traction Motor',      image: '/photos/electric_car_PNG.png', imageAlt: 'Electric Vehicle'  },
   { num: 6, icon: Radio,         title: 'Chimneys',     description: 'Powerful generators convert wind energy into electricity.',                                       tag: 'Renewable Energy',    image: '/photos/chimney.png',     imageAlt: 'Wind Turbine'      },
   { num: 7, icon: Bot,           title: 'Industrial Robots', description: 'Servo motors use rare earth magnets for precise movement and positioning.',                       tag: 'Precision Motion',    image: '/photos/industrial-robot.png', imageAlt: 'Industrial Robot'  },
-//   { num: 8, icon: HardDrive,     title: 'Hard Disk Drives',  description: 'Tiny magnets move the read/write head with extreme accuracy.',                                    tag: 'Precision Control',   image: '/photos/Scooty_product.png',        imageAlt: 'Hard Disk Drive'   },
+  { num: 8, icon: HardDrive,     title: 'HVLS Fans',  description: 'Tiny magnets move the read/write head with extreme accuracy.',                                    tag: 'Precision Control',   image: '/photos/HVLS.png',        imageAlt: 'Hard Disk Drive'   },
 ]
 
 const WHY_FEATURES = [

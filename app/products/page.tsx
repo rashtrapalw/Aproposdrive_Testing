@@ -368,7 +368,7 @@ function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIco
  
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.5, opacity: 0 }}
+      initial={{ opacity: 0, scale: 0.5 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: false, margin: '-10% 0px' }}
       transition={{ delay, type: 'spring', stiffness: 220, damping: 22 }}

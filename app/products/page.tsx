@@ -294,62 +294,180 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
 }
 
 // ─── ORBITAL CARD — white rectangular card, icon chip, single combined heading ─
+
+
+// function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIcon; left: number; top: number; delay: number }) {
+//   const [hov, setHov] = useState(false);
+//   return (
+//     <motion.div
+//       initial={{ opacity: 0, scale: 0.4 }}
+//       whileInView={{ opacity: 1, scale: 1 }}
+//       viewport={{ once: false, margin: '-10% 0px' }}
+//       transition={{ delay, type: 'spring', stiffness: 200, damping: 20 }}
+//       onMouseEnter={() => setHov(true)}
+//       onMouseLeave={() => setHov(false)}
+//       whileHover={{ scale: 1.05, y: -3 }}
+//       style={{
+//         position: 'absolute',
+//         left, top,
+//         width: CW, height: CH,
+//         zIndex: 20,
+//         display: 'flex', flexDirection: 'column',
+//         alignItems: 'center',
+//         borderRadius: 20,
+//         background: '#ffffff',
+//         border: `1px solid ${hov ? spec.color + '55' : '#c7d2da'}`,
+//         boxShadow: hov
+//           ? `0 14px 30px ${spec.color}20, 0 2px 10px rgba(13,27,42,0.06)`
+//           : `0 2px 14px rgba(13,27,42,0.06)`,
+//         transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+//         cursor: 'default', userSelect: 'none',
+//         padding: '0 14px 14px',
+//         textAlign: 'center',
+//         overflow: 'visible',
+//       }}
+//     >
+//       {/* Icon badge — half overlaps the top edge of the card */}
+//       <div style={{
+//         position: 'absolute',
+//         top: -26, left: '50%', transform: 'translateX(-50%)',
+//         width: 52, height: 52, borderRadius: '50%', flexShrink: 0,
+//         display: 'flex', alignItems: 'center', justifyContent: 'center',
+//         background: '#ffffff', border: `1px solid ${spec.color}35`,
+//         boxShadow: '0 6px 16px rgba(13,27,42,0.10)',
+//         zIndex: 2,
+//       }}>
+//         <Icon style={{ width: 20, height: 20, color: spec.color }} strokeWidth={2.3} />
+//       </div>
+//       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, paddingTop: 30, justifyContent: 'center', flex: 1 }}>
+//         <span style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 800, color: '#0d1b2a', fontSize: 14, lineHeight: 1.35 }}>
+//           {spec.value}{spec.label ? ` ${spec.label.replace(/\n/g, ' ')}` : ''}
+//         </span>
+//         {spec.description && (
+//           <p style={{ fontFamily: 'DM Sans, sans-serif', color: 'rgba(13,27,42,0.72)', fontWeight: 500, fontSize: 11.5, lineHeight: 1.5, margin: '2px 0 0' }}>
+//             {spec.description}
+//           </p>
+//         )}
+//       </div>
+//     </motion.div>
+//   );
+// }
+
+
 function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIcon; left: number; top: number; delay: number }) {
   const [hov, setHov] = useState(false);
+  // derive a lighter tint from the accent color for the card bg
+  const isGreen = spec.color === '#00a550';
+  const isBlue  = spec.color === '#0077b6';
+  const bgFrom  = isGreen ? 'rgba(0,165,80,0.07)'  : 'rgba(0,119,182,0.07)';
+  const bgTo    = isGreen ? 'rgba(0,165,80,0.02)'  : 'rgba(0,119,182,0.02)';
+  const glowHov = isGreen ? 'rgba(0,165,80,0.22)'  : 'rgba(0,119,182,0.22)';
+  const iconBg  = isGreen
+    ? (hov ? 'linear-gradient(145deg,#00a550,#00c853)' : 'linear-gradient(145deg,#006b30,#00a550)')
+    : (hov ? 'linear-gradient(145deg,#0077b6,#00b4d8)' : 'linear-gradient(145deg,#005080,#0077b6)');
+ 
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.4 }}
+      initial={{ opacity: 0, scale: 0.5, opacity: 0 }}
       whileInView={{ opacity: 1, scale: 1 }}
       viewport={{ once: false, margin: '-10% 0px' }}
-      transition={{ delay, type: 'spring', stiffness: 200, damping: 20 }}
+      transition={{ delay, type: 'spring', stiffness: 220, damping: 22 }}
       onMouseEnter={() => setHov(true)}
       onMouseLeave={() => setHov(false)}
-      whileHover={{ scale: 1.05, y: -3 }}
+      whileHover={{ scale: 1.07, y: -4 }}
       style={{
-        position: 'absolute',
-        left, top,
-        width: CW, height: CH,
-        zIndex: 20,
-        display: 'flex', flexDirection: 'column',
-        alignItems: 'center',
-        borderRadius: 20,
-        background: '#ffffff',
-        border: `1px solid ${hov ? spec.color + '55' : '#c7d2da'}`,
+        position: 'absolute', left, top,
+        width: CW, height: CH, zIndex: 20,
+        display: 'flex', flexDirection: 'column', alignItems: 'center',
+        borderRadius: 22,
+        background: hov
+          ? `linear-gradient(145deg, ${bgFrom}, rgba(255,255,255,0.95))`
+          : `#ffffff`,
+        border: `1.5px solid ${hov ? spec.color + '70' : spec.color + '28'}`,
         boxShadow: hov
-          ? `0 14px 30px ${spec.color}20, 0 2px 10px rgba(13,27,42,0.06)`
-          : `0 2px 14px rgba(13,27,42,0.06)`,
-        transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
+          ? `0 0 0 4px ${glowHov}, 0 20px 48px ${spec.color}30, 0 6px 16px rgba(13,27,42,0.1)`
+          : `0 2px 12px rgba(13,27,42,0.07), 0 1px 4px rgba(13,27,42,0.04), inset 0 1px 0 rgba(255,255,255,0.9)`,
+        transition: 'all 0.25s ease',
         cursor: 'default', userSelect: 'none',
-        padding: '0 14px 14px',
-        textAlign: 'center',
-        overflow: 'visible',
+        padding: '0 12px 12px', textAlign: 'center', overflow: 'visible',
       }}
     >
-      {/* Icon badge — half overlaps the top edge of the card */}
+      {/* Floating icon — gradient circle */}
       <div style={{
-        position: 'absolute',
-        top: -26, left: '50%', transform: 'translateX(-50%)',
-        width: 52, height: 52, borderRadius: '50%', flexShrink: 0,
+        position: 'absolute', top: -32, left: '50%', transform: 'translateX(-50%)',
+        width: 60, height: 60, borderRadius: '50%', flexShrink: 0,
         display: 'flex', alignItems: 'center', justifyContent: 'center',
-        background: '#ffffff', border: `1px solid ${spec.color}35`,
-        boxShadow: '0 6px 16px rgba(13,27,42,0.10)',
+        background: iconBg,
+        boxShadow: hov
+          ? `0 10px 28px ${spec.color}65, 0 3px 10px rgba(0,0,0,0.14)`
+          : `0 6px 20px ${spec.color}45, 0 2px 6px rgba(0,0,0,0.1)`,
+        border: '2.5px solid rgba(255,255,255,0.95)',
         zIndex: 2,
+        transition: 'all 0.25s ease',
       }}>
-        <Icon style={{ width: 20, height: 20, color: spec.color }} strokeWidth={2.3} />
+        <Icon style={{ width: 26, height: 26, color: '#ffffff' }} strokeWidth={2.2} />
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, paddingTop: 30, justifyContent: 'center', flex: 1 }}>
-        <span style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 800, color: '#0d1b2a', fontSize: 14, lineHeight: 1.35 }}>
-          {spec.value}{spec.label ? ` ${spec.label.replace(/\n/g, ' ')}` : ''}
+ 
+      {/* Content */}
+      <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 4, paddingTop: 34, justifyContent: 'center', flex: 1 }}>
+        {/* Value — accent colored */}
+        <span style={{
+          fontFamily: 'DM Sans, sans-serif',
+          fontWeight: 900,
+          color: spec.color,
+          fontSize: 16,
+          lineHeight: 1.2,
+          letterSpacing: '-0.02em',
+          textShadow: `0 0 20px ${spec.color}40`,
+        }}>
+          {spec.value} {spec.label}
         </span>
+        {/* Label */}
+        {/* {spec.label && (
+          <span style={{
+            fontFamily: 'DM Sans, sans-serif',
+            fontWeight: 700,
+            color: 'rgba(13,27,42,0.72)',
+            fontSize: 11.5,
+            lineHeight: 1.35,
+            whiteSpace: 'pre-line',
+            textAlign: 'center',
+          }}>
+           
+          </span>
+        )} */}
+        {/* Description */}
         {spec.description && (
-          <p style={{ fontFamily: 'DM Sans, sans-serif', color: 'rgba(13,27,42,0.72)', fontWeight: 500, fontSize: 11.5, lineHeight: 1.5, margin: '2px 0 0' }}>
+          <p style={{
+            fontFamily: 'DM Sans, sans-serif',
+            color: 'rgba(13,27,42,0.55)',
+            fontWeight: 500,
+            fontSize: 10.5,
+            lineHeight: 1.5,
+            margin: '2px 0 0',
+            textAlign: 'center',
+          }}>
             {spec.description}
           </p>
         )}
       </div>
+ 
+      {/* Bottom accent line */}
+      <div style={{
+        position: 'absolute', bottom: 0, left: '8%', right: '8%', height: 2,
+        borderRadius: '0 0 22px 22px',
+        background: `linear-gradient(90deg, transparent, ${spec.color}cc, ${spec.color}, ${spec.color}cc, transparent)`,
+        opacity: hov ? 1 : 0.55,
+        transition: 'opacity 0.25s',
+      }} />
     </motion.div>
   );
 }
+
+
+
+
+
 
 // ─── MOBILE SPEC CARD — compact card used in the mobile grid layout ──────────
 // The orbital layout depends on a fixed 1000×1000 canvas that is scaled down
@@ -600,49 +718,103 @@ function ProductGallery({ images, isMobile, accent }: { images: GalleryImage[]; 
 
 // ─── FULL-WIDTH SPECS TABLE — now with row + column grid lines, slightly ─────
 // smaller/tighter on all breakpoints, and an extra-compact mode on mobile.
-function SpecsTable({ headers, rows, accent, delay, compact }: { headers: string[]; rows: string[][]; accent: string; delay: number; compact?: boolean }) {
-  const cellPadding = compact ? '8px 10px' : '10px 16px';
-  const bodyFontSize = compact ? 12 : 13.5;
-  const headerFontSize = compact ? 9.5 : 10.5;
-  const tableMinWidth = compact ? 340 : 480;
 
+
+
+// ─── SPECS TABLE — compact + attractive ──────────────────────────────────────
+function SpecsTable({ headers, rows, accent, delay, compact }: { headers: string[]; rows: string[][]; accent: string; delay: number; compact?: boolean }) {
+  const isGreen = accent === '#00a550';
+  // tints derived from accent
+  const headerBg   = isGreen ? '#003d1a' : '#003356';  // dark header row
+  const altRowBg   = isGreen ? 'rgba(0,165,80,0.04)' : 'rgba(0,119,182,0.04)';
+  const valueBg    = isGreen ? 'rgba(0,165,80,0.09)' : 'rgba(0,119,182,0.09)';
+  const cellP      = compact ? '5px 8px' : '7px 12px';   // compact padding
+  const labelSize  = compact ? 10.5 : 11.5;
+  const valueSize  = compact ? 11.5 : 12.5;
+  const headerSize = compact ? 9  : 9.5;
+  const minW       = compact ? 280 : 380;
+ 
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, margin: '-5% 0px' }}
       transition={{ delay, duration: 0.45 }}
-      style={{ width: '100%', borderRadius: 20, overflow: 'hidden', border: `1px solid #e2eaf2`, background: '#ffffff', boxShadow: '0 2px 16px rgba(13,27,42,0.05)' }}
+      style={{
+        width: '100%', borderRadius: 18, overflow: 'hidden',
+        border: `1.5px solid ${accent}22`,
+        boxShadow: `0 4px 24px ${accent}12, 0 1px 6px rgba(13,27,42,0.06)`,
+      }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: compact ? '13px 16px' : '16px 20px', borderBottom: `1px solid #e2eaf2` }}>
-        <span style={{ width: 8, height: 8, borderRadius: '50%', background: accent, flexShrink: 0 }} />
-        <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#0d1b2a' }}>
+      {/* Title bar */}
+      <div style={{
+        display: 'flex', alignItems: 'center', gap: 10,
+        padding: compact ? '9px 14px' : '11px 16px',
+        background: `linear-gradient(90deg, ${headerBg}, ${headerBg}ee)`,
+        borderBottom: `2px solid ${accent}55`,
+      }}>
+        <div style={{
+          width: 8, height: 8, borderRadius: '50%',
+          background: isGreen ? '#4ade80' : '#38bdf8',
+          boxShadow: `0 0 8px ${isGreen ? '#4ade80' : '#38bdf8'}cc`,
+          flexShrink: 0,
+        }} />
+        <span style={{
+          fontFamily: 'DM Sans, sans-serif', fontSize: 10, fontWeight: 900,
+          textTransform: 'uppercase', letterSpacing: '0.24em', color: '#ffffff',
+        }}>
           Full Specifications
         </span>
+        <div style={{ marginLeft: 'auto', display: 'flex', gap: 4 }}>
+          {[0,1,2].map(i => (
+            <div key={i} style={{
+              width: 6, height: 6, borderRadius: '50%',
+              background: i === 0 ? '#ff5f57' : i === 1 ? '#ffbd2e' : (isGreen ? '#4ade80' : '#38bdf8'),
+              opacity: 0.8,
+            }} />
+          ))}
+        </div>
       </div>
-      <div style={{ overflowX: 'auto' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: tableMinWidth }}>
+ 
+      <div style={{ overflowX: 'auto', background: '#ffffff' }}>
+        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: minW }}>
           <thead>
-            <tr style={{ background: `${accent}0d` }}>
+            <tr style={{ background: `${accent}18` }}>
               {headers.map((h, i) => (
                 <th key={i} style={{
-                  padding: cellPadding, textAlign: 'left', fontFamily: 'DM Sans, sans-serif',
-                  fontSize: headerFontSize, textTransform: 'uppercase', letterSpacing: '0.12em',
-                  color: i === 0 ? 'rgba(13,27,42,0.55)' : accent, fontWeight: 700,
-                  border: '1px solid #e2eaf2',
+                  padding: cellP, textAlign: 'left',
+                  fontFamily: 'DM Sans, sans-serif',
+                  fontSize: headerSize, textTransform: 'uppercase',
+                  letterSpacing: '0.16em', fontWeight: 900,
+                  color: i === 0 ? 'rgba(13,27,42,0.55)' : accent,
+                  borderBottom: `2px solid ${accent}35`,
+                  borderRight: `1px solid ${accent}12`,
                   whiteSpace: 'nowrap',
+                  background: i > 0 ? `${accent}12` : 'transparent',
                 }}>{h}</th>
               ))}
             </tr>
           </thead>
           <tbody>
             {rows.map((row, ri) => (
-              <tr key={ri} style={{ background: ri % 2 === 1 ? '#f8faf9' : 'transparent' }}>
+              <tr
+                key={ri}
+                style={{ background: ri % 2 === 1 ? altRowBg : '#ffffff' }}
+              >
                 {row.map((cell, ci) => (
                   <td key={ci} style={{
-                    padding: cellPadding, fontFamily: 'DM Sans, sans-serif',
-                    fontSize: bodyFontSize, fontWeight: 700, color: '#0d1b2a',
-                    border: '1px solid #eef2f0',
+                    padding: cellP,
+                    fontFamily: 'DM Sans, sans-serif',
+                    fontSize: ci === 0 ? labelSize : valueSize,
+                    fontWeight: ci === 0 ? 600 : 800,
+                    color: ci === 0 ? 'rgba(13,27,42,0.65)' : accent,
+                    background: ci === 0
+                      ? 'transparent'
+                      : (ri % 2 === 0 ? valueBg : `${accent}14`),
+                    borderBottom: `1px solid ${accent}12`,
+                    borderRight: `1px solid ${accent}10`,
+                    /* highlight first value col slightly differently */
+                    ...(ci === 1 ? { borderLeft: `2px solid ${accent}20` } : {}),
                   }}>{cell}</td>
                 ))}
               </tr>
@@ -653,6 +825,10 @@ function SpecsTable({ headers, rows, accent, delay, compact }: { headers: string
     </motion.div>
   );
 }
+
+
+
+
 
 // ─── useWindowWidth ────────────────────────────────────────────────────────────
 function useWindowWidth() {

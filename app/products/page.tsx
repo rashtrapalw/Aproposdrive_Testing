@@ -475,6 +475,15 @@ function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIco
 // so small (≈0.3×) that the card text becomes unreadable. Below the `isMobile`
 // breakpoint we swap to this simple, readable stacked grid instead.
 function MobileSpecCard({ spec, Icon, accent, delay }: { spec: Spec; Icon: LucideIcon; accent: string; delay: number }) {
+  // Mirrors the desktop OrbCard visual language (gradient icon badge,
+  // accent-colored glowing value text, bottom accent line) so mobile and
+  // desktop specs look consistent.
+  const isGreen = spec.color === '#00a550';
+  const bgFrom  = isGreen ? 'rgba(0,165,80,0.07)'  : 'rgba(0,119,182,0.07)';
+  const iconBg  = isGreen
+    ? 'linear-gradient(145deg,#006b30,#00a550)'
+    : 'linear-gradient(145deg,#005080,#0077b6)';
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 14 }}
@@ -482,31 +491,62 @@ function MobileSpecCard({ spec, Icon, accent, delay }: { spec: Spec; Icon: Lucid
       viewport={{ once: false, margin: '-5% 0px' }}
       transition={{ delay, duration: 0.35 }}
       style={{
-        display: 'flex', flexDirection: 'column', gap: 8,
-        padding: '14px 12px',
-        borderRadius: 16,
-        background: '#ffffff',
-        border: '1px solid #e2eaf2',
-        boxShadow: '0 2px 12px rgba(13,27,42,0.05)',
+        position: 'relative',
+        display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6,
+        padding: '30px 12px 16px',
+        borderRadius: 20,
+        background: `linear-gradient(145deg, ${bgFrom}, rgba(255,255,255,0.95))`,
+        border: `1.5px solid ${spec.color}28`,
+        boxShadow: `0 2px 12px rgba(13,27,42,0.07), 0 1px 4px rgba(13,27,42,0.04), inset 0 1px 0 rgba(255,255,255,0.9)`,
+        textAlign: 'center',
+        overflow: 'visible',
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 9 }}>
-        <div style={{
-          width: 34, height: 34, borderRadius: 10, flexShrink: 0,
-          display: 'flex', alignItems: 'center', justifyContent: 'center',
-          background: `${accent}14`, border: `1px solid ${accent}35`,
-        }}>
-          <Icon style={{ width: 15, height: 15, color: accent }} strokeWidth={2.3} />
-        </div>
-        <span style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 800, color: '#0d1b2a', fontSize: 12.5, lineHeight: 1.3 }}>
-          {spec.value}{spec.label ? ` ${spec.label.replace(/\n/g, ' ')}` : ''}
-        </span>
+      {/* Floating icon — gradient circle, matches OrbCard, but left-aligned on mobile */}
+      <div style={{
+        position: 'absolute', top: -22, left: 14,
+        width: 44, height: 44, borderRadius: '50%', flexShrink: 0,
+        display: 'flex', alignItems: 'center', justifyContent: 'center',
+        background: iconBg,
+        boxShadow: `0 6px 20px ${spec.color}45, 0 2px 6px rgba(0,0,0,0.1)`,
+        border: '2px solid rgba(255,255,255,0.95)',
+        zIndex: 2,
+      }}>
+        <Icon style={{ width: 19, height: 19, color: '#ffffff' }} strokeWidth={2.2} />
       </div>
+
+      <span style={{
+        fontFamily: 'DM Sans, sans-serif',
+        fontWeight: 900,
+        color: spec.color,
+        fontSize: 13.5,
+        lineHeight: 1.25,
+        letterSpacing: '-0.02em',
+        textShadow: `0 0 20px ${spec.color}40`,
+      }}>
+        {spec.value} {spec.label}
+      </span>
+
       {spec.description && (
-        <p style={{ fontFamily: 'DM Sans, sans-serif', color: 'rgba(13,27,42,0.7)', fontWeight: 500, fontSize: 11, lineHeight: 1.5, margin: 0 }}>
+        <p style={{
+          fontFamily: 'DM Sans, sans-serif',
+          color: 'rgba(13,27,42,0.55)',
+          fontWeight: 500,
+          fontSize: 10.5,
+          lineHeight: 1.5,
+          margin: '2px 0 0',
+        }}>
           {spec.description}
         </p>
       )}
+
+      {/* Bottom accent line — matches OrbCard */}
+      <div style={{
+        position: 'absolute', bottom: 0, left: '8%', right: '8%', height: 2,
+        borderRadius: '0 0 20px 20px',
+        background: `linear-gradient(90deg, transparent, ${spec.color}cc, ${spec.color}, ${spec.color}cc, transparent)`,
+        opacity: 0.55,
+      }} />
     </motion.div>
   );
 }
@@ -994,7 +1034,8 @@ export default function ProductsPage() {
     overflow: 'hidden',
 
     backgroundColor: '#fafcfb',
-    backgroundImage: "url('/BG imges/product-bg2.jpeg')",
+    // backgroundAttachment: 'fixed',
+    backgroundImage:"linear-gradient(rgba(250, 252, 251, 0.15), rgba(250, 252, 251, 0.13)), url('/BG imges/product-bg3.jpeg')",
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',

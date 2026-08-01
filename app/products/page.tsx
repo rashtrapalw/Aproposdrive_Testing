@@ -985,8 +985,23 @@ export default function ProductsPage() {
         * { box-sizing: border-box; }
       `}</style>
 
-      <section id="products" style={{ position: 'relative', padding: '60px 0 80px', overflow: 'hidden', background: '#fafcfb', fontFamily: 'DM Sans, sans-serif' }}>
+      {/* <section id="products" style={{ position: 'relative', padding: '60px 0 80px', overflow: 'hidden', background: '#fafcfb', fontFamily: 'DM Sans, sans-serif' }}> */}
+ <section
+  id="products"
+  style={{
+    position: 'relative',
+    padding: '60px 0 80px',
+    overflow: 'hidden',
 
+    backgroundColor: '#fafcfb',
+    backgroundImage: "url('/BG imges/product-bg2.jpeg')",
+    backgroundSize: 'cover',
+    backgroundPosition: 'center',
+    backgroundRepeat: 'no-repeat',
+
+    fontFamily: 'DM Sans, sans-serif',
+  }}
+>
 
 
         <div style={{ position: 'relative', zIndex: 10, maxWidth: 1280, margin: '0 auto', padding: '0 16px' }}>

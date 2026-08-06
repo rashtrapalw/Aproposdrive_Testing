@@ -53,9 +53,7 @@ export function HeroSection() {
   transition={{ delay: 0.4 }}
   className="text-lg md:text-xl text-white/70 leading-relaxed max-w-xl tracking-wide"
 >
-  We design and customize high-performance EV motors and intelligent motor
-  controllers, empowering next-generation electric vehicles through
-  innovation, precision, and sustainable technology.
+  We engineer high-performance EV motors and intelligent motor controllers for the next generation of electric mobility.
 </motion.p>
 
             <motion.div

@@ -559,6 +559,10 @@
 // }
 
 
+
+
+
+
 'use client'
 
 import { useRef } from 'react'
@@ -632,7 +636,7 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
           <Icon size={17} color="#00a550" strokeWidth={2} />
         </div>
         <h3
-          className="text-lg font-black uppercase "
+          className="text-base sm:text-lg font-black uppercase"
           style={{ color: '#ffffff', fontFamily: "'DM Sans',sans-serif" }}
         >
           {feature.title}
@@ -679,6 +683,8 @@ export function WhyChooseSection() {
 
       {/* ── Content ── */}
       <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-10 py-14 sm:py-20">
+
+        {/* ══ TOP ROW — left text column + right badges column ══════════════ */}
         <div className="grid gap-8 lg:grid-cols-[1fr_auto] lg:gap-12">
 
           {/* ══ LEFT COLUMN ══════════════════════════════════════════════════ */}
@@ -725,15 +731,6 @@ export function WhyChooseSection() {
               Built for performance. Designed for tomorrow.
             </motion.p>
 
-            {/* ── 3×2 Feature cards grid ── */}
-           <div
-  className="grid grid-flow-col grid-rows-2 gap-3"
->
-  {features.map((f, i) => (
-    <FeatureCard key={f.title} feature={f} index={i} />
-  ))}
-</div>
-
             {/* ── Bottom bar ── */}
             <motion.div
               initial={{ opacity: 0, y: 12 }}
@@ -757,7 +754,9 @@ export function WhyChooseSection() {
             initial={{ opacity: 0, x: 20 }}
             animate={headerInView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: 0.2, duration: 0.55 }}
-            className="flex flex-row justify-center gap-6 lg:flex-col lg:justify-start lg:gap-8 lg:pt-24"
+            // className="flex flex-row justify-center gap-6 lg:flex-col lg:justify-start lg:gap-8 lg:pt-24"
+            // className="flex flex-row justify-center gap-6 lg:flex-col lg:justify-start lg:gap-8 lg:pt-24 lg:-ml-16 lg:-mt-12"
+            className="flex flex-row justify-center gap-6 lg:flex-col lg:justify-start lg:gap-8 lg:pt-24 lg:-ml-110 lg:-mt-24" 
           >
             {badges.map(({ icon: Icon, label }, i) => (
               <motion.div
@@ -790,8 +789,15 @@ export function WhyChooseSection() {
               </motion.div>
             ))}
           </motion.div>
-
         </div>
+
+        {/* ══ FEATURE CARDS — full-width row below, responsive grid ═════════ */}
+        <div className="mt-10 sm:mt-12 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+          {features.map((f, i) => (
+            <FeatureCard key={f.title} feature={f} index={i} />
+          ))}
+        </div>
+
       </div>
     </section>
   )

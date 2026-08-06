@@ -27,7 +27,7 @@ const products: Product[] = [
     image: '/photos/EV-powertrain2.png',
     href: '/products#powertrain',
     features: [
-      'Rare Earth Free motor reduces powertrain cost',
+      'Rare Earth Free motor',
       'Boost 20% Vehicle Range',
       'Frees up 30% more battery space',
       // 'Reduces Powertrain Costs by 50%',

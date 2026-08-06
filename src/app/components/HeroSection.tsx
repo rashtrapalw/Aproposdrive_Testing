@@ -27,31 +27,36 @@ export function HeroSection() {
           >
            
 
-            <motion.h1
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="audiowide-regular text-5xl md:text-6xl lg:text-7xl leading-tight"
-            >
-              <span className="text-white">Driving the </span>
-              <span className="bg-gradient-to-r from-[#00C853] to-[#00E5FF] bg-clip-text text-transparent">
-                Future
-              </span>
-              <br />
-              <span className="text-white">of </span>
-              <span className="text-[#00C853]"> Green India</span>
-            </motion.h1>
+<motion.h1
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.3 }}
+  className="audiowide-regular leading-tight md:leading-[1.15]"
+>
+  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.75rem)]">
+    <span className="text-white">Engineering </span>
+    <span className="bg-gradient-to-r from-[#00C853] to-[#00E5FF] bg-clip-text text-transparent">
+      Intelligent
+    </span>
+  </span>
+  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.75rem)] text-white">
+    Motion Technology for 
+  </span>
+  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.75rem)] text-[#00C853]">
+    Sustainable Future
+  </span>
+</motion.h1>
 
-
-            <motion.p
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="text-lg md:text-xl text-white/70 leading-relaxed max-w-xl tracking-wide"
-            >
-              Revolutionizing Indian transportation with cutting-edge electric vehicle technology.
-              Sustainable, powerful, and built for tomorrow.
-            </motion.p>
+<motion.p
+  initial={{ opacity: 0, y: 20 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ delay: 0.4 }}
+  className="text-lg md:text-xl text-white/70 leading-relaxed max-w-xl tracking-wide"
+>
+  We design and customize high-performance EV motors and intelligent motor
+  controllers, empowering next-generation electric vehicles through
+  innovation, precision, and sustainable technology.
+</motion.p>
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}

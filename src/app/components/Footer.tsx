@@ -13,13 +13,14 @@ const footerLinks = {
   Company: [
     { label: 'About Us',   href: '/contact'    },
     // { label: 'Our Team',   href: '/contact'    },
-    { label: 'Careers',    href: '/contact'    },
+    // { label: 'Careers',    href: '/contact'    },
     { label: 'Blog',       href: '/blogs'      },
     { label: 'Technology',      href: '/technology'},
   ],
-  // Products: [
-  //   { label: 'EV Powertrain',   href: '/products' },
-  //   { label: 'Motor Controller',href: '/products' },
+  Products: [
+  { label: 'EV Powertrain', href: '/products#powertrain' },
+  { label: 'Controller', href: '/products#controller' },
+],
     // { label: 'Specifications',  href: '/products' },
     // { label: 'Technology',      href: '/technology'},
   // ],

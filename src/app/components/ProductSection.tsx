@@ -27,24 +27,27 @@ const products: Product[] = [
     image: '/photos/motor-main.png',
     href: '/products#powertrain',
     features: [
+      'Rare Earth Free motor reduces powertrain cost',
       'Boost 20% Vehicle Range',
       'Frees up 30% more battery space',
-      'Reduces Powertrain Costs by 50%',
-      '95% Efficiency',
-      'PMSM FOC Control',
+      // 'Reduces Powertrain Costs by 50%',
+      ' Efficiency > 92%',
+      // 'PMSM FOC Control',
+      '200 Nm Peak Torque',
     ],
   },
   {
     id: 2,
     tag: 'Product 02',
     title: 'Controller',
-    subtitle: 'High-Efficiency Mid Drive Motor with Integrated Controller',
+    subtitle: 'High efficiency mid-drive and hub motor controller.',
     description: '',
     image: '/photos/controller-main.png',
     href: '/products#controller',
     features: [
+      'PMSM FOC Control',
       '3 – 7 kW Power Range',
-      '200 Nm Peak Torque',
+      // '200 Nm Peak Torque',
       '98% Efficiency',
       'Compact & Lightweight',
       'Air-Cooled Design',
@@ -78,7 +81,7 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
         <div className="flex flex-col justify-between p-6 flex-1 min-w-0 sm:p-7">
           {/* Tag pill */}
           <div>
-            <span
+            {/* <span
               className="inline-block rounded-full px-2.5 py-0.5 text-[10px] font-bold uppercase tracking-widest mb-4"
               style={{
                 background: 'rgba(0,165,80,0.08)',
@@ -87,11 +90,11 @@ function ProductCard({ product, index }: { product: Product; index: number }) {
               }}
             >
               {product.tag}
-            </span>
+            </span> */}
 
             <h3
               className="font-bold leading-tight mb-1"
-              style={{ fontSize: 24, color: '#0d1b2a' }}
+              style={{ fontSize: 24, color: '#00a550' }}
             >
               {product.title}
             </h3>
@@ -203,7 +206,9 @@ export function ProductSection() {
               className="font-bold leading-tight mb-2"
               style={{ fontSize: 'clamp(26px,4vw,36px)', color: '#0d1b2a' }}
             >
-              High - Performance.  &  Future-Ready.
+              High - Performance &
+              <br></br>
+               Future - Ready.
             </h2>
             {/* <p style={{ fontSize: 14, color: '#4a5a6a', lineHeight: 1.7 }}>
               Precision-engineered EV powertrain solutions for two wheelers, three wheelers, and

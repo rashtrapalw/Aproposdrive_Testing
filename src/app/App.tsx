@@ -30,10 +30,10 @@ export default function App() {
             // scroll-behavior: smooth;
           }
 
-          h1, h2, h3, h4, h5, h6 {
-            font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-            letter-spacing: -0.02em;
-          }
+          // h1, h2, h3, h4, h5, h6 {
+          //   font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+          //   letter-spacing: -0.02em;
+          // }
 
         //   ::-webkit-scrollbar {
         //     width: 10px;

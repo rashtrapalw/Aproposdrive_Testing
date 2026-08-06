@@ -574,35 +574,28 @@ const badges = [
 ]
 
 const features = [
+   {
+    icon: DollarSign,
+    title: 'in-house R&D, and sub point',
+    body: 'We design motor and controller from electromagnetic designs to PCBs and software.',
+  },
   {
     icon: Globe,
     title: 'Rare Earth-Free Technology',
-    body: 'Sustainable motor technology with high efficiency, reduced material dependency, and reliable performance.',
+    body: ' Eliminating Supply Chain Dependency, Efficient and Reliable Performance.',
   },
-  {
-    icon: Magnet,
-    title: 'Magnetic Innovation',
-    body: 'Optimized magnetic design for higher torque, greater efficiency, and dependable operation.',
-  },
+
   {
     icon: ShieldCheck,
     title: 'Field-Test Ready',
-    body: 'Validated through extensive real-world testing for reliable performance before deployment.',
+    body: 'validated through extensive real-world testing and, real-world testing and real-time data for performance testing and in demanding conditions.',
   },
-  {
-    icon: DollarSign,
-    title: 'Lower System Cost',
-    body: 'Engineered to reduce system complexity and lower total ownership costs.',
-  },
-  {
-    icon: ShieldCheck,
-    title: 'Rugged & Reliable',
-    body: 'Built and tested to perform consistently in harsh environments and demanding conditions.',
-  },
+ 
+ 
   {
     icon: Puzzle,
     title: 'Seamless Integration',
-    body: 'Flexible solutions designed for effortless integration across EV and industrial platforms.',
+    body: 'Flexible solution design as a system rather than a individual component.',
   },
 ]
 
@@ -634,11 +627,11 @@ function FeatureCard({ feature, index }: { feature: typeof features[0]; index: n
             border: '1px solid rgba(0,200,180,0.28)',
           }}
         >
-          <Icon size={17} color="#00D4B4" strokeWidth={2} />
+          <Icon size={17} color="#00a550" strokeWidth={2} />
         </div>
         <h3
-          className="text-lg font-black uppercase tracking-widest leading-tight"
-          style={{ color: '#ffffff' }}
+          className="text-lg font-black uppercase "
+          style={{ color: '#ffffff', fontFamily: "'DM Sans',sans-serif" }}
         >
           {feature.title}
         </h3>
@@ -695,7 +688,7 @@ export function WhyChooseSection() {
               initial={{ opacity: 0, y: 16 }}
               animate={headerInView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.5 }}
-              className="text-sm font-bold italic uppercase tracking-[0.22em]"
+              className="text-sm font-bold  uppercase tracking-[0.22em]"
               style={{ color: '#00D4B4' }}
             >
               Engineering Excellence
@@ -711,9 +704,9 @@ export function WhyChooseSection() {
                 className="font-black leading-none tracking-tight uppercase"
                 style={{ fontSize: 'clamp(22px, 5vw, 60px)', color: '#ffffff', lineHeight: 0.95 }}
               >
-               Why We're Built 
+               Your technology 
                 <br />
-                <span style={{ color: '#00D4B4' }}>Differently</span>
+                <span style={{ color: '#00a550' }}>partner</span>
               </h2>
             </motion.div>
 
@@ -746,7 +739,7 @@ export function WhyChooseSection() {
             >
               <ShieldCheck size={16} color="#00D4B4" strokeWidth={2} />
               <p
-                className="text-xs font-bold italic uppercase tracking-[0.2em]"
+                className="text-xs font-bold  uppercase tracking-[0.2em]"
                 style={{ color: 'rgba(255,255,255,0.9)' }}
               >
                 Real-World Tested.{' '}

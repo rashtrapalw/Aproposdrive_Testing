@@ -178,7 +178,7 @@ export function TestingVideoSection() {
 
       <section
         id="testin-video"
-        className="relative py-20 overflow-hidden"
+        className="relative py-10 overflow-hidden"
         style={{ fontFamily: "'DM Sans',sans-serif", background: '#0A0F1C' }}
       >
         {/* ── Background ── */}
@@ -216,9 +216,9 @@ export function TestingVideoSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: '-8% 0px' }}
             transition={{ duration: 0.6 }}
-            className="mt-16"
+            className="mt-6"
           >
-            <div className="text-center mb-7">
+            <div className="text-center mb-4">
               <p
                 className="text-[10px] font-bold uppercase tracking-[0.28em] mb-2"
                 style={{ color: '#00C853' }}
@@ -246,17 +246,18 @@ export function TestingVideoSection() {
                 boxShadow: '0 20px 50px rgba(0,0,0,0.5)',
               }}
             >
-              {/* Screen */}
+              {/* Screen — padding-bottom aspect-ratio trick, guarantees the
+                  iframe fills the box edge-to-edge in every browser */}
               <div
-                className="relative flex items-center justify-center"
+                className="relative w-full"
                 style={{
-                  aspectRatio: '16/9',
+                  paddingBottom: '56.25%', // 16:9
                   background: 'linear-gradient(135deg,#050c14,#0a1628 55%,#061410)',
                 }}
               >
                 {/* YouTube embed — replaces the local video file */}
                 <iframe
-                  className="absolute inset-0 w-full h-full"
+                  className="absolute inset-0 w-full h-full block"
                   src="https://www.youtube.com/embed/e9T8e6VX2KI?si=aSKT0GGBg9wHj1Eg"
                   title="YouTube video player"
                   frameBorder="0"

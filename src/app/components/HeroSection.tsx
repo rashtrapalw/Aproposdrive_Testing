@@ -33,16 +33,16 @@ export function HeroSection() {
   transition={{ delay: 0.3 }}
   className="audiowide-regular leading-tight md:leading-[1.15]"
 >
-  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.75rem)]">
+  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.30rem)] text-white">
     <span className="text-white">Engineering </span>
     <span className="bg-gradient-to-r from-[#00C853] to-[#00E5FF] bg-clip-text text-transparent">
       Intelligent
     </span>
   </span>
-  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.75rem)] text-white">
+  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.30rem)] text-white">
     Motion Technology for 
   </span>
-  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.75rem)] text-[#00C853]">
+  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.30rem)] text-[#00C853]">
     Sustainable Future
   </span>
 </motion.h1>

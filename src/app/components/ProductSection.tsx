@@ -24,7 +24,7 @@ const products: Product[] = [
     title: 'EV Powertrain',
     subtitle: ' Integrated Powertrain Control Unit',
     description: '',
-    image: '/photos/motor-main.png',
+    image: '/photos/EV-powertrain2.png',
     href: '/products#powertrain',
     features: [
       'Rare Earth Free motor reduces powertrain cost',

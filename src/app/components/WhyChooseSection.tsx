@@ -599,6 +599,8 @@ const features = [
   },
 ]
 
+
+
 // ─── Feature Card ─────────────────────────────────────────────────────────────
 function FeatureCard({ feature, index }: { feature: typeof features[0]; index: number }) {
   const Icon = feature.icon as LucideIcon
@@ -724,11 +726,13 @@ export function WhyChooseSection() {
             </motion.p>
 
             {/* ── 3×2 Feature cards grid ── */}
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2 sm:gap-3 lg:grid-cols-3">
-              {features.map((f, i) => (
-                <FeatureCard key={f.title} feature={f} index={i} />
-              ))}
-            </div>
+           <div
+  className="grid grid-flow-col grid-rows-2 gap-3"
+>
+  {features.map((f, i) => (
+    <FeatureCard key={f.title} feature={f} index={i} />
+  ))}
+</div>
 
             {/* ── Bottom bar ── */}
             <motion.div

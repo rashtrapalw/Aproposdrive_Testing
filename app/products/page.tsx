@@ -70,6 +70,8 @@ type Product = {
   // Row of 3 small images (with names) shown between the orbital hero and
   // the specs table — fills the extra whitespace left by the tighter layout.
   galleryImages?: GalleryImage[];
+   // NEW — video shown in place of the old Key Features panel, next to the specs table.
+  video?: string;
 };
 
 // ─── DATA ─────────────────────────────────────────────────────────────────────
@@ -81,6 +83,7 @@ const PRODUCTS: Product[] = [
     subtitle: 'Compact. Rare-earth-free. Purpose-built.',
     description: 'A single unified unit combining motor, gearbox, and controller — air-cooled, IP67-sealed, and engineered for electric scooters at scale.',
     image: '/photos/EvPowertrain.png',
+    video: '/videos/Powertrain.mp4',
     accent: '#00a550',
     galleryImages: [
         { src: '/Product Applications/Drone.png', name: 'Drone', subheading: '-' },
@@ -133,6 +136,7 @@ const PRODUCTS: Product[] = [
     subtitle: 'Precise. Thermal-stable. Intelligent.',
     description: 'High-performance vector field-oriented motor controller for light EVs — with ride modes, hill hold, and real-time diagnostics built in.',
     image: '/photos/no-bg-controller.png',
+    video: '/videos/Controller.mp4',
     accent: '#0077b6',
     galleryImages: [
        { src: '/Product Applications/Drone.png', name: 'Drone', subheading: '-' },
@@ -560,7 +564,49 @@ function KeyFeatureRow({ icon: Icon, text, accent, delay = 0 }: { icon: LucideIc
 }
 
 // ─── KEY FEATURES PANEL — right column (40%) next to the specs table ─────────
-function KeyFeaturesPanel({ points, accent }: { points: KeyFeaturePoint[]; accent: string }) {
+// function KeyFeaturesPanel({ points, accent }: { points: KeyFeaturePoint[]; accent: string }) {
+//   return (
+//     <motion.div
+//       initial={{ opacity: 0, y: 16 }}
+//       whileInView={{ opacity: 1, y: 0 }}
+//       viewport={{ once: false, margin: '-5% 0px' }}
+//       transition={{ duration: 0.45, delay: 0.12 }}
+//       style={{
+//         width: '100%',
+//         borderRadius: 20,
+//         border: '1px solid #e2eaf2',
+//         background: '#ffffff',
+//         boxShadow: '0 2px 16px rgba(13,27,42,0.05)',
+//         padding: 20,
+//         display: 'flex',
+//         flexDirection: 'column',
+//         gap: 4,
+//       }}
+//     >
+//       <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+//         <span style={{ width: 8, height: 8, borderRadius: '50%', background: accent, flexShrink: 0 }} />
+//         <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#0d1b2a' }}>
+//           Key Features
+//         </span>
+//       </div>
+//       <div style={{ display: 'flex', flexDirection: 'column' }}>
+//         {points.map((p, i) => (
+//           <KeyFeatureRow key={p.text} icon={p.icon} text={p.text} accent={accent} delay={i * 0.05} />
+//         ))}
+//       </div>
+//     </motion.div>
+//   );
+// }
+
+
+
+// ─── PRODUCT VIDEO PANEL — right column (40%) next to the specs table ────────
+// Replaces the old KeyFeaturesPanel. Same card shell/sizing so the grid
+// layout next to SpecsTable is unaffected — just video content instead of
+// a feature list.
+function ProductVideoPanel({ video, accent, title }: { video?: string; accent: string; title: string }) {
+  if (!video) return null; // safety: renders nothing if a product has no video set
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -576,19 +622,41 @@ function KeyFeaturesPanel({ points, accent }: { points: KeyFeaturePoint[]; accen
         padding: 20,
         display: 'flex',
         flexDirection: 'column',
-        gap: 4,
+        gap: 12,
       }}
     >
-      <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginBottom: 6 }}>
+      <div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
         <span style={{ width: 8, height: 8, borderRadius: '50%', background: accent, flexShrink: 0 }} />
         <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#0d1b2a' }}>
-          Key Features
+          {/* Product Video */}
+          3D VIEW
         </span>
       </div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        {points.map((p, i) => (
-          <KeyFeatureRow key={p.text} icon={p.icon} text={p.text} accent={accent} delay={i * 0.05} />
-        ))}
+
+      <div style={{
+        width: '100%',
+        borderRadius: 14,
+        overflow: 'hidden',
+        border: `1px solid ${accent}22`,
+        // padding-bottom trick for a responsive 16:9 video box
+        position: 'relative',
+        paddingBottom: '56.25%',
+        height: 0,
+        background: '#000',
+      }}>
+        <video
+            src={video}
+            autoPlay
+            playsInline
+            muted
+            loop
+          style={{
+            position: 'absolute',
+            top: 0, left: 0,
+            width: '100%', height: '100%',
+            objectFit: 'cover',
+          }}
+        />
       </div>
     </motion.div>
   );
@@ -725,18 +793,7 @@ function ProductGallery({ images, isMobile, accent }: { images: GalleryImage[]; 
             }}>
               {img.name}
             </span>
-            {img.subheading && (
-              <span style={{
-                fontFamily: 'DM Sans, sans-serif',
-                fontWeight: 500,
-                fontSize: isMobile ? 8.5 : 11.5,
-                color: 'rgba(13,27,42,0.55)',
-                textAlign: 'center',
-                lineHeight: 1.3,
-              }}>
-                {img.subheading}
-              </span>
-            )}
+         
           </motion.div>
         ))}
       </div>
@@ -960,8 +1017,11 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
           width: '100%',
         }}
       >
+        
+
         <SpecsTable headers={product.tableHeaders} rows={product.tableRows} accent={product.accent} delay={0.1} compact={isMobile} />
-        <KeyFeaturesPanel points={product.keyFeatures} accent={product.accent} />
+        <ProductVideoPanel video={product.video} accent={product.accent} title={product.title} />
+
       </div>
 
       {/* ── Platforms + Variants (only rendered if present) ── */}

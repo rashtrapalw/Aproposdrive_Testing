@@ -645,15 +645,17 @@ function ProductVideoPanel({ video, accent, title }: { video?: string; accent: s
         background: '#000',
       }}>
         <video
-            src={video}
-            autoPlay
-            playsInline
-            muted
-            loop
+          src={video}
+          autoPlay
+          playsInline
+          muted
+          loop
           style={{
             position: 'absolute',
-            top: 0, left: 0,
-            width: '100%', height: '100%',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
             objectFit: 'cover',
           }}
         />

@@ -12,7 +12,7 @@ const faqs = [
       'Switched Reluctance Motor (SRM) technology uses the principle of magnetic reluctance to produce motion. It requires no permanent magnets or rare earth materials, making it cost-effective, robust, and highly efficient for electric vehicle applications.',
   },
   {
-    question: 'How is SRM better than BLDC?',
+    question: 'What are benefits of SRM over BLDC?',
     answer:
       'SRM motors are rare earth-free, more tolerant to high temperatures, have simpler construction with no rotor windings or magnets, and offer better fault tolerance. They can also achieve wide speed ranges with high efficiency, especially under partial load conditions common in real-world driving.',
   },
@@ -21,15 +21,15 @@ const faqs = [
     answer:
       'Yes. Our modular design approach enables our technology to integrate across a wide range of electric mobility and industrial applications while meeting unique performance and form-factor requirements.',
   },
-  {
-    question: 'What applications are your products used in?',
-    answer:
-      'Our technology is suitable for electric two-wheelers, three-wheelers, commercial vehicles, industrial mobility solutions, agricultural equipment, and other customized electric applications.',
-  },
+  // {
+  //   question: 'What applications are your products used in?',
+  //   answer:
+  //     'Our technology is suitable for electric two-wheelers, three-wheelers, commercial vehicles, industrial mobility solutions, agricultural equipment, and other customized electric applications.',
+  // },
   {
     question: 'What kind of support do you provide?',
     answer:
-      'We provide end-to-end technical support including system integration guidance, calibration support, field diagnostics, and ongoing engineering assistance for OEM partners and fleet operators.',
+      'We provide end-to-end technical support including design, Prtotype manufacturing, system integration, field Testing, Remote monitoring for OEM partners and Tier 1 manufacturers.',
   },
   {
     question: 'Where are your products manufactured?',

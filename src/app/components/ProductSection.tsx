@@ -27,7 +27,7 @@ const products: Product[] = [
     image: '/photos/EV-powertrain2.png',
     href: '/products#powertrain',
     features: [
-      'Rare Earth Free motor',
+      'Rare Earth Free Motor',
       'Boost 20% Vehicle Range',
       'Frees up 30% more battery space',
       // 'Reduces Powertrain Costs by 50%',
@@ -206,9 +206,9 @@ export function ProductSection() {
               className="font-bold leading-tight mb-2"
               style={{ fontSize: 'clamp(26px,4vw,36px)', color: '#0d1b2a' }}
             >
-              High - Performance &
+              High - Performance 
               <br></br>
-               Future - Ready.
+               Motor & Controller.
             </h2>
             {/* <p style={{ fontSize: 14, color: '#4a5a6a', lineHeight: 1.7 }}>
               Precision-engineered EV powertrain solutions for two wheelers, three wheelers, and

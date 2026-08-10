@@ -580,7 +580,7 @@ const badges = [
 const features = [
    {
     icon: DollarSign,
-    title: 'in-house R&D, and sub point',
+    title: 'in-house R&D',
     body: 'We design motor and controller from electromagnetic designs to PCBs and software.',
   },
   {
@@ -691,7 +691,7 @@ export function WhyChooseSection() {
           <div className="flex flex-col gap-6 sm:gap-8">
 
             {/* Eyebrow */}
-            <motion.p
+            {/* <motion.p
               ref={headerRef}
               initial={{ opacity: 0, y: 16 }}
               animate={headerInView ? { opacity: 1, y: 0 } : {}}
@@ -700,7 +700,7 @@ export function WhyChooseSection() {
               style={{ color: '#00D4B4' }}
             >
               Engineering Excellence
-            </motion.p>
+            </motion.p> */}
 
             {/* Hero heading */}
             <motion.div
@@ -719,7 +719,7 @@ export function WhyChooseSection() {
             </motion.div>
 
             {/* Description */}
-            <motion.p
+            {/* <motion.p
               initial={{ opacity: 0, y: 16 }}
               animate={headerInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.16, duration: 0.5 }}
@@ -729,7 +729,7 @@ export function WhyChooseSection() {
               Innovative motor technology proven in the real world.
               <br />
               Built for performance. Designed for tomorrow.
-            </motion.p>
+            </motion.p> */}
 
             {/* ── Bottom bar ── */}
             <motion.div

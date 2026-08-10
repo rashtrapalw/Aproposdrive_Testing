@@ -47,14 +47,14 @@ export function HeroSection() {
   </span>
 </motion.h1>
 
-<motion.p
+{/* <motion.p
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ delay: 0.4 }}
   className="text-lg md:text-xl text-white/70 leading-relaxed max-w-xl tracking-wide"
 >
   We engineer high-performance EV motors and intelligent motor controllers for the next generation of electric mobility.
-</motion.p>
+</motion.p> */}
 
             <motion.div
               initial={{ opacity: 0, y: 20 }}

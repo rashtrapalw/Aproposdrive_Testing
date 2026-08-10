@@ -16,7 +16,8 @@ export function HeroSection() {
 
       <div className="absolute inset-0 bg-black/50 z-10"></div>
 
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+      {/* <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20"> */}
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-86 pb-20 lg:pt-40 xl:pt-48">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           {/* Left Content */}
           <motion.div
@@ -31,18 +32,26 @@ export function HeroSection() {
   initial={{ opacity: 0, y: 20 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ delay: 0.3 }}
-  className="audiowide-regular leading-tight md:leading-[1.15]"
+  // Swapped audiowide-regular → DM Sans (font-black = weight 900),
+  // matching the font used on the Products page heading.
+  className="font-['DM_Sans'] font-black leading-tight md:leading-[1.15]"
 >
-  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.30rem)] text-white">
+  {/* 
+    Font size clamp: (2rem, 4.2vw, 3.1rem) — unchanged from before.
+    - Mobile (small viewports): starts at 2rem.
+    - Desktop/laptop (large viewports): caps at 3.1rem instead of the
+      original 4.30rem, so it doesn't feel oversized on wide screens.
+  */}
+  <span className="block whitespace-nowrap text-[clamp(2rem,4.2vw,4.1rem)] text-white">
     <span className="text-white">Engineering </span>
     <span className="bg-gradient-to-r from-[#00C853] to-[#00E5FF] bg-clip-text text-transparent">
       Intelligent
     </span>
-  </span>
-  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.30rem)] text-white">
+  </span> 
+  <span className="block whitespace-nowrap text-[clamp(2rem,4.2vw,4.1rem)] text-white">
     Motion Technology for 
   </span>
-  <span className="block whitespace-nowrap text-[clamp(2rem,7vw,4.30rem)] text-[#00C853]">
+  <span className="block whitespace-nowrap text-[clamp(2rem,4.2vw,4.1rem)] text-[#00C853]">
     Sustainable Future
   </span>
 </motion.h1>

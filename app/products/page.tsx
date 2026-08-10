@@ -304,65 +304,6 @@ function OrbitalShowcase({ product, idx }: { product: Product; idx: number }) {
   );
 }
 
-// ─── ORBITAL CARD — white rectangular card, icon chip, single combined heading ─
-
-
-// function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIcon; left: number; top: number; delay: number }) {
-//   const [hov, setHov] = useState(false);
-//   return (
-//     <motion.div
-//       initial={{ opacity: 0, scale: 0.4 }}
-//       whileInView={{ opacity: 1, scale: 1 }}
-//       viewport={{ once: false, margin: '-10% 0px' }}
-//       transition={{ delay, type: 'spring', stiffness: 200, damping: 20 }}
-//       onMouseEnter={() => setHov(true)}
-//       onMouseLeave={() => setHov(false)}
-//       whileHover={{ scale: 1.05, y: -3 }}
-//       style={{
-//         position: 'absolute',
-//         left, top,
-//         width: CW, height: CH,
-//         zIndex: 20,
-//         display: 'flex', flexDirection: 'column',
-//         alignItems: 'center',
-//         borderRadius: 20,
-//         background: '#ffffff',
-//         border: `1px solid ${hov ? spec.color + '55' : '#c7d2da'}`,
-//         boxShadow: hov
-//           ? `0 14px 30px ${spec.color}20, 0 2px 10px rgba(13,27,42,0.06)`
-//           : `0 2px 14px rgba(13,27,42,0.06)`,
-//         transition: 'border-color 0.2s ease, box-shadow 0.2s ease',
-//         cursor: 'default', userSelect: 'none',
-//         padding: '0 14px 14px',
-//         textAlign: 'center',
-//         overflow: 'visible',
-//       }}
-//     >
-//       {/* Icon badge — half overlaps the top edge of the card */}
-//       <div style={{
-//         position: 'absolute',
-//         top: -26, left: '50%', transform: 'translateX(-50%)',
-//         width: 52, height: 52, borderRadius: '50%', flexShrink: 0,
-//         display: 'flex', alignItems: 'center', justifyContent: 'center',
-//         background: '#ffffff', border: `1px solid ${spec.color}35`,
-//         boxShadow: '0 6px 16px rgba(13,27,42,0.10)',
-//         zIndex: 2,
-//       }}>
-//         <Icon style={{ width: 20, height: 20, color: spec.color }} strokeWidth={2.3} />
-//       </div>
-//       <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: 6, paddingTop: 30, justifyContent: 'center', flex: 1 }}>
-//         <span style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 800, color: '#0d1b2a', fontSize: 14, lineHeight: 1.35 }}>
-//           {spec.value}{spec.label ? ` ${spec.label.replace(/\n/g, ' ')}` : ''}
-//         </span>
-//         {spec.description && (
-//           <p style={{ fontFamily: 'DM Sans, sans-serif', color: 'rgba(13,27,42,0.72)', fontWeight: 500, fontSize: 11.5, lineHeight: 1.5, margin: '2px 0 0' }}>
-//             {spec.description}
-//           </p>
-//         )}
-//       </div>
-//     </motion.div>
-//   );
-// }
 
 
 function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIcon; left: number; top: number; delay: number }) {
@@ -683,31 +624,56 @@ function VariantCard({ variant, accent, delay }: { variant: Variant; accent: str
   );
 }
 
-// ─── PRODUCT GALLERY — 3 plain images (no border/card) with a name + optional ─
+
+
+// ─── PRODUCT GALLERY — plain images (no border/card) with a name + optional ──
 // subheading below each, shown between the hero showcase and the specs table.
-// Always renders in a single row of 3, sized down on mobile so all three
-// still fit in one row.
-
-
+//
+// DESKTOP / TABLET (isMobile = false): unchanged — single row, all images
+// side by side (flex row, nowrap, centered).
+//
+// MOBILE (isMobile = true): CHANGED — now renders as a 4-column CSS grid
+// instead of a single cramped row. With 8 gallery images this gives 2 neat
+// rows of 4, instead of squeezing everything into one row. Image size is
+// reduced slightly on mobile so 4 fit comfortably per row.
 function ProductGallery({ images, isMobile, accent }: { images: GalleryImage[]; isMobile: boolean; accent: string }) {
   return (
     <div style={{ width: '100%', marginBottom: isMobile ? 32 : 48 }}>
+      {/* Section label — unchanged for both mobile and desktop */}
       <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 10, marginBottom: isMobile ? 14 : 18 }}>
         <span style={{ width: 8, height: 8, borderRadius: '50%', background: accent, flexShrink: 0 }} />
         <span style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 13, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.16em', color: '#0d1b2a' }}>
           Applications
         </span>
       </div>
+
+      {/*
+        Layout switch:
+        - Mobile: CSS grid, fixed 4 columns → 8 images wrap into 2 rows of 4.
+        - Desktop/tablet: original flex row, nowrap, centered (untouched).
+      */}
       <div
-        style={{
-          display: 'flex',
-          flexDirection: 'row',
-          flexWrap: 'nowrap',
-          justifyContent: 'center',
-          alignItems: 'flex-start',
-          gap: isMobile ? 12 : 40,
-          width: '100%',
-        }}
+        style={
+          isMobile
+            ? {
+                // ── MOBILE: 4-column grid ──
+                display: 'grid',
+                gridTemplateColumns: 'repeat(4, 1fr)',
+                rowGap: 20,
+                columnGap: 10,
+                width: '100%',
+              }
+            : {
+                // ── DESKTOP/TABLET: original single-row flex layout (unchanged) ──
+                display: 'flex',
+                flexDirection: 'row',
+                flexWrap: 'nowrap',
+                justifyContent: 'center',
+                alignItems: 'flex-start',
+                gap: 40,
+                width: '100%',
+              }
+        }
       >
         {images.map((img, i) => (
           <motion.div
@@ -716,30 +682,43 @@ function ProductGallery({ images, isMobile, accent }: { images: GalleryImage[]; 
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: false, margin: '-5% 0px' }}
             transition={{ delay: i * 0.08, duration: 0.4 }}
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: isMobile ? 6 : 10,
-              flex: '1 1 0',
-              minWidth: 0,
-              maxWidth: isMobile ? 116 : 190,
-            }}
+            style={
+              isMobile
+                ? {
+                    // ── MOBILE: each item is a grid cell, no fixed maxWidth needed ──
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: 6,
+                    minWidth: 0,
+                  }
+                : {
+                    // ── DESKTOP/TABLET: original flex-item sizing (unchanged) ──
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    gap: 10,
+                    flex: '1 1 0',
+                    minWidth: 0,
+                    maxWidth: 190,
+                  }
+            }
           >
             <ImageWithFallback
               src={img.src}
               alt={img.name}
               style={{
                 width: '100%',
-                maxWidth: isMobile ? 104 : 170,
-                height: isMobile ? 104 : 170,
+                // Mobile images are smaller (4 per row) than the old 3-per-row size.
+                maxWidth: isMobile ? 72 : 170,
+                height: isMobile ? 72 : 170,
                 objectFit: 'contain',
               }}
             />
             <span style={{
               fontFamily: 'DM Sans, sans-serif',
               fontWeight: 700,
-              fontSize: isMobile ? 11 : 13,
+              fontSize: isMobile ? 9.5 : 13,
               color: '#0d1b2a',
               textAlign: 'center',
               lineHeight: 1.3,
@@ -750,7 +729,7 @@ function ProductGallery({ images, isMobile, accent }: { images: GalleryImage[]; 
               <span style={{
                 fontFamily: 'DM Sans, sans-serif',
                 fontWeight: 500,
-                fontSize: isMobile ? 9.5 : 11.5,
+                fontSize: isMobile ? 8.5 : 11.5,
                 color: 'rgba(13,27,42,0.55)',
                 textAlign: 'center',
                 lineHeight: 1.3,
@@ -764,7 +743,6 @@ function ProductGallery({ images, isMobile, accent }: { images: GalleryImage[]; 
     </div>
   );
 }
-
 
 
 // ─── FULL-WIDTH SPECS TABLE — now with row + column grid lines, slightly ─────

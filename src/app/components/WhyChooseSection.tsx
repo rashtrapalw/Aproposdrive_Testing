@@ -691,7 +691,7 @@ export function WhyChooseSection() {
           <div className="flex flex-col gap-6 sm:gap-8">
 
             {/* Eyebrow */}
-            {/* <motion.p
+            <motion.p
               ref={headerRef}
               initial={{ opacity: 0, y: 16 }}
               animate={headerInView ? { opacity: 1, y: 0 } : {}}
@@ -699,8 +699,8 @@ export function WhyChooseSection() {
               className="text-sm font-bold  uppercase tracking-[0.22em]"
               style={{ color: '#00D4B4' }}
             >
-              Engineering Excellence
-            </motion.p> */}
+              {/* Engineering Excellence */}
+            </motion.p>
 
             {/* Hero heading */}
             <motion.div

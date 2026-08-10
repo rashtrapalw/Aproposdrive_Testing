@@ -707,7 +707,7 @@ export function WhyChooseSection() {
               initial={{ opacity: 0, y: 20 }}
               animate={headerInView ? { opacity: 1, y: 0 } : {}}
               transition={{ delay: 0.08, duration: 0.55 }}
-              className="font-['DM_Sans']"
+             className="font-['DM_Sans'] font-black leading-tight md:leading-[1.15]"
               
             >
               <h2

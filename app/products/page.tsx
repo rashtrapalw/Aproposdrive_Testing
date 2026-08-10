@@ -83,7 +83,7 @@ const PRODUCTS: Product[] = [
     subtitle: 'Compact. Rare-earth-free. Purpose-built.',
     description: 'A single unified unit combining motor, gearbox, and controller — air-cooled, IP67-sealed, and engineered for electric scooters at scale.',
     image: '/photos/EvPowertrain.png',
-    video: '/videos/Powertrain.mp4',
+    video: '/videos/video2.mp4',
     accent: '#00a550',
     galleryImages: [
         { src: '/Product Applications/Drone.png', name: 'Drone', subheading: '-' },
@@ -644,23 +644,21 @@ function ProductVideoPanel({ video, accent, title }: { video?: string; accent: s
         height: 0,
         background: '#000',
       }}>
-       <video
-  src={video}
-  autoPlay
-  muted
-  loop
-  playsInline
-  controls
-  preload="auto"
-  style={{
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    width: '100%',
-    height: '100%',
-    objectFit: 'cover',
-  }}
-/>
+        <video
+          src={video}
+          autoPlay
+          playsInline
+          muted
+          loop
+          style={{
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+          }}
+        />
       </div>
     </motion.div>
   );

@@ -83,7 +83,7 @@ const PRODUCTS: Product[] = [
     subtitle: 'Compact. Rare-earth-free. Purpose-built.',
     description: 'A single unified unit combining motor, gearbox, and controller — air-cooled, IP67-sealed, and engineered for electric scooters at scale.',
     image: '/photos/EvPowertrain.png',
-    video: '/videos/video2.mp4',
+    video: '/videos/powertrain.mp4',
     accent: '#00a550',
     galleryImages: [
         { src: '/Product Applications/Drone.png', name: 'Drone', subheading: '-' },

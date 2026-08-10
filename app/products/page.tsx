@@ -83,9 +83,14 @@ const PRODUCTS: Product[] = [
     image: '/photos/EvPowertrain.png',
     accent: '#00a550',
     galleryImages: [
-      { src: '/photos/Scooty_product.png', name: 'ELECTRIC SCOOTER', subheading: ' 2W / Electric' },
-      { src: '/photos/Auto_product.png', name: 'ELECTRIC PASSENGER RIKSHAW', subheading: '3W / Electric' },
-      { src: '/photos/Product_Car.png', name: 'SMALL EV CAR', subheading: '3W / Electric' },
+        { src: '/Product Applications/Drone.png', name: 'Drone', subheading: '-' },
+      { src: '/Product Applications/Scooty_product.png', name: 'ELECTRIC SCOOTER', subheading: ' 2W / Electric' },
+      { src: '/Product Applications/Auto_product.png', name: 'ELECTRIC PASSENGER RIKSHAW', subheading: '3W / Electric' },
+      { src: '/Product Applications/Product_Car.png', name: 'SMALL EV CAR', subheading: '4W / Electric' },
+      { src: '/Product Applications/Bike.png', name: 'ELECTRIC BIKE', subheading: '2W / Electric' },
+      { src: '/Product Applications/Tractor.png', name: 'ELECTRIC 3-WHEELER', subheading: '4W / Electric' },
+      { src: '/Product Applications/Golf-car.png', name: 'GOLF CART ELECTRIC', subheading: '4W / Electric' },
+      { src: '/Product Applications/Robot.png', name: 'ELECTRIC ROBOT', subheading: '-' },
     ],
     keyFeatures: [
       { icon: Leaf, text: 'Rare Earth-Free Motor' },
@@ -130,9 +135,15 @@ const PRODUCTS: Product[] = [
     image: '/photos/no-bg-controller.png',
     accent: '#0077b6',
     galleryImages: [
-      { src: '/photos/Scooty_product.png', name: 'ELECTRIC SCOOTER', subheading: ' 2W / Electric' },
-      { src: '/photos/Auto_product.png', name: 'ELECTRIC PASSENGER RIKSHAW', subheading: '3W / Electric' },
-      { src: '/photos/SmallTempo_product.png', name: ' L5 TEMPO', subheading: '4W / Electric' },
+       { src: '/Product Applications/Drone.png', name: 'Drone', subheading: '-' },
+      { src: '/Product Applications/Scooty_product.png', name: 'ELECTRIC SCOOTER', subheading: ' 2W / Electric' },
+      { src: '/Product Applications/Auto_product.png', name: 'ELECTRIC PASSENGER RIKSHAW', subheading: '3W / Electric' },
+      { src: '/Product Applications/SmallTempo_product.png', name: ' L5 TEMPO', subheading: '4W / Electric' },
+      { src: '/Product Applications/Bike.png', name: 'ELECTRIC BIKE', subheading: '2W / Electric' },
+      { src: '/Product Applications/Tractor.png', name: 'ELECTRIC 3-WHEELER', subheading: '4W / Electric' },
+      { src: '/Product Applications/Golf-car.png', name: 'GOLF CART ELECTRIC', subheading: '4W / Electric' },
+      { src: '/Product Applications/Robot.png', name: 'ELECTRIC ROBOT', subheading: '-' },
+    
     ],
     keyFeatures: [
       { icon: Cpu, text: 'Vector FOC Algorithm' },

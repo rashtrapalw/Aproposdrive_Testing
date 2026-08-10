@@ -14,28 +14,28 @@ const faqs = [
   {
     question: 'What are benefits of SRM over BLDC?',
     answer:
-      'SRM motors are rare earth-free, more tolerant to high temperatures, have simpler construction with no rotor windings or magnets, and offer better fault tolerance. They can also achieve wide speed ranges with high efficiency, especially under partial load conditions common in real-world driving.',
+      'SRM motors are rare earth-free, more tolerant to high temperatures, have simpler construction with no rotor windings or magnets, offer better fault tolerance, They can also achieve wide speed range. Trade off between weight, Cost & Efficiency shoed be looked while Selecting the Appliacations.',
   },
   {
     question: 'Are your products customizable?',
     answer:
       'Yes. Our modular design approach enables our technology to integrate across a wide range of electric mobility and industrial applications while meeting unique performance and form-factor requirements.',
   },
-  // {
-  //   question: 'What applications are your products used in?',
-  //   answer:
-  //     'Our technology is suitable for electric two-wheelers, three-wheelers, commercial vehicles, industrial mobility solutions, agricultural equipment, and other customized electric applications.',
-  // },
+  {
+    question: 'Do you also do BLDC/PMSM Technology?',
+    answer:
+      'Yes, we specialize in BLDC and PMSM motor technologies, with a strong focus on PMSM solutions. Our primary expertise lies in developing rare-earth-free PMSM technology, enabling high-performance, efficient, and cost-effective motor solutions without relying on rare-earth magnets.',
+  },
   {
     question: 'What kind of support do you provide?',
     answer:
       'We provide end-to-end technical support including design, Prtotype manufacturing, system integration, field Testing, Remote monitoring for OEM partners and Tier 1 manufacturers.',
   },
-  {
-    question: 'Where are your products manufactured?',
-    answer:
-      'All our products are designed, developed, and manufactured in India. Our engineering and production facilities are based in Pune, ensuring quality control and rapid iteration aligned with Indian road and climate conditions.',
-  },
+  // {
+  //   question: 'Where are your products manufactured?',
+  //   answer:
+  //     'All our products are designed, developed, and manufactured in India. Our engineering and production facilities are based in Pune, ensuring quality control and rapid iteration aligned with Indian road and climate conditions.',
+  // },
 ]
 
 const listVariants: Variants = {
@@ -112,66 +112,24 @@ function FAQItem({ faq }: { faq: (typeof faqs)[0] }) {
   )
 }
 
-// ── Floating illustration — pure CSS keyframes, zero JS per frame ─────────────
+
+
 function FloatingIllustration() {
   return (
-    <div className="relative flex items-center justify-center w-full" style={{ maxWidth: 420, aspectRatio: '1 / 1' }}>
-      <style>{`
-        @keyframes faqFloat {
-          0%, 100% { transform: translateY(0); }
-          50% { transform: translateY(-10px); }
-        }
-        @keyframes faqSpinCW {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(360deg); }
-        }
-        @keyframes faqSpinCCW {
-          from { transform: rotate(0deg); }
-          to { transform: rotate(-360deg); }
-        }
-        .faq-ring-outer { animation: faqSpinCW 28s linear infinite; }
-        .faq-ring-inner { animation: faqSpinCCW 44s linear infinite; }
-        .faq-float-img { animation: faqFloat 4s ease-in-out infinite; will-change: transform; }
-        @media (prefers-reduced-motion: reduce) {
-          .faq-ring-outer, .faq-ring-inner, .faq-float-img { animation: none; }
-        }
-      `}</style>
-
-      {/* Outer glow ring */}
-      <div
-        className="absolute rounded-full faq-ring-outer"
-        style={{
-          width: '92%',
-          height: '92%',
-          background: 'radial-gradient(circle, rgba(0,165,80,0.07) 0%, transparent 70%)',
-          border: '1px solid rgba(0,165,80,0.12)',
-        }}
-      />
-      {/* Inner ring */}
-      <div
-        className="absolute rounded-full faq-ring-inner"
-        style={{
-          width: '70%',
-          height: '70%',
-          border: '1px dashed rgba(0,165,80,0.18)',
-        }}
-      />
-
-      {/* Floating question mark image — CSS-driven float, GPU-composited */}
+    <div
+      className="relative flex items-center justify-center w-full"
+      style={{ maxWidth: 520, aspectRatio: '1 / 1' }}
+    >
       <img
-        src="/photos/question-mark-3d.png"
-        alt="FAQ"
-        className="relative z-10 faq-float-img"
-        style={{
-          width: '100%',
-          height: '100%',
-          objectFit: 'contain',
-          filter: 'drop-shadow(0 10px 20px rgba(0,165,80,0.22))',
-        }}
+        src="/photos/FAQ-IMG.jpeg"
+        alt="Frequently Asked Questions"
+        className="w-full h-full object-contain"
       />
     </div>
   )
 }
+
+
 
 // ═══════════════════════════════════════════════════════════════════════════════
 export function FAQSection() {

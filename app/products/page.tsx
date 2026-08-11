@@ -136,7 +136,7 @@ const PRODUCTS: Product[] = [
     subtitle: 'Precise. Thermal-stable. Intelligent.',
     description: 'High-performance vector field-oriented motor controller for light EVs — with ride modes, hill hold, and real-time diagnostics built in.',
     image: '/photos/no-bg-controller.png',
-    video: '/videos/Controller.mp4',
+    video: '/videos/controller.mp4',
     accent: '#0077b6',
     galleryImages: [
        { src: '/Product Applications/Drone.png', name: 'Drone', subheading: '-' },

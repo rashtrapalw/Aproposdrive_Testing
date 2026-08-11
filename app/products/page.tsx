@@ -396,9 +396,9 @@ function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIco
         {spec.description && (
           <p style={{
             fontFamily: 'DM Sans, sans-serif',
-            color: 'rgba(13,27,42,0.55)',
+            color: 'rgba(13, 27, 42, 0.74)',
             fontWeight: 500,
-            fontSize: 10.5,
+            fontSize: 11,
             lineHeight: 1.5,
             margin: '2px 0 0',
             textAlign: 'center',

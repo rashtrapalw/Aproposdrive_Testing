@@ -9,12 +9,12 @@ const faqs = [
   {
     question: 'What is SRM technology?',
     answer:
-      'Switched Reluctance Motor (SRM) technology uses the principle of magnetic reluctance to produce motion. It requires no permanent magnets or rare earth materials, making it cost-effective, robust, and highly efficient for electric vehicle applications.',
+      'Switched Reluctance Motor (SRM) technology uses the principle of magnetic reluctance to produce motion. It requires no permanent magnets or rare earth materials, making it cost-effective, robust, and highly efficient for various applications.',
   },
   {
-    question: 'What are benefits of SRM over BLDC?',
+    question: 'What are benefits of SRM over BLDC/PMSM?',
     answer:
-      'SRM motors are rare earth-free, more tolerant to high temperatures, have simpler construction with no rotor windings or magnets, offer better fault tolerance, They can also achieve wide speed range. Trade off between weight, Cost & Efficiency shoed be looked while Selecting the Appliacations.',
+      'SRM motors are rare earth-free, more tolerant to high temperatures, have simpler construction with no rotor windings or magnets, offer better fault tolerance, they can also achieve wide speed range. Trade off between weight, cost & efficiency should be looked while selecting the appliacations.',
   },
   {
     question: 'Are your products customizable?',
@@ -29,7 +29,7 @@ const faqs = [
   {
     question: 'What kind of support do you provide?',
     answer:
-      'We provide end-to-end technical support including design, Prtotype manufacturing, system integration, field Testing, Remote monitoring for OEM partners and Tier 1 manufacturers.',
+      'We provide end-to-end technical support including design, Prototype manufacturing, system integration, field testing, remote monitoring for our OEM partners and Tier 1 manufacturers.',
   },
   // {
   //   question: 'Where are your products manufactured?',

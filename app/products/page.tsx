@@ -89,12 +89,12 @@ const PRODUCTS: Product[] = [
        
       { src: '/Product Applications/Scooty_product.png', name: 'ELECTRIC SCOOTER', subheading: ' 2W / Electric' },
       { src: '/Product Applications/Auto_product.png', name: 'ELECTRIC RIKSHAW', subheading: '3W / Electric' },
-      { src: '/Product Applications/Product_Car.png', name: 'SMALL EV CAR', subheading: '4W / Electric' },
+      { src: '/Product Applications/Product_Car.png', name: 'EV CAR', subheading: '4W / Electric' },
       { src: '/Product Applications/Bike.png', name: 'ELECTRIC BIKE', subheading: '2W / Electric' },
       { src: '/Product Applications/Tractor.png', name: 'AGRICULTURAL EQUIPMENTS', subheading: '4W / Electric' },
       { src: '/Product Applications/Golf-car.png', name: 'GOLF CART ', subheading: '4W / Electric' },
        { src: '/Product Applications/Drone.png', name: 'DRONES', subheading: '-' },
-      { src: '/Product Applications/Robot.png', name: 'ELECTRIC ROBOT', subheading: '-' },
+      // { src: '/Product Applications/Robot.png', name: 'ELECTRIC ROBOT', subheading: '-' },
     ],
     keyFeatures: [
       { icon: Leaf, text: 'Rare Earth-Free Motor' },
@@ -123,7 +123,7 @@ const PRODUCTS: Product[] = [
       ['Nominal Power', '2.5 kW', '4 kW'],
       ['Peak Power', '5.5 kW', '6.5 kW'],
       ['Peak Torque', '160 Nm', '200 Nm'],
-      ['Peak Motor Efficiency', '94%', '95%'],
+      ['Peak Motor Efficiency', '>92%', '>92%'],
       ['System Weight', '6.5 kg', '7.5 kg'],
       ['System Voltage', '48 / 60 V', '48 / 60 V'],
       ['Ingress Protection', 'IP67', 'IP67'],
@@ -143,13 +143,13 @@ const PRODUCTS: Product[] = [
       
       { src: '/Product Applications/Scooty_product.png', name: 'ELECTRIC SCOOTER', subheading: ' 2W / Electric' },
       { src: '/Product Applications/Auto_product.png', name: 'ELECTRIC RIKSHAW', subheading: '3W / Electric' },
-      { src: '/Product Applications/SmallTempo_product.png', name: ' L5 TEMPO', subheading: '4W / Electric' },
       { src: '/Product Applications/Bike.png', name: 'ELECTRIC BIKE', subheading: '2W / Electric' },
+      { src: '/Product Applications/SmallTempo_product.png', name: ' L5 TEMPO', subheading: '4W / Electric' },
       { src: '/Product Applications/Tractor.png', name: 'AGRICULTURAL EQUIPMENTS', subheading: '4W / Electric' },
       
       { src: '/Product Applications/Golf-car.png', name: 'GOLF CART ', subheading: '4W / Electric' },
        { src: '/Product Applications/Drone.png', name: 'DRONES', subheading: '-' },
-      { src: '/Product Applications/Robot.png', name: 'ELECTRIC ROBOT', subheading: '-' },
+      // { src: '/Product Applications/Robot.png', name: 'ELECTRIC ROBOT', subheading: '-' },
     
     ],
     keyFeatures: [

@@ -22,7 +22,7 @@ const products: Product[] = [
     id: 1,
     tag: 'Product 01',
     title: 'EV Powertrain',
-    subtitle: ' Integrated Powertrain Control Unit',
+    subtitle: ' Integrated powertrain control unit',
     description: '',
     image: '/photos/EV-powertrain2.png',
     href: '/products#powertrain',

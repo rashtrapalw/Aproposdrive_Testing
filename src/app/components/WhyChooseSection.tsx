@@ -586,13 +586,13 @@ const features = [
   {
     icon: Globe,
     title: 'Rare Earth-Free Technology',
-    body: ' Eliminating Supply Chain Dependency, Efficient and Reliable Performance.',
+    body: ' Eliminating supply chain dependency, efficient and reliable performance.',
   },
 
   {
     icon: ShieldCheck,
     title: 'Field-Test Ready',
-    body: 'validated through extensive real-world testing and, real-world testing and real-time data for performance testing and in demanding conditions.',
+    body: 'Validated through extensive real-world testing and real-time data for performance testing and in demanding conditions.',
   },
  
  

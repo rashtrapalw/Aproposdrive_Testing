@@ -86,13 +86,14 @@ const PRODUCTS: Product[] = [
     video: '/videos/powertrain.mp4',
     accent: '#00a550',
     galleryImages: [
-        { src: '/Product Applications/Drone.png', name: 'Drone', subheading: '-' },
+       
       { src: '/Product Applications/Scooty_product.png', name: 'ELECTRIC SCOOTER', subheading: ' 2W / Electric' },
-      { src: '/Product Applications/Auto_product.png', name: 'ELECTRIC PASSENGER RIKSHAW', subheading: '3W / Electric' },
+      { src: '/Product Applications/Auto_product.png', name: 'ELECTRIC RIKSHAW', subheading: '3W / Electric' },
       { src: '/Product Applications/Product_Car.png', name: 'SMALL EV CAR', subheading: '4W / Electric' },
       { src: '/Product Applications/Bike.png', name: 'ELECTRIC BIKE', subheading: '2W / Electric' },
-      { src: '/Product Applications/Tractor.png', name: 'ELECTRIC 3-WHEELER', subheading: '4W / Electric' },
-      { src: '/Product Applications/Golf-car.png', name: 'GOLF CART ELECTRIC', subheading: '4W / Electric' },
+      { src: '/Product Applications/Tractor.png', name: 'AGRICULTURAL EQUIPMENTS', subheading: '4W / Electric' },
+      { src: '/Product Applications/Golf-car.png', name: 'GOLF CART ', subheading: '4W / Electric' },
+       { src: '/Product Applications/Drone.png', name: 'DRONES', subheading: '-' },
       { src: '/Product Applications/Robot.png', name: 'ELECTRIC ROBOT', subheading: '-' },
     ],
     keyFeatures: [
@@ -139,13 +140,15 @@ const PRODUCTS: Product[] = [
     video: '/videos/controller.mp4',
     accent: '#0077b6',
     galleryImages: [
-       { src: '/Product Applications/Drone.png', name: 'Drone', subheading: '-' },
+      
       { src: '/Product Applications/Scooty_product.png', name: 'ELECTRIC SCOOTER', subheading: ' 2W / Electric' },
-      { src: '/Product Applications/Auto_product.png', name: 'ELECTRIC PASSENGER RIKSHAW', subheading: '3W / Electric' },
+      { src: '/Product Applications/Auto_product.png', name: 'ELECTRIC RIKSHAW', subheading: '3W / Electric' },
       { src: '/Product Applications/SmallTempo_product.png', name: ' L5 TEMPO', subheading: '4W / Electric' },
       { src: '/Product Applications/Bike.png', name: 'ELECTRIC BIKE', subheading: '2W / Electric' },
-      { src: '/Product Applications/Tractor.png', name: 'ELECTRIC 3-WHEELER', subheading: '4W / Electric' },
-      { src: '/Product Applications/Golf-car.png', name: 'GOLF CART ELECTRIC', subheading: '4W / Electric' },
+      { src: '/Product Applications/Tractor.png', name: 'AGRICULTURAL EQUIPMENTS', subheading: '4W / Electric' },
+      
+      { src: '/Product Applications/Golf-car.png', name: 'GOLF CART ', subheading: '4W / Electric' },
+       { src: '/Product Applications/Drone.png', name: 'DRONES', subheading: '-' },
       { src: '/Product Applications/Robot.png', name: 'ELECTRIC ROBOT', subheading: '-' },
     
     ],

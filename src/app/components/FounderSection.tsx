@@ -117,10 +117,9 @@ export function FoundersSection() {
               >
                 Our
                 <br />
-                <br />
-                Supporting
-                <br />
-                Hands
+                {/* <br /> */}
+                Advisors
+               
               </h2>
 
               <p

@@ -115,8 +115,8 @@ function AboutSection() {
             className="font-black leading-[1.08] tracking-tight text-gray-900 mb-5"
             style={{ fontSize: 'clamp(30px, 3.5vw, 50px)' }}
           >
-            Powering Innovation<br />
-            Through <span className="text-green-600" style={{ color: '#00a550' }}>Engineering.</span>
+            Innovation <br />
+            That Unlocks <span className="text-green-600" style={{ color: '#00a550' }}> <br/> New Possibilities.</span>
           </motion.h2>
  
           <motion.p
@@ -125,8 +125,7 @@ function AboutSection() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-[20px] sm:text-lg lg:text-lg text-gray-600 leading-relaxed mb-8"
           >
-            Our passion for engineering drives us to build high-performance motor and controller
-            technologies that empower industries to embrace the future of electric mobility.
+            We combine advanced engineering and innovation to create high-performance solutions that transform ideas into real-world solutions.
           </motion.p>
  
           <motion.div

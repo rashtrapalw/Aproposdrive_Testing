@@ -814,18 +814,36 @@ function ProductGallery({ images, isMobile, accent }: { images: GalleryImage[]; 
 
 
 // ─── SPECS TABLE — compact + attractive ──────────────────────────────────────
-function SpecsTable({ headers, rows, accent, delay, compact }: { headers: string[]; rows: string[][]; accent: string; delay: number; compact?: boolean }) {
+function SpecsTable({
+  headers,
+  rows,
+  accent,
+  delay,
+  compact
+}: {
+  headers: string[];
+  rows: string[][];
+  accent: string;
+  delay: number;
+  compact?: boolean;
+}) {
   const isGreen = accent === '#00a550';
-  // tints derived from accent
-  const headerBg   = isGreen ? '#003d1a' : '#003356';  // dark header row
-  const altRowBg   = isGreen ? 'rgba(0,165,80,0.04)' : 'rgba(0,119,182,0.04)';
-  const valueBg    = isGreen ? 'rgba(0,165,80,0.09)' : 'rgba(0,119,182,0.09)';
-  const cellP      = compact ? '5px 8px' : '7px 12px';   // compact padding
-  const labelSize  = compact ? 10.5 : 11.5;
-  const valueSize  = compact ? 11.5 : 12.5;
-  const headerSize = compact ? 9  : 9.5;
+
+  const headerBg   = isGreen ? '#003d1a' : '#003356';
+  const altRowBg   = isGreen
+    ? 'rgba(0,165,80,0.04)'
+    : 'rgba(0,119,182,0.04)';
+
+  const valueBg    = isGreen
+    ? 'rgba(0,165,80,0.09)'
+    : 'rgba(0,119,182,0.09)';
+
+  const cellP      = compact ? '5px 8px' : '7px 12px';
+  const labelSize  = compact ? 12 : 13;   // increased from 10.5 / 11.5
+  const valueSize  = compact ? 13 : 14.5; // increased from 11.5 / 12.5
+  const headerSize = compact ? 10 : 10.5; // increased from 9 / 9.5
   const minW       = compact ? 280 : 380;
- 
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 16 }}
@@ -833,81 +851,169 @@ function SpecsTable({ headers, rows, accent, delay, compact }: { headers: string
       viewport={{ once: false, margin: '-5% 0px' }}
       transition={{ delay, duration: 0.45 }}
       style={{
-        width: '100%', borderRadius: 18, overflow: 'hidden',
+        width: '100%',
+        borderRadius: 18,
+        overflow: 'hidden',
         border: `1.5px solid ${accent}22`,
         boxShadow: `0 4px 24px ${accent}12, 0 1px 6px rgba(13,27,42,0.06)`,
       }}
     >
       {/* Title bar */}
-      <div style={{
-        display: 'flex', alignItems: 'center', gap: 10,
-        padding: compact ? '9px 14px' : '11px 16px',
-        background: `linear-gradient(90deg, ${headerBg}, ${headerBg}ee)`,
-        borderBottom: `2px solid ${accent}55`,
-      }}>
-        <div style={{
-          width: 8, height: 8, borderRadius: '50%',
-          background: isGreen ? '#4ade80' : '#38bdf8',
-          boxShadow: `0 0 8px ${isGreen ? '#4ade80' : '#38bdf8'}cc`,
-          flexShrink: 0,
-        }} />
-        <span style={{
-          fontFamily: 'DM Sans, sans-serif', fontSize: 10, fontWeight: 900,
-          textTransform: 'uppercase', letterSpacing: '0.24em', color: '#ffffff',
-        }}>
+      <div
+        style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: 10,
+          padding: compact ? '9px 14px' : '11px 16px',
+          background: `linear-gradient(90deg, ${headerBg}, ${headerBg}ee)`,
+          borderBottom: `2px solid ${accent}55`,
+        }}
+      >
+        <div
+          style={{
+            width: 8,
+            height: 8,
+            borderRadius: '50%',
+            background: isGreen ? '#4ade80' : '#38bdf8',
+            boxShadow: `0 0 8px ${
+              isGreen ? '#4ade80' : '#38bdf8'
+            }cc`,
+            flexShrink: 0,
+          }}
+        />
+
+        <span
+          style={{
+            fontFamily: 'DM Sans, sans-serif',
+            fontSize: 10,
+            fontWeight: 900,
+            textTransform: 'uppercase',
+            letterSpacing: '0.24em',
+            color: '#ffffff',
+          }}
+        >
           Full Specifications
         </span>
-        <div style={{ marginLeft: 'auto', display: 'flex', gap: 4 }}>
-          {[0,1,2].map(i => (
-            <div key={i} style={{
-              width: 6, height: 6, borderRadius: '50%',
-              background: i === 0 ? '#ff5f57' : i === 1 ? '#ffbd2e' : (isGreen ? '#4ade80' : '#38bdf8'),
-              opacity: 0.8,
-            }} />
+
+        <div
+          style={{
+            marginLeft: 'auto',
+            display: 'flex',
+            gap: 4,
+          }}
+        >
+          {[0, 1, 2].map((i) => (
+            <div
+              key={i}
+              style={{
+                width: 6,
+                height: 6,
+                borderRadius: '50%',
+                background:
+                  i === 0
+                    ? '#ff5f57'
+                    : i === 1
+                    ? '#ffbd2e'
+                    : isGreen
+                    ? '#4ade80'
+                    : '#38bdf8',
+                opacity: 0.8,
+              }}
+            />
           ))}
         </div>
       </div>
- 
-      <div style={{ overflowX: 'auto', background: '#ffffff' }}>
-        <table style={{ width: '100%', borderCollapse: 'collapse', minWidth: minW }}>
+
+      <div
+        style={{
+          overflowX: 'auto',
+          background: '#ffffff',
+        }}
+      >
+        <table
+          style={{
+            width: '100%',
+            borderCollapse: 'collapse',
+            minWidth: minW,
+          }}
+        >
           <thead>
             <tr style={{ background: `${accent}18` }}>
               {headers.map((h, i) => (
-                <th key={i} style={{
-                  padding: cellP, textAlign: 'left',
-                  fontFamily: 'DM Sans, sans-serif',
-                  fontSize: headerSize, textTransform: 'uppercase',
-                  letterSpacing: '0.16em', fontWeight: 900,
-                  color: i === 0 ? 'rgba(13,27,42,0.55)' : accent,
-                  borderBottom: `2px solid ${accent}35`,
-                  borderRight: `1px solid ${accent}12`,
-                  whiteSpace: 'nowrap',
-                  background: i > 0 ? `${accent}12` : 'transparent',
-                }}>{h}</th>
+                <th
+                  key={i}
+                  style={{
+                    padding: cellP,
+                    textAlign: 'left',
+                    fontFamily: 'DM Sans, sans-serif',
+                    fontSize: headerSize,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.16em',
+                    fontWeight: 900,
+                    color:
+                      i === 0
+                        ? 'rgba(13,27,42,0.55)'
+                        : accent,
+                    borderBottom: `2px solid ${accent}35`,
+                    borderRight: `1px solid ${accent}12`,
+                    whiteSpace: 'nowrap',
+                    background:
+                      i > 0 ? `${accent}12` : 'transparent',
+                    // first column shrinks to fit its own content;
+                    // remaining columns share the leftover space
+                    ...(i === 0 ? { width: '1%' } : {}),
+                  }}
+                >
+                  {h}
+                </th>
               ))}
             </tr>
           </thead>
+
           <tbody>
             {rows.map((row, ri) => (
               <tr
                 key={ri}
-                style={{ background: ri % 2 === 1 ? altRowBg : '#ffffff' }}
+                style={{
+                  background:
+                    ri % 2 === 1 ? altRowBg : '#ffffff',
+                }}
               >
                 {row.map((cell, ci) => (
-                  <td key={ci} style={{
-                    padding: cellP,
-                    fontFamily: 'DM Sans, sans-serif',
-                    fontSize: ci === 0 ? labelSize : valueSize,
-                    fontWeight: ci === 0 ? 600 : 800,
-                    color: ci === 0 ? 'rgba(13,27,42,0.65)' : accent,
-                    background: ci === 0
-                      ? 'transparent'
-                      : (ri % 2 === 0 ? valueBg : `${accent}14`),
-                    borderBottom: `1px solid ${accent}12`,
-                    borderRight: `1px solid ${accent}10`,
-                    /* highlight first value col slightly differently */
-                    ...(ci === 1 ? { borderLeft: `2px solid ${accent}20` } : {}),
-                  }}>{cell}</td>
+                  <td
+                    key={ci}
+                    style={{
+                      padding: cellP,
+                      fontFamily: 'DM Sans, sans-serif',
+                      fontSize:
+                        ci === 0 ? labelSize : valueSize,
+                      fontWeight:
+                        ci === 0 ? 600 : 800,
+                      color:
+                        ci === 0
+                          ? 'rgba(13,27,42,0.65)'
+                          : accent,
+                      background:
+                        ci === 0
+                          ? 'transparent'
+                          : ri % 2 === 0
+                          ? valueBg
+                          : `${accent}14`,
+                      borderBottom: `1px solid ${accent}12`,
+                      borderRight: `1px solid ${accent}10`,
+                      // keep first column tight to its content, no wrap
+                      ...(ci === 0
+                        ? { width: '1%', whiteSpace: 'nowrap' }
+                        : {}),
+                      ...(ci === 1
+                        ? {
+                            borderLeft: `2px solid ${accent}20`,
+                          }
+                        : {}),
+                    }}
+                  >
+                    {cell}
+                  </td>
                 ))}
               </tr>
             ))}
@@ -917,8 +1023,6 @@ function SpecsTable({ headers, rows, accent, delay, compact }: { headers: string
     </motion.div>
   );
 }
-
-
 
 
 

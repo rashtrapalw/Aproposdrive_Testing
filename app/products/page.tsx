@@ -89,9 +89,10 @@ const PRODUCTS: Product[] = [
        
       { src: '/Product Applications/Scooty_product.png', name: 'ELECTRIC SCOOTER', subheading: ' 2W / Electric' },
       { src: '/Product Applications/Auto_product.png', name: 'ELECTRIC RIKSHAW', subheading: '3W / Electric' },
-      { src: '/Product Applications/Product_Car.png', name: 'EV CAR', subheading: '4W / Electric' },
       { src: '/Product Applications/Bike.png', name: 'ELECTRIC BIKE', subheading: '2W / Electric' },
-      { src: '/Product Applications/Tractor.png', name: 'AGRICULTURAL EQUIPMENTS', subheading: '4W / Electric' },
+      { src: '/Product Applications/Product_Car.png', name: 'EV CAR', subheading: '4W / Electric' },
+      
+      { src: '/Product Applications/AgricultureEquipments.png', name: 'AGRICULTURAL EQUIPMENTS', subheading: '4W / Electric' },
       { src: '/Product Applications/Golf-car.png', name: 'GOLF CART ', subheading: '4W / Electric' },
        { src: '/Product Applications/Drone.png', name: 'DRONES', subheading: '-' },
       // { src: '/Product Applications/Robot.png', name: 'ELECTRIC ROBOT', subheading: '-' },
@@ -145,7 +146,7 @@ const PRODUCTS: Product[] = [
       { src: '/Product Applications/Auto_product.png', name: 'ELECTRIC RIKSHAW', subheading: '3W / Electric' },
       { src: '/Product Applications/Bike.png', name: 'ELECTRIC BIKE', subheading: '2W / Electric' },
       { src: '/Product Applications/SmallTempo_product.png', name: ' L5 TEMPO', subheading: '4W / Electric' },
-      { src: '/Product Applications/Tractor.png', name: 'AGRICULTURAL EQUIPMENTS', subheading: '4W / Electric' },
+      { src: '/Product Applications/AgricultureEquipments.png', name: 'AGRICULTURAL EQUIPMENTS', subheading: '4W / Electric' },
       
       { src: '/Product Applications/Golf-car.png', name: 'GOLF CART ', subheading: '4W / Electric' },
        { src: '/Product Applications/Drone.png', name: 'DRONES', subheading: '-' },

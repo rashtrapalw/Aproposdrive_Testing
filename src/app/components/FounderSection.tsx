@@ -18,7 +18,7 @@ const founders: Founder[] = [
   {
     name: 'Prof. B. G. Fernandes',
     role: 'Technical Advisor & Professor, IIT Bombay',
-    image: '/photos/bg-fernandis.png',
+    image: '/photos/BG-fernadis.png',
   },
 ]
 

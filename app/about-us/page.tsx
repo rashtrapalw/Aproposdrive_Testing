@@ -125,7 +125,7 @@ function AboutSection() {
             transition={{ delay: 0.2, duration: 0.5 }}
             className="text-[20px] sm:text-lg lg:text-lg text-gray-600 leading-relaxed mb-8"
           >
-            We combine advanced engineering and innovation to create high-performance solutions that transform ideas into real-world solutions.
+            We combine advanced engineering and innovation to create high-performance solutions that transform ideas into real-world impact.
           </motion.p>
  
           <motion.div

@@ -546,7 +546,7 @@ function MilestoneCard({ milestone, index }: { milestone: Milestone; index: numb
       style={{ color: '#00a550' }}
     >
       <span
-        className="mt-[2px] flex-shrink-0 flex items-center justify-center rounded-full"
+        className="mt-[4px] flex-shrink-0 flex items-center justify-center rounded-full"
         style={{
           width: 10,
           height: 10,

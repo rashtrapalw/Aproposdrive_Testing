@@ -126,10 +126,7 @@ export function FoundersSection() {
                 className="mt-6 text-sm sm:text-base leading-7 max-w-md"
                 style={{ color: 'rgba(13,27,42,0.6)' }}
               >
-                Our founders bring decades of expertise in motor technology,
-                power electronics and electric mobility, leading
-                Aproposdrive&apos;s mission to build efficient, sustainable and
-                next-generation electric drive solutions.
+                With over a decade of experience, we bridge the gap between laboratory-scale innovation and large-scale industrial commercialization. Our multidisciplinary expertise spans Japan’s semiconductor ecosystem, power electronics, electric motor and machine technology, manufacturing, and business strategy. By bringing these capabilities together, we develop and commercialize advanced technologies that are engineered for performance, scalability, and real-world impact
               </p>
             </motion.div>
 

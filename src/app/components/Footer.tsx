@@ -1,5 +1,6 @@
 ﻿'use client'
 
+import Link from 'next/link'
 import { useRef, useEffect, useState } from 'react'
 import { AnimatePresence } from 'motion/react'
 import { motion, useInView } from 'motion/react'
@@ -53,7 +54,7 @@ function FooterLink({ text, href, delay }: { text: string; href: string; delay: 
       viewport={{ once: false, margin: '-5% 0px' }}
       transition={{ delay, duration: 0.35 }}
     >
-      <a
+      <Link
         href={href}
         className="group inline-flex items-center gap-1 transition-colors duration-200"
         style={{
@@ -72,7 +73,7 @@ function FooterLink({ text, href, delay }: { text: string; href: string; delay: 
           className="w-3 h-3 opacity-0 group-hover:opacity-100 -translate-x-1 group-hover:translate-x-0 transition-all duration-200"
           style={{ color: '#00a550' }}
         />
-      </a>
+      </Link>
     </motion.li>
   )
 }

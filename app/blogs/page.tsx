@@ -26,7 +26,7 @@ const BLOG_POSTS: BlogPost[] = [
       'As the world moves rapidly toward electric mobility, renewable energy, and cleaner technologies, one challenge is becoming increasingly important: how do we build the technologies of tomorrow without depending heavily on scarce and geopolitically concentrated materials? ',
     image: '/photos/RareEarth_Technology.webp',
     date: 'Jun 12, 2026',
-    readTime: '6 min read',
+    readTime: '7 min read',
     accent: '#00a550',
     link: 'https://medium.com/@vedika.capt/rare-earth-free-technology-building-a-more-sustainable-future-8740d8888a2f',
   },
@@ -124,7 +124,7 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
             fontWeight: 900,
             fontSize: 18,
             lineHeight: 1.35,
-            color: '#0d1b2a',
+            color: '#00a550',
             margin: 0,
           }}
         >
@@ -136,7 +136,7 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
             fontFamily: 'DM Sans, sans-serif',
             fontSize: 14,
             lineHeight: 1.65,
-            color: 'rgba(13,27,42,0.58)',
+            color: 'rgba(1, 7, 14, 0.99)',
             margin: 0,
             flex: 1,
           }}

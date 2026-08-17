@@ -14,19 +14,21 @@ type BlogPost = {
   date: string;
   readTime: string;
   accent: string;
+  link: string;
 };
 
 const BLOG_POSTS: BlogPost[] = [
   {
     id: 1,
     category: 'Technology',
-    title: 'Why Rare Earth-Free Motors Are the Future of Indian EVs',
+    title: 'Rare-Earth-Free Technology: Building a More Sustainable Future',
     excerpt:
-      'Switched Reluctance Motors eliminate dependence on imported rare earth magnets, cutting cost and supply-chain risk while matching the efficiency of conventional PMSM designs.',
-    image: '/photos/controller.png',
+      'As the world moves rapidly toward electric mobility, renewable energy, and cleaner technologies, one challenge is becoming increasingly important: how do we build the technologies of tomorrow without depending heavily on scarce and geopolitically concentrated materials? ',
+    image: '/photos/RareEarth_Technology.webp',
     date: 'Jun 12, 2026',
     readTime: '6 min read',
     accent: '#00a550',
+    link: 'https://medium.com/@vedika.capt/rare-earth-free-technology-building-a-more-sustainable-future-8740d8888a2f',
   },
   {
     id: 2,
@@ -34,10 +36,11 @@ const BLOG_POSTS: BlogPost[] = [
     title: 'Inside Our Integrated Powertrain: Motor, Gearbox & Controller in One',
     excerpt:
       'A look at how combining three separate components into a single air-cooled unit reduces weight, simplifies assembly, and improves long-term reliability for two-wheelers.',
-    image: '/photos/integreted-p.jpeg',
+    image: '/photos/RareEarth_Technology.webp',
     date: 'May 28, 2026',
     readTime: '8 min read',
     accent: '#0077b6',
+    link: 'https://medium.com/@vedika.capt/inside-our-integrated-powertrain-8b8b8b8b8b8b',
   },
   {
     id: 3,
@@ -45,51 +48,22 @@ const BLOG_POSTS: BlogPost[] = [
     title: "India's EV Adoption Curve: What the Next Five Years Look Like",
     excerpt:
       'From policy incentives to charging infrastructure, we break down the trends shaping electric two- and three-wheeler adoption across urban and rural markets.',
-    image: '/photos/a-c-sytem.png',
+    image: '/photos/RareEarth_Technology.webp',
     date: 'May 14, 2026',
     readTime: '5 min read',
     accent: '#00a550',
+    link: 'https://medium.com/@vedika.capt/indias-ev-adoption-curve-what-the-next-five-years-look-like-8b8b8b8b8b8b',
   },
-  {
-    id: 4,
-    category: 'Engineering',
-    title: 'IP67 Sealing Explained: Building Motors for Indian Monsoons',
-    excerpt:
-      'Water and dust ingress are among the top causes of EV powertrain failure. Here is how our sealing standards keep motors reliable through the harshest weather.',
-    image: '/photos/tech_hero-removebg.png',
-    date: 'Apr 30, 2026',
-    readTime: '4 min read',
-    accent: '#0077b6',
-  },
-  {
-    id: 5,
-    category: 'Sustainability',
-    title: 'The Environmental Case for Rare Earth-Free Manufacturing',
-    excerpt:
-      'Mining rare earth elements carries a heavy ecological cost. We explore how ferrite-based SRM technology offers a cleaner path to scaling electric mobility.',
-    image: '/photos/a-c-sytem.png',
-    date: 'Apr 9, 2026',
-    readTime: '7 min read',
-    accent: '#00a550',
-  },
-  {
-    id: 6,
-    category: 'Product',
-    title: 'Ride Modes & Hill Hold: Smarter Control for Everyday Riders',
-    excerpt:
-      'Our motor controller brings three configurable ride modes, cruise control, and hill hold assist together — designed around how people actually ride in Indian cities.',
-    image: '/photos/w-rare-earth.jpeg',
-    date: 'Mar 22, 2026',
-    readTime: '5 min read',
-    accent: '#0077b6',
-  },
+ 
 ];
 
 // ─── Blog Card ─────────────────────────────────────────────────────────────────
 function BlogCard({ post, index }: { post: BlogPost; index: number }) {
   return (
     <motion.a
-      href="#"
+      href={post.link}
+      target="_blank"
+      rel="noopener noreferrer"
       initial={{ opacity: 0, y: 24 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: false, margin: '-8% 0px' }}
@@ -101,6 +75,7 @@ function BlogCard({ post, index }: { post: BlogPost; index: number }) {
         border: '1px solid #e2eaf2',
         boxShadow: '0 2px 16px rgba(13,27,42,0.05)',
         textDecoration: 'none',
+        cursor: 'pointer',
         transition: 'box-shadow 0.25s ease, border-color 0.25s ease',
       }}
       onMouseEnter={(e) => {
@@ -235,15 +210,7 @@ export default function BlogsPage() {
             transition={{ duration: 0.55 }}
             className="text-center mb-14 sm:mb-16"
           >
-            <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5"
-              style={{ background: 'rgba(0,165,80,0.08)', border: '1px solid rgba(0,165,80,0.28)' }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#00a550' }} />
-              <span style={{ color: '#00a550', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.25em' }}>
-                Our Blog
-              </span>
-            </div>
+            
             <h2 className="font-black leading-tight tracking-tight mb-4" style={{ fontSize: 'clamp(32px,5vw,52px)' }}>
               <span style={{ color: '#0d1b2a' }}>Insights &amp; </span>
               <span style={{ color: '#00a550' }}>Updates</span>

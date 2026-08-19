@@ -787,7 +787,10 @@ function ProductGallery({ images, isMobile, accent }: { images: GalleryImage[]; 
                 maxWidth: isMobile ? 72 : 170,
                 height: isMobile ? 72 : 170,
                 objectFit: 'contain',
+                transition: 'transform 0.28s ease',
               }}
+              onMouseEnter={e => { (e.currentTarget as HTMLImageElement).style.transform = 'scale(1.12)' }}
+              onMouseLeave={e => { (e.currentTarget as HTMLImageElement).style.transform = 'scale(1)' }}
             />
             <span style={{
               fontFamily: 'DM Sans, sans-serif',

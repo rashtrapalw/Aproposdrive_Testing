@@ -70,13 +70,21 @@ function UseCard({ card, delay }: { card: UseCard; delay: number }) {
         }}
         onMouseEnter={e => {
           const el = e.currentTarget as HTMLDivElement
+          const img = el.querySelector('[data-use-card-image]') as HTMLImageElement | null
           el.style.boxShadow = '0 12px 30px rgba(0,165,80,0.14)'
           el.style.transform = 'translateY(-3px)'
+          if (img) {
+            img.style.transform = 'scale(1.12)'
+          }
         }}
         onMouseLeave={e => {
           const el = e.currentTarget as HTMLDivElement
+          const img = el.querySelector('[data-use-card-image]') as HTMLImageElement | null
           el.style.boxShadow = '0 2px 14px rgba(0,0,0,0.05)'
           el.style.transform = 'translateY(0)'
+          if (img) {
+            img.style.transform = 'scale(1)'
+          }
         }}
       >
         {/* Left: content — 50% */}
@@ -123,6 +131,7 @@ function UseCard({ card, delay }: { card: UseCard; delay: number }) {
           alignSelf: 'stretch',
         }}>
           <img
+            data-use-card-image
             src={card.image}
             alt={card.imageAlt}
             style={{
@@ -132,6 +141,7 @@ function UseCard({ card, delay }: { card: UseCard; delay: number }) {
               objectPosition: 'center',
               filter: 'drop-shadow(0 6px 14px rgba(0,0,0,0.12))',
               pointerEvents: 'none',
+              transition: 'transform 0.28s ease',
             }}
             onError={e => { (e.currentTarget as HTMLImageElement).style.opacity = '0' }}
           />

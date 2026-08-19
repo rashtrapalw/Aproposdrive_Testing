@@ -16,7 +16,7 @@ const supporters: Supporter[] = [
     name: 'Mr. Nimish Kothari',
     role: 'Co-Founder',
     qualification: 'M.Tech, IIT Bombay',
-    image: '/photos/Nimish.jpeg',
+    image: '/photos/Nimish.png',
     description:
       "A visionary leader and technical powerhouse, bringing advanced engineering expertise from one of India's premier institutions. With a deep specialisation in cutting-edge technology and robust systems design, they drive AproposDrive's core research, development, and technological breakthroughs — turning complex engineering challenges into scalable, real-world EV solutions.",
   },

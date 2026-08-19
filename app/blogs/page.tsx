@@ -33,14 +33,14 @@ const BLOG_POSTS: BlogPost[] = [
   {
     id: 2,
     category: 'Engineering',
-    title: 'Inside Our Integrated Powertrain: Motor, Gearbox & Controller in One',
+    title: 'Why India Needs Rare-Earth-Free Motor Technology',
     excerpt:
-      'A look at how combining three separate components into a single air-cooled unit reduces weight, simplifies assembly, and improves long-term reliability for two-wheelers.',
-    image: '/photos/RareEarth_Technology.webp',
+      'Electric motors sit at the heart of India’s clean-mobility and industrial ambitions — from two-wheelers and passenger EVs to wind turbines, robotics, and defence systems. Most high-performance motors built today rely on permanent magnets made from neodymium, dysprosium, and terbium: ',
+    image: '/photos/Blog2.webp',
     date: 'May 28, 2026',
     readTime: '8 min read',
     accent: '#0077b6',
-    link: 'https://medium.com/@vedika.capt/inside-our-integrated-powertrain-8b8b8b8b8b8b',
+    link: 'https://medium.com/@vedika.capt/why-india-needs-rare-earth-free-motor-technology-f836490b17d1',
   },
   {
     id: 3,

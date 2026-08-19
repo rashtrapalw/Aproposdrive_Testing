@@ -28,7 +28,7 @@ const footerLinks = {
   Support: [
     { label: 'Contact Us',  href: '/contact' },
     { label: 'FAQ',         href: '/faq'     },
-    // { label: 'Partnership', href: '/contact' },
+   
   ],
 }
 

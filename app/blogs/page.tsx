@@ -47,7 +47,7 @@ const BLOG_POSTS: BlogPost[] = [
     category: 'Industry',
     title: "India's EV Adoption Curve: What the Next Five Years Look Like",
     excerpt:
-      'From policy incentives to charging infrastructure, we break down the trends shaping electric two- and three-wheeler adoption across urban and rural markets.',
+      'From policy incentives to charging infrastructure , we break down the trends shaping electric two- and three-wheeler adoption across urban and rural markets.',
     image: '/photos/RareEarth_Technology.webp',
     date: 'May 14, 2026',
     readTime: '5 min read',

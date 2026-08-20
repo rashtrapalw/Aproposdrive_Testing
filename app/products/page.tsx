@@ -109,9 +109,9 @@ const PRODUCTS: Product[] = [
       { icon: TrendingUp, label: 'Efficiency\nExtended Range', value: '94–95%', color: '#00a550', angle: 0, description: 'High system efficiency translates directly into longer rides per charge and lower running costs.' },
       { icon: Shield, label: 'All-Weather\nReliable', value: 'IP67 Sealed', color: '#00a550', angle: 30, description: 'Fully sealed against dust and water, built to perform through monsoons, heat, and rough terrain.' },
       { icon: IndianRupee, label: 'Mass\nAdoption', value: 'Lower Cost', color: '#00a550', angle: 150, description: 'Simplified architecture reduces bill-of-materials cost, making EVs more accessible at scale.' },
-      { icon: Cog, label: 'Motor + Controller\n+ Gearbox', value: 'All-in-One Unit', color: '#00a550', angle: 180, description: 'A single integrated housing replaces three separate components, saving space, weight, and assembly cost.' },
+      { icon: Cog, label: 'Motor + Controller + Gearbox', value: 'Integrated Unit', color: '#00a550', angle: 180, description: 'A single integrated housing replaces three components, saving space, weight, and cost.' },
       { icon: Wind, label: 'No Liquid\nNeeded', value: 'Air Cooling', color: '#00a550', angle: 210, description: 'Passive air cooling keeps temperatures stable without pumps, hoses, or coolant maintenance.' },
-      { icon: Leaf, label: 'Motor\nTechnology', value: 'Rare Earth-Free', color: '#00a550', angle: 330, description: 'Engineered without rare-earth magnets, cutting supply-chain risk while delivering reliable, consistent torque.' },
+      { icon: Leaf, label: 'Motor\nTechnology', value: 'Rare Earth-Free', color: '#00a550', angle: 330, description: 'Engineered without rare-earth magnets, cutting supply-chain risk while delivering reliable torque.' },
     ],
     variants: [
       // { name: 'Series 70', cols: [['Power', '2.5 kW'], ['Torque', '160 Nm'], ['Weight', '6.5 kg']] },
@@ -166,7 +166,7 @@ const PRODUCTS: Product[] = [
       { icon: Activity, label: 'Hall Sensor / Resolver', value: 'Position Feedback', color: '#0077b6', angle: 30, description: 'Precise rotor position sensing enables accurate, responsive control across every ride mode.' },
       { icon: Gauge, label: '+ Cruise Control', value: '3 Ride Modes', color: '#0077b6', angle: 150, description: 'Switch between Eco, Normal, and Sport modes, plus cruise control for long, comfortable rides.' },
       { icon: Shield, label: '+ Parking Assist', value: 'Hill Hold Assist', color: '#0077b6', angle: 180, description: 'Prevents rollback on inclines and simplifies parking with dedicated assist functions.' },
-      { icon: Wifi, label: 'Communication Interface', value: 'CAN + USB', color: '#0077b6', angle: 210, description: 'Seamless integration with vehicle dashboards and diagnostic tools via industry-standard protocols.' },
+      { icon: Wifi, label: 'Communication Interface', value: 'CAN + USB', color: '#0077b6', angle: 210, description: 'Seamless integration with dashboards and diagnostic tools via industry-standard protocols.' },
       { icon: CheckCircle, label: 'Fault LED Diagnostics', value: 'Real-time', color: '#0077b6', angle: 330, description: 'Instant visual fault indication makes troubleshooting and servicing faster and easier.' },
     ],
     variants: [
@@ -400,9 +400,9 @@ function OrbCard({ spec, Icon, left, top, delay }: { spec: Spec; Icon: LucideIco
         {spec.description && (
           <p style={{
             fontFamily: 'DM Sans, sans-serif',
-            color: 'rgba(13, 27, 42, 0.74)',
+            color: '#252b36',
             fontWeight: 500,
-            fontSize: 11,
+            fontSize: 12,
             lineHeight: 1.5,
             margin: '2px 0 0',
             textAlign: 'center',

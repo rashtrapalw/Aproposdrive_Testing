@@ -393,7 +393,7 @@ const milestones: Milestone[] = [
     year: '2022',
     title: 'SRM Pilots & E-Mobility R&D',
     points: [
-      'SRM fan pilots ~200 fans, 2 years running',
+      'SRM fan pilots ~200 fans, 4 years field running',
       'MCU R&D: E-mobility',
       'PMSM designs E2W',
     ],

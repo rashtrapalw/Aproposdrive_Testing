@@ -1067,8 +1067,8 @@ function ProductBlock({ product, index }: { product: Product; index: number }) {
         {product.tag}
       </span>
       <h3 style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 900, fontSize: isMobile ? 26 : 32, lineHeight: 1.2, color: '#0d1b2a', margin: '0 0 10px' }}>
-        {product.title.split(' ').slice(0, -2).join(' ')}{' '}
-        <span style={{ color: product.accent }}>{product.title.split(' ').slice(-2).join(' ')}</span>
+        {product.title.split(' ').slice(0, -3).join(' ')}{' '}
+        <span style={{ color: product.accent }}>{product.title.split(' ').slice(-3).join(' ')}</span>
       </h3>
       <p style={{ fontFamily: 'DM Sans, sans-serif', fontSize: 14.5, fontStyle: 'italic', color: product.accent, opacity: 0.85, margin: 0 }}>
         {product.subtitle}

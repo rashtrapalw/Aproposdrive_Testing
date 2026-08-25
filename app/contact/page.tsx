@@ -57,8 +57,8 @@ export default function ContactPage() {
     setLoading(true)
     try {
       await emailjs.send(
-        process.env.NEXT_EMAILJS_SERVICE_ID as string,
-        process.env.NEXT_EMAILJS_TEMPLATE_ID as string,
+        process.env.NEXT_PUBLIC_EMAILJS_SERVICE_ID as string,
+        process.env.NEXT_PUBLIC_EMAILJS_TEMPLATE_ID as string,
         {
           name,
           email,
@@ -66,7 +66,7 @@ export default function ContactPage() {
           subject,
           message,
         },
-        process.env.NEXT_EMAILJS_PUBLIC_KEY as string
+        process.env.NEXT_PUBLIC_EMAILJS_PUBLIC_KEY as string
       )
       setSent(true)
       setName('')

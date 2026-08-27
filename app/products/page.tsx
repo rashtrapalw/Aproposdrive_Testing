@@ -83,7 +83,7 @@ const PRODUCTS: Product[] = [
     subtitle: 'Compact. Rare-earth-free. Purpose-built.',
     description: 'A single unified unit combining motor, gearbox, and controller — air-cooled, IP67-sealed, and engineered for electric scooters at scale.',
     image: '/photos/EvPowertrain.png',
-    video: '/videos/powertrain.mp4',
+    video: '/videos/update/powertrain.mp4',
     accent: '#00a550',
     galleryImages: [
        
@@ -138,7 +138,7 @@ const PRODUCTS: Product[] = [
     subtitle: 'Precise. Thermal-stable. Intelligent.',
     description: 'High-performance vector field-oriented motor controller for light EVs — with ride modes, hill hold, and real-time diagnostics built in.',
     image: '/photos/no-bg-controller.png',
-    video: '/videos/controller.mp4',
+    video: '/videos/update/Controller-product.mp4',
     accent: '#0077b6',
     galleryImages: [
       

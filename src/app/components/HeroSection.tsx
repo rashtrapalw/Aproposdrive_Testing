@@ -11,7 +11,7 @@ export function HeroSection() {
       {/* Background video overlay */}
 
       <video autoPlay muted loop playsInline className="absolute inset-0 w-full h-full object-cover z-0">
-        <source src="/videos/Hero_bg.mp4" type="video/mp4" />
+        <source src="/videos/update/Hero_bg-ezremove.mp4" type="video/mp4" />
       </video>
 
       <div className="absolute inset-0 bg-black/50 z-10"></div>

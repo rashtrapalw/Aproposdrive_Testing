@@ -6,155 +6,249 @@ import { motion, useInView } from 'motion/react'
 type Founder = {
   name: string
   role: string
+  qualification: string
   image: string
   description: string
 }
 
 const founders: Founder[] = [
   {
-    name: 'Dr. Karun Malhotra',
-    role: 'Business Advisor & MD. Pogli Co. Japan',
-    image: '/photos/proff1.jpeg',
+    name: 'Mr. Nimish Kothari',
+    role: 'Co-Founder',
+    qualification: 'M.Tech, IIT Bombay',
+    image: '/photos/Nimish.png',
     description:
-      "Our multidisciplinary expertise spans Japan’s semiconductor ecosystem, power electronics, electric motor and machine technology, manufacturing, and business strategy.",
+      "A visionary leader and technical powerhouse, bringing advanced engineering expertise from one of India's premier institutions. With a deep specialisation in cutting-edge technology and robust systems design, they drive AproposDrive's core research, development, and technological breakthroughs — turning complex engineering challenges into scalable, real-world EV solutions.",
   },
   {
-    name: 'Prof. B. G. Fernandes',
-    role: 'Technical Advisor & Professor. IIT Bombay',
-    image: '/photos/BG-fernadis.png',
+    name: 'Dr. Saurabh Nikam',
+    role: 'Co-Founder',
+    qualification: 'Ph.D., IIT Bombay',
+    image: '/photos/Sourabh.jpeg',
     description:
-      "With over a decade of experience, we bridge the gap between laboratory-scale innovation and large-scale industrial commercialization.",
+      "A deep-tech innovator leading AproposDrive's technological frontier. Leveraging doctoral expertise from IIT Bombay, they solve the complex material science and electromagnetic challenges fundamental to pioneering rare earth-free motor technology. Their rigorous academic foundation and hands-on engineering acumen bridge the gap between breakthrough research and mass-market viability.",
   },
 ]
 
-const EASE = [0.25, 0.46, 0.45, 0.94] as const
+// ── Founders Section ───────────────────────────────────────────────────
+function FounderSection() {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-6% 0px' })
 
-// ─── ADVISOR CARD ─────────────────────────────────────────────────────────────
-function AdvisorCard({ founder, delay }: { founder: Founder; delay: number }) {
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-8% 0px' }}
-      transition={{ delay, duration: 0.55, ease: EASE }}
-      className="relative w-full"
-      style={{ maxWidth: 560 }}
-    >
-      {/* Card body — ornate certificate-style border */}
-      <div
-        className="relative rounded-[30px] pt-32 sm:pt-36 pb-10 px-8 sm:px-10"
-        style={{
-          background: '#ffffff',
-          border: '1px solid #dfe6e2',
-          boxShadow: '0 6px 22px rgba(13,27,42,0.06)',
-        }}
-      >
-        {/* Inner dashed border, inset — the "certificate" frame */}
-        <div
-          className="pointer-events-none absolute rounded-[20px]"
-          style={{
-            top: 16,
-            left: 16,
-            right: 16,
-            bottom: 16,
-            border: '1.5px dashed rgba(0,90,50,0.22)',
-          }}
-        />
+    <section ref={ref} className="relative w-full overflow-hidden bg-white">
 
-        {/* Photo — overlaps the top edge of the card */}
-        <div
-          className="absolute left-1/2 -translate-x-1/2"
-          style={{ top: -104 }}
+      {/* Section label */}
+      <motion.div
+        initial={{ opacity: 0, y: 14 }}
+        animate={inView ? { opacity: 1, y: 0 } : {}}
+        transition={{ duration: 0.5 }}
+        className="relative z-10 text-center pt-14 sm:pt-16 pb-10 px-4"
+      >
+        <p
+          className="text-[11px] font-bold uppercase tracking-[0.28em] mb-2"
+          style={{ color: '#0d3f8f' }}
         >
-          <div
-            className="w-[190px] h-[190px] sm:w-[220px] sm:h-[220px] rounded-2xl overflow-hidden"
-            style={{
-              background: '#f4f7f6',
-              border: '4px solid #ffffff',
-              boxShadow: '0 12px 30px rgba(13,27,42,0.18)',
-            }}
-          >
+          Our Founders
+        </p>
+        <h2
+          className="font-black text-[#0a1e3f] leading-tight"
+          style={{ fontSize: 'clamp(24px, 4vw, 36px)' }}
+        >
+          Meet The Two Visionaries
+        </h2>
+        <motion.div
+          className="mx-auto mt-4 h-px w-14 rounded-full"
+          style={{ background: 'linear-gradient(90deg, transparent, #0d3f8f, transparent)' }}
+          initial={{ scaleX: 0 }}
+          animate={inView ? { scaleX: 1 } : {}}
+          transition={{ duration: 0.5, delay: 0.2 }}
+        />
+      </motion.div>
+
+      {/* Founders rows */}
+      <div className="relative z-10">
+        {founders.map((founder, i) => (
+          <FounderRow key={founder.name} founder={founder} index={i} />
+        ))}
+      </div>
+    </section>
+  )
+}
+
+function FounderRow({ founder, index }: { founder: Founder; index: number }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const inView = useInView(ref, { once: true, margin: '-6% 0px' })
+
+
+return (
+  <div
+    ref={ref}
+    className="relative overflow-hidden border-b border-[#e7e9ee]"
+  >
+    <div className="relative">
+
+      {/* ================= Desktop ================= */}
+      <div className="hidden md:flex relative min-h-[420px]">
+
+        {/* Left green */}
+        <motion.div
+          initial={{ opacity: 0, x: -30 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{
+            delay: 0.1,
+            duration: 0.6,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+          className="w-1/2 bg-[#00a550] flex items-center"
+        >
+          <div className="pl-12 pr-32">
+            <motion.h3
+              initial={{ opacity: 0, y: 12 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.25, duration: 0.45 }}
+              className="font-black text-white leading-tight ml-24"
+              style={{
+                fontSize: "clamp(24px,2.8vw,36px)",
+                
+              }}
+            >
+              {founder.name}
+            </motion.h3>
+          </div>
+        </motion.div>
+
+        {/* Right White */}
+        <motion.div
+          initial={{ opacity: 0, x: 30 }}
+          animate={inView ? { opacity: 1, x: 0 } : {}}
+          transition={{
+            delay: 0.15,
+            duration: 0.6,
+            ease: [0.25, 0.46, 0.45, 0.94],
+          }}
+          className="w-1/2 bg-white flex items-center"
+        >
+          <div className="pl-36 pr-14">
+
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.18 }}
+              className="font-bold text-lg text-[#111827]"
+            >
+              {founder.role}
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.24 }}
+              className="font-semibold text-sm text-[#374151] mt-1 mb-5"
+            >
+              {founder.qualification}
+            </motion.p>
+
+            <motion.p
+              initial={{ opacity: 0, y: 10 }}
+              animate={inView ? { opacity: 1, y: 0 } : {}}
+              transition={{ delay: 0.3 }}
+              className="text-[15px] leading-8 text-[#5b6472] max-w-xl"
+            >
+              {founder.description}
+            </motion.p>
+
+          </div>
+        </motion.div>
+
+        {/* Center Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.28, duration: 0.55 }}
+          className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-20"
+        >
+          <div className="w-[230px] h-[330px] overflow-hidden rounded-2xl shadow-2xl bg-white">
             <img
               src={founder.image}
               alt={founder.name}
               className="w-full h-full object-cover object-top"
             />
           </div>
-        </div>
+        </motion.div>
 
-        {/* Content */}
-        <div className="relative text-center flex flex-col items-center gap-3">
+      </div>
+
+      {/* ================= Mobile ================= */}
+      <div className="md:hidden relative">
+
+        {/* Green */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={inView ? { opacity: 1 } : {}}
+          transition={{ duration: 0.5 }}
+          className="bg-[#00a550] pt-10 pb-44 px-6"
+        >
           <h3
-            className="font-black leading-tight"
-            style={{ color: '#0d1b2a', fontSize: 'clamp(21px,2.6vw,26px)' }}
+            className="text-white font-black text-2xl text-center"
           >
             {founder.name}
           </h3>
-
-          <p
-            className="text-[12px] sm:text-[13px] uppercase tracking-[0.14em] font-bold"
-            style={{ color: '#00a550' }}
-          >
-            {founder.role}
-          </p>
-
-          <p
-            className="text-[14.5px] sm:text-[15.5px] leading-[1.8] mt-1"
-            style={{ color: 'rgba(13,27,42,0.62)' }}
-          >
-            {founder.description}
-          </p>
-        </div>
-      </div>
-    </motion.div>
-  )
-}
-
-// ─── MAIN ─────────────────────────────────────────────────────────────────────
-export function FoundersSection() {
-  const ref = useRef<HTMLDivElement>(null)
-  const inView = useInView(ref, { once: true, margin: '-8% 0px' })
-
-  return (
-    <section
-      className="relative w-full py-20 sm:py-24 lg:py-28 overflow-hidden"
-      style={{ background: '#fafcfb' }}
-    >
-      <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
-        {/* ── Header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.55, ease: EASE }}
-          className="flex flex-col items-center text-center mb-14 sm:mb-20"
-        >
-          <h2
-            className="font-black uppercase leading-[0.95] tracking-tight"
-            style={{
-              color: '#0d1b2a',
-              fontSize: 'clamp(24px,4.5vw,40px)',
-            }}
-          >
-            Our Advisors
-          </h2>
-
-          <div
-            className="rounded-full mt-5"
-            style={{
-              width: 56,
-              height: 4,
-              background: 'linear-gradient(90deg,transparent,#00a550,transparent)',
-            }}
-          />
         </motion.div>
 
-        {/* ── Cards ── */}
-        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-28 sm:gap-14 lg:gap-16 pt-20 sm:pt-24">
-          {founders.map((founder, i) => (
-            <AdvisorCard key={founder.name} founder={founder} delay={i * 0.12 + 0.1} />
-          ))}
+        {/* Center Image */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={inView ? { opacity: 1, scale: 1 } : {}}
+          transition={{ delay: 0.25 }}
+          className="absolute left-1/2 top-[135px] -translate-x-1/2 z-20"
+        >
+          <div className="w-[180px] h-[240px] rounded-2xl overflow-hidden shadow-2xl bg-white">
+            <img
+              src={founder.image}
+              alt={founder.name}
+              className="w-full h-full object-cover object-top"
+            />
+          </div>
+        </motion.div>
+
+        {/* White */}
+        <div className="bg-white pt-36 pb-10 px-6">
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.2 }}
+            className="font-bold text-center text-lg text-[#111827]"
+          >
+            {founder.role}
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.24 }}
+            className="text-center text-sm font-semibold text-[#374151] mt-1 mb-5"
+          >
+            {founder.qualification}
+          </motion.p>
+
+          <motion.p
+            initial={{ opacity: 0, y: 10 }}
+            animate={inView ? { opacity: 1, y: 0 } : {}}
+            transition={{ delay: 0.3 }}
+            className="text-[14px] leading-7 text-center text-[#5b6472]"
+          >
+            {founder.description}
+          </motion.p>
+
         </div>
+
       </div>
-    </section>
-  )
+
+    </div>
+  </div>
+)
 }
+
+export default FounderSection

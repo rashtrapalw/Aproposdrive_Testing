@@ -4,9 +4,9 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'motion/react'
 import { Leaf, ShieldCheck, Zap, Globe } from 'lucide-react'
-import SupportersSection from '../../src/app/components/SupporterSection'
+import { SupporterSection } from '../../src/app/components/SupporterSection'
 import { JourneyTimeline } from '@/app/components/JourneyTimeline'
-import { FoundersSection } from '@/app/components/FounderSection'
+import FounderSection from '@/app/components/FounderSection'
 
 
 interface Feature {
@@ -273,11 +273,11 @@ export default function AboutPage() {
     <main>
       <AboutSection />
       <MissionSection />
-      <SupportersSection />
-      <FoundersSection />
+      
+      <FounderSection />
+      <SupporterSection />
       <JourneyTimeline />
-      {/* <SupportersSection /> */}
-      {/* <InvestorsSection /> */}
+
     
     </main>
   )

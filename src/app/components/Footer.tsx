@@ -12,7 +12,7 @@ import type { LucideIcon } from 'lucide-react'
 // CHANGED: updated + expanded link sections to match the actual project pages
 const footerLinks = {
   Company: [
-    { label: 'About Us',   href: '/contact'    },
+    { label: 'About Us',   href: '/about-us'   },
     // { label: 'Our Team',   href: '/contact'    },
     // { label: 'Careers',    href: '/contact'    },
     { label: 'Blog',       href: '/blogs'      },
@@ -187,7 +187,7 @@ export function Footer() {
               className="lg:col-span-2 flex flex-col gap-5 min-w-0"
             >
               {/* Logo */}
-              <a href="#home" className="flex items-center gap-2.5 self-start group">
+              <Link href="/" className="flex items-center gap-2.5 self-start group">
                 <motion.div
                   className="w-9 h-9 rounded-xl flex items-center justify-center flex-shrink-0"
                   whileHover={{ rotate: 10, scale: 1.08 }}
@@ -199,7 +199,7 @@ export function Footer() {
                   <span style={{ color: '#0d1b2a' }}>Apropos</span>
                   <span style={{ color: '#00a550' }}>drive</span>
                 </span>
-              </a>
+              </Link>
 
               {/* Contact items */}
               <div className="flex flex-col gap-2.5 min-w-0">

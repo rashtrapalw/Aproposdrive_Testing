@@ -259,7 +259,7 @@ export function TestingVideoSection() {
                 <iframe
                   className="absolute inset-0 w-full h-full block"
                   src="https://www.youtube.com/embed/e9T8e6VX2KI?si=aSKT0GGBg9wHj1Eg"
-                  title="YouTube video player"
+                  title="AproposDrive real-world EV testing video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
                   referrerPolicy="strict-origin-when-cross-origin"

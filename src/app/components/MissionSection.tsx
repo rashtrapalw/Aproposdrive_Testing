@@ -51,9 +51,9 @@ export function MissionSection() {
           viewport={{ once: true }}
           className="text-center mb-16"
         >
-          <h2 className="font-['Poppins'] font-bold text-4xl md:text-5xl text-[#0A0F1C] mb-4">
+          <h1 className="font-['Poppins'] font-bold text-4xl md:text-5xl text-[#0A0F1C] mb-4">
             Our <span className="text-[#00C853]">Mission</span> & Goals
-          </h2>
+          </h1>
           <p className="font-['Inter'] text-lg text-[#0A0F1C]/60 max-w-2xl mx-auto">
             Committed to transforming India's automotive landscape through innovation and sustainability
           </p>

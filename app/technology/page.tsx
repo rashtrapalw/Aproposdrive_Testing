@@ -39,6 +39,8 @@ import { ChallengesSection } from '@/app/components/ChallengesSection';
 import { OurTechnology } from '@/app/components/OurTechnology'
 import { EvFuture } from '@/app/components/Evfuture'
 import { RareEarthUsesSection } from '@/app/components/RareEarthUsesSection'
+import { BreadcrumbSchema } from '../../src/app/components/seo/BreadcrumbSchema'
+import { TechnologyPageSchema } from '../../src/app/components/seo/TechnologyPageSchema'
 
 const themeStyles = {
   page: { backgroundColor: 'var(--color-background)', color: 'var(--color-foreground)' },
@@ -66,6 +68,13 @@ const fadeUp = {
 export default function TechnologyPage() {
   return (
     <main className="min-h-screen antialiased" style={themeStyles.page}>
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Technology', path: '/technology/' },
+        ]}
+      />
+      <TechnologyPageSchema />
       {/* <Hero />  */}
       {/* <PmsmTechnology /> */} 
       {/* <SrmTechnology /> */}

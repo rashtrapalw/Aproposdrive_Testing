@@ -195,13 +195,13 @@ export function OurTechnology() {
           transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
           style={{ textAlign: 'center', marginBottom: isMobile ? 28 : 40 }}
         >
-          <h2 style={{
+          <h1 style={{
             fontSize: 'clamp(24px, 3.2vw, 36px)', fontWeight: 900, letterSpacing: '-0.5px',
             margin: 0, lineHeight: 1.2,
           }}>
             <span style={{ color: '#0d1b2a' }}>Our </span>
             <span style={{ color: '#00a550' }}>Technology</span>
-          </h2>
+          </h1>
         </motion.div>
 
         <div style={{

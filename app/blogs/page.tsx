@@ -4,6 +4,7 @@ import { useRef } from 'react';
 import { motion, useInView } from 'motion/react';
 import { Calendar, Clock, ArrowRight } from 'lucide-react';
 import { ImageWithFallback } from '../../src/app/components/figma/ImageWithFallback';
+import { BreadcrumbSchema } from '../../src/app/components/seo/BreadcrumbSchema';
 
 type BlogPost = {
   id: number;
@@ -178,6 +179,12 @@ export default function BlogsPage() {
 
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Blogs', path: '/blogs/' },
+        ]}
+      />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,900&display=swap');
         * { box-sizing: border-box; }
@@ -211,10 +218,10 @@ export default function BlogsPage() {
             className="text-center mb-14 sm:mb-16"
           >
             
-            <h2 className="font-black leading-tight tracking-tight mb-4" style={{ fontSize: 'clamp(32px,5vw,52px)' }}>
+            <h1 className="font-black leading-tight tracking-tight mb-4" style={{ fontSize: 'clamp(32px,5vw,52px)' }}>
               <span style={{ color: '#0d1b2a' }}>Insights &amp; </span>
               <span style={{ color: '#00a550' }}>Updates</span>
-            </h2>
+            </h1>
             <p style={{ color: 'rgba(13,27,42,0.55)', fontSize: 16, maxWidth: 520, margin: '0 auto', lineHeight: 1.7 }}>
               Perspectives on EV powertrain engineering, sustainability, and the road ahead for electric mobility in India.
             </p>

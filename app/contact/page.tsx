@@ -5,6 +5,7 @@ import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'motion/react'
 import { Mail, Phone, MapPin, Send, CheckCircle, ArrowUpRight, Zap, MessageSquare } from 'lucide-react'
 import emailjs from '@emailjs/browser'
+import { BreadcrumbSchema } from '../../src/app/components/seo/BreadcrumbSchema'
 
 const contactInfo = [
   { icon: Mail, title: 'Email', text: 'contact@aproposdrive.com', accent: '#00a550', href: 'mailto:contact@aproposdrive.com' },
@@ -83,6 +84,12 @@ export default function ContactPage() {
 
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Contact', path: '/contact/' },
+        ]}
+      />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,900&display=swap');
         *{box-sizing:border-box}
@@ -117,10 +124,10 @@ export default function ContactPage() {
                 Contact Us
               </span>
             </div> */}
-            <h2 className="font-black leading-none tracking-tight mb-4" style={{ fontSize: 'clamp(36px,6vw,64px)' }}>
+            <h1 className="font-black leading-none tracking-tight mb-4" style={{ fontSize: 'clamp(36px,6vw,64px)' }}>
               <span style={{ color: '#0d1b2a' }}>Let&apos;s </span>
               <span style={{ color: '#00a550' }}>Connect</span>
-            </h2>
+            </h1>
             <p style={{ color: 'rgba(13,27,42,0.55)', fontSize: 16, maxWidth: 420, margin: '0 auto', lineHeight: 1.65 }}>
               Questions, demos, or partnerships — we&apos;re ready to talk.
             </p>
@@ -147,7 +154,7 @@ export default function ContactPage() {
                     // style={{ background: '#00a550', boxShadow: '0 2px 12px rgba(0,165,80,0.28)' }}
                   >
                     {/* <Zap style={{ width: 19, height: 19, color: '#fff' }} /> */}
-                    <img src="/photos/logo2.png" alt="Aproposdrive Logo" style={{ width: 45, height: 40 }} />
+                    <img src="/photos/logo2.png" alt="AproposDrive logo" style={{ width: 45, height: 40 }} />
                   </div>
                   <div>
                     <p style={{ fontWeight: 900, fontSize: 17, color: '#0d1b2a', lineHeight: 1.2 }}>Aproposdrive</p>

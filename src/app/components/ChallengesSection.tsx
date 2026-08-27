@@ -487,7 +487,7 @@ paddingInline: 'clamp(16px,5vw,64px)',
               }} />
               <motion.img
                 src="/photos/OurSolutions.png"
-                alt="AproposDrive Motor & Controller"
+                alt="Rare-earth-free EV motor and controller solution from AproposDrive"
                 animate={{ y: [0, -10, 0] }}
                 transition={{ duration: 4.5, repeat: Infinity, ease: 'easeInOut' }}
                 style={{

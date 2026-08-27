@@ -316,7 +316,7 @@ export function VisionSection() {
               </span>
             </div>
 
-            <h2
+            <h1
               className="font-black leading-none tracking-tight mb-4"
               style={{ fontSize: 'clamp(38px,5.5vw,68px)' }}
             >
@@ -332,7 +332,7 @@ export function VisionSection() {
               >
                 Future
               </span>
-            </h2>
+            </h1>
 
             <p
               className="text-sm max-w-md mx-auto leading-relaxed"

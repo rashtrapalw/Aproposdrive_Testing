@@ -10,6 +10,8 @@ import {
 } from 'lucide-react';
 import type { LucideIcon } from 'lucide-react';
 import { ImageWithFallback } from '../../src/app/components/figma/ImageWithFallback';
+import { BreadcrumbSchema } from '../../src/app/components/seo/BreadcrumbSchema';
+import { ProductSchema } from '../../src/app/components/seo/ProductSchema';
 
 // ─── ORBITAL CANVAS CONSTANTS ─────────────────────────────────────────────────
 const C = 600; // orbital canvas width/height
@@ -1182,6 +1184,32 @@ export default function ProductsPage() {
 
   return (
     <>
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'Products', path: '/products/' },
+        ]}
+      />
+      <ProductSchema
+        products={[
+          {
+            name: 'Integrated EV Powertrain',
+            description:
+              'A single unified EV powertrain unit that combines motor, gearbox, and controller for electric mobility applications.',
+            image: '/photos/EvPowertrain.png',
+            url: '/products/#powertrain',
+            category: 'EV Powertrain',
+          },
+          {
+            name: 'EV Motor Controller',
+            description:
+              'A high-performance EV motor controller with vector field-oriented control for light electric vehicles.',
+            image: '/photos/no-bg-controller.png',
+            url: '/products/#controller',
+            category: 'Motor Controller',
+          },
+        ]}
+      />
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,400;9..40,700;9..40,900&display=swap');
         * { box-sizing: border-box; }
@@ -1217,10 +1245,10 @@ export default function ProductsPage() {
             style={{ textAlign: 'center', marginBottom: 64, marginTop: 20, maxWidth: 720, marginLeft: 'auto', marginRight: 'auto' }}
           >
            
-            <h2 style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 900, letterSpacing: '-1px', lineHeight: 1.15, marginBottom: 12, fontSize: 'clamp(30px,4.5vw,42px)' }}>
+            <h1 style={{ fontFamily: 'DM Sans, sans-serif', fontWeight: 900, letterSpacing: '-1px', lineHeight: 1.15, marginBottom: 12, fontSize: 'clamp(30px,4.5vw,42px)' }}>
               <span style={{ color: '#0d1b2a' }}>EV Powertrain &amp; </span>
               <span style={{ color: '#00a550' }}>Motor Controller</span>
-            </h2>
+            </h1>
 
           </motion.div>
 

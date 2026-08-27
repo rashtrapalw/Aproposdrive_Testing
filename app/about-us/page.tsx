@@ -7,6 +7,7 @@ import { Leaf, ShieldCheck, Zap, Globe } from 'lucide-react'
 import { SupporterSection } from '../../src/app/components/SupporterSection'
 import { JourneyTimeline } from '@/app/components/JourneyTimeline'
 import FounderSection from '@/app/components/FounderSection'
+import { BreadcrumbSchema } from '../../src/app/components/seo/BreadcrumbSchema'
 
 
 interface Feature {
@@ -108,7 +109,7 @@ function AboutSection() {
             About AproposDrive
           </motion.p>
  
-          <motion.h2
+          <motion.h1
             initial={{ opacity: 0, y: 18 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ delay: 0.1, duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
@@ -117,7 +118,7 @@ function AboutSection() {
           >
             Innovation <br />
             That Unlocks <span className="text-green-600" style={{ color: '#00a550' }}> <br/> New Possibilities.</span>
-          </motion.h2>
+          </motion.h1>
  
           <motion.p
             initial={{ opacity: 0, y: 14 }}
@@ -271,6 +272,12 @@ function MissionSection() {
 export default function AboutPage() {
   return (
     <main>
+      <BreadcrumbSchema
+        items={[
+          { name: 'Home', path: '/' },
+          { name: 'About Us', path: '/about-us/' },
+        ]}
+      />
       <AboutSection />
       <MissionSection />
       

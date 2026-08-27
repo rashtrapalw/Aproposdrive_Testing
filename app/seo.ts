@@ -3,7 +3,7 @@ import type { Metadata } from 'next'
 export const SITE_NAME = 'AproposDrive'
 export const COMPANY_NAME = 'Aproposdrive Technologies Pvt. Ltd.'
 export const SITE_URL = 'https://www.aproposdrive.com'
-export const DEFAULT_OG_IMAGE = '/photos/logo3.png'
+export const DEFAULT_OG_IMAGE = '/photos/Tech_hero_bg.jpeg'
 export const DEFAULT_TITLE = 'Rare-Earth-Free EV Powertrain Technology'
 export const TITLE_TEMPLATE = '%s | AproposDrive'
 export const DEFAULT_DESCRIPTION =
@@ -78,7 +78,7 @@ export const pageSeo = {
     description:
       'Contact AproposDrive for EV powertrain solutions, motor controller discussions, technology partnerships, demos, and electric mobility collaboration opportunities.',
     path: '/contact/',
-    image: '/photos/logo3.png',
+    image: '/photos/Tech_hero_bg.jpeg',
     keywords: [
       'contact AproposDrive',
       'EV powertrain contact',
@@ -91,7 +91,7 @@ export const pageSeo = {
     description:
       'This route currently requires content alignment before it should be indexed for search.',
     path: '/faq/',
-    image: '/photos/logo3.png',
+    image: '/photos/Tech_hero_bg.jpeg',
     noindex: true,
   },
   journey: {

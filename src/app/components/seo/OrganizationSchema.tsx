@@ -1,4 +1,4 @@
-import { COMPANY_NAME, SITE_URL } from '../../../../app/seo'
+import { COMPANY_NAME, SITE_NAME, SITE_URL } from '../../../../app/seo'
 import { JsonLd } from './JsonLd'
 
 export function OrganizationSchema() {
@@ -20,7 +20,7 @@ export function OrganizationSchema() {
     {
       '@context': 'https://schema.org',
       '@type': 'WebSite',
-      name: COMPANY_NAME,
+      name: SITE_NAME,
       url: SITE_URL,
       publisher: {
         '@type': 'Organization',

@@ -43,18 +43,18 @@ const BLOG_POSTS: BlogPost[] = [
     accent: '#0077b6',
     link: 'https://medium.com/@vedika.capt/why-india-needs-rare-earth-free-motor-technology-f836490b17d1',
   },
-  // {
-  //   id: 3,
-  //   category: 'Industry',
-  //   title: "India's EV Adoption Curve: What the Next Five Years Look Like",
-  //   excerpt:
-  //     'From policy incentives to charging infrastructure , we break down the trends shaping electric two- and three-wheeler adoption across urban and rural markets.',
-  //   image: '/photos/RareEarth_Technology.webp',
-  //   date: 'May 14, 2026',
-  //   readTime: '5 min read',
-  //   accent: '#00a550',
-  //   link: 'https://medium.com/@vedika.capt/indias-ev-adoption-curve-what-the-next-five-years-look-like-8b8b8b8b8b8b',
-  // },
+  {
+    id: 3,
+    category: 'Industry',
+    title: "India's EV Adoption Curve: What the Next Five Years Look Like",
+    excerpt:
+      'From policy incentives to charging infrastructure , we break down the trends shaping electric two- and three-wheeler adoption across urban and rural markets.',
+    image: '/photos/RareEarth_Technology.webp',
+    date: 'May 14, 2026',
+    readTime: '5 min read',
+    accent: '#00a550',
+    link: 'https://medium.com/@vedika.capt/indias-ev-adoption-curve-what-the-next-five-years-look-like-8b8b8b8b8b8b',
+  },
  
 ];
 

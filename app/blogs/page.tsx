@@ -46,14 +46,14 @@ const BLOG_POSTS: BlogPost[] = [
   {
     id: 3,
     category: 'Industry',
-    title: "India's EV Adoption Curve: What the Next Five Years Look Like",
+    title: "SRM Motor Explained: Working Principle, Advantages, and Applications",
     excerpt:
-      'From policy incentives to charging infrastructure , we break down the trends shaping electric two- and three-wheeler adoption across urban and rural markets.',
-    image: '/photos/RareEarth_Technology.webp',
+      'Electric motors are the invisible workhorses behind everything from electric vehicles to washing machines, and one design is quietly gaining ground for its sheer simplicity: the Switched Reluctance Motor (SRM).',
+    image: '/photos/srm-blog.webp',
     date: 'May 14, 2026',
-    readTime: '5 min read',
+    readTime: '6 min read',
     accent: '#00a550',
-    link: 'https://medium.com/@vedika.capt/indias-ev-adoption-curve-what-the-next-five-years-look-like-8b8b8b8b8b8b',
+    link: 'https://medium.com/@vedika.capt/srm-motor-explained-working-principle-advantages-and-applications-b5929ccc7c9f',
   },
  
 ];

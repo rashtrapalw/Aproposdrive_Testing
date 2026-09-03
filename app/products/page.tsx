@@ -119,7 +119,7 @@ const PRODUCTS: Product[] = [
       // { name: 'Series 70', cols: [['Power', '2.5 kW'], ['Torque', '160 Nm'], ['Weight', '6.5 kg']] },
       // { name: 'Series 85', cols: [['Power', '4 kW'], ['Torque', '200 Nm'], ['Weight', '7.5 kg']] },
     ],
-   tableHeaders: ['Spec', '70', '85'],
+   tableHeaders: ['Spec', 'WTD 70', 'WTD 85'],
 
     tableRows: [
       ['Tyre Size', '12 Inch', '12 Inch'],

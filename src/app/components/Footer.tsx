@@ -34,7 +34,7 @@ const footerLinks = {
 
 const socialLinks = [
   { icon: Linkedin, href: 'https://www.linkedin.com/company/aproposdrive-technologies/', label: 'LinkedIn' },
-  { icon: Youtube,  href: 'https://www.youtube.com/@AproposDrive', label: 'YouTube'  },
+  // { icon: Youtube,  href: 'https://www.youtube.com/@AproposDrive', label: 'YouTube'  },
 ]
 
 const badges = ['Made in India']

@@ -846,7 +846,7 @@ function SpecsTable({
   const cellP      = compact ? '5px 8px' : '7px 12px';
   const labelSize  = compact ? 12 : 13;   // increased from 10.5 / 11.5
   const valueSize  = compact ? 13 : 14.5; // increased from 11.5 / 12.5
-  const headerSize = compact ? 10 : 10.5; // increased from 9 / 9.5
+  const headerSize = compact ? 12 : 13;
   const minW       = compact ? 280 : 380;
 
   return (

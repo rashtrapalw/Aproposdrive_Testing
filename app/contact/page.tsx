@@ -3,14 +3,15 @@
 import type { CSSProperties } from 'react'
 import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useInView } from 'motion/react'
-import { Mail, Phone, MapPin, Send, CheckCircle, ArrowUpRight, Zap, MessageSquare } from 'lucide-react'
+import { Mail, Phone, MapPin, Send, CheckCircle, ArrowUpRight, Zap, MessageSquare, Linkedin } from 'lucide-react'
 import emailjs from '@emailjs/browser'
 import { BreadcrumbSchema } from '../../src/app/components/seo/BreadcrumbSchema'
 
 const contactInfo = [
-  { icon: Mail, title: 'Email', text: 'contact@aproposdrive.com', accent: '#00a550', href: 'mailto:contact@aproposdrive.com' },
-  // { icon: Phone, title: 'Phone', text: '+91 12345 67890', accent: '#0077b6', href: 'tel:+911234567890' },
-  { icon: MapPin, title: 'Location', text: 'Pune, Maharashtra, IN', accent: '#00a550', href: null },
+  { icon: Mail, title: 'Email', text: 'contact@aproposdrive.com', accent: '#00a550', href: 'mailto:contact@aproposdrive.com', external: false },
+  // { icon: Phone, title: 'Phone', text: '+91 12345 67890', accent: '#0077b6', href: 'tel:+911234567890', external: false },
+  { icon: MapPin, title: 'Location', text: 'Pune, Maharashtra, IN', accent: '#00a550', href: null, external: false },
+  { icon: Linkedin, title: 'LinkedIn', text: 'AproposDrive Technologies', accent: '#0077b6', href: 'https://www.linkedin.com/company/aproposdrive-technologies/posts/?feedView=all', external: true },
 ]
 
 // ─── Compact Input ─────────────────────────────────────────────────────────────
@@ -115,15 +116,6 @@ export default function ContactPage() {
             transition={{ duration: 0.5 }}
             className="text-center mb-12 sm:mb-14"
           >
-            {/* <div
-              className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full mb-5"
-              style={{ background: 'rgba(0,165,80,0.08)', border: '1px solid rgba(0,165,80,0.28)' }}
-            >
-              <span className="w-1.5 h-1.5 rounded-full" style={{ background: '#00a550' }} />
-              <span style={{ color: '#00a550', fontSize: 11, fontWeight: 700, textTransform: 'uppercase', letterSpacing: '0.25em' }}>
-                Contact Us
-              </span>
-            </div> */}
             <h1 className="font-black leading-none tracking-tight mb-4" style={{ fontSize: 'clamp(36px,6vw,64px)' }}>
               <span style={{ color: '#0d1b2a' }}>Let&apos;s </span>
               <span style={{ color: '#00a550' }}>Connect</span>
@@ -151,9 +143,7 @@ export default function ContactPage() {
                 <div className="flex items-center gap-3">
                   <div
                     className="w-11 h-11 rounded-xl flex items-center justify-center flex-shrink-0"
-                    // style={{ background: '#00a550', boxShadow: '0 2px 12px rgba(0,165,80,0.28)' }}
                   >
-                    {/* <Zap style={{ width: 19, height: 19, color: '#fff' }} /> */}
                     <img src="/photos/logo2.png" alt="AproposDrive logo" style={{ width: 45, height: 40 }} />
                   </div>
                   <div>
@@ -176,6 +166,8 @@ export default function ContactPage() {
                       <Tag
                         key={item.title}
                         href={item.href || undefined}
+                        target={item.external ? '_blank' : undefined}
+                        rel={item.external ? 'noopener noreferrer' : undefined}
                         className="group flex items-center gap-3 p-3.5 rounded-xl transition-colors duration-150"
                         style={{
                           background: '#f4f7f6',
@@ -209,7 +201,6 @@ export default function ContactPage() {
                               marginBottom: 2,
                             }}
                           >
-                            {/* {item.title} */}
                           </p>
                           <p className="truncate" style={{ fontSize: 15, fontWeight: 700, color: '#0d1b2a' }}>
                             {item.text}

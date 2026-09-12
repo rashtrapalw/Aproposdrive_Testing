@@ -43,18 +43,18 @@ const BLOG_POSTS: BlogPost[] = [
     accent: '#0077b6',
     link: 'https://medium.com/@vedika.capt/why-india-needs-rare-earth-free-motor-technology-f836490b17d1',
   },
-  // {
-  //   id: 3,
-  //   category: 'Industry',
-  //   title: "SRM Motor Explained: Working Principle, Advantages, and Applications",
-  //   excerpt:
-  //     'Electric motors are the invisible workhorses behind everything from electric vehicles to washing machines, and one design is quietly gaining ground for its sheer simplicity: the Switched Reluctance Motor (SRM).',
-  //   image: '/photos/srm-blog.webp',
-  //   date: 'May 14, 2026',
-  //   readTime: '6 min read',
-  //   accent: '#00a550',
-  //   link: 'https://medium.com/@vedika.capt/srm-motor-explained-working-principle-advantages-and-applications-b5929ccc7c9f',
-  // },
+  {
+    id: 3,
+    category: 'Industry',
+    title: "SRM Motor Explained: Working Principle, Advantages, and Applications",
+    excerpt:
+      'Electric motors are the invisible workhorses behind everything from electric vehicles to washing machines, and one design is quietly gaining ground for its sheer simplicity: the Switched Reluctance Motor (SRM).',
+    image: '/photos/srm-blog.webp',
+    date: 'May 14, 2026',
+    readTime: '6 min read',
+    accent: '#00a550',
+    link: 'https://medium.com/@vedika.capt/srm-motor-explained-working-principle-advantages-and-applications-b5929ccc7c9f',
+  },
  
 ];
 

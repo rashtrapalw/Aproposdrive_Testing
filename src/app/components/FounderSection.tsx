@@ -28,7 +28,7 @@ const founders: Founder[] = [
     qualification: 'Ph.D., IIT Bombay',
     image: '/photos/Sourabh.jpeg',
     description:
-      "A deep-tech innovator leading AproposDrive's technological frontier. Leveraging doctoral expertise from IIT Bombay, they solve the complex material science and electromagnetic challenges fundamental to pioneering rare earth-free motor technology. Their rigorous academic foundation and hands-on engineering acumen bridge the gap between breakthrough research and mass-market viability.",
+      "A deep-tech innovator leading AproposDrive's technological frontier, Saurabh brings doctoral expertise from IIT Bombay to solving the complex electromagnetic and control challenges at the heart of rare earth-free motor technology.Their work bridges rigorous academic research and hands-on engineering — turning breakthrough science into technology that's viable at mass-market scale.",
     linkedin: 'https://www.linkedin.com/in/saurabh-nikam-b3078713/',
   },
 ]

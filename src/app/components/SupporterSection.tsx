@@ -18,7 +18,7 @@ const supporters: Supporter[] = [
     image: '/photos/proff1.jpeg',
     description:
       "A technology and business leader with extensive experience in the electronics industry and Japanese business ecosystem, Dr. Karun Malhotra leads Murata Business Engineering India, driving technology-led business development and commercialization. At AproposDrive, he provides strategic guidance on market development, partnerships and scaling the company’s technology platforms.",
-    linkedin: 'https://www.linkedin.com/company/pogli/home/',
+    linkedin: 'https://www.linkedin.com/in/karun-malhotra-78421047/?locale=en',
   },
   {
     name: 'Prof. B. G. Fernandes',

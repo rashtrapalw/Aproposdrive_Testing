@@ -28,10 +28,7 @@ const goals = [
     title: 'OUR VISION & MISSION',
     body: 'To redefine electric motion through intelligent engineering and sustainable innovation — developing the next generation of electric motor, power electronics and control technologies that combine advanced electromagnetic design, intelligent control and system engineering to deliver high-performance, scalable and sustainable solutions for the mobility and industrial world.',
   },
-  // {
-  //   title: 'Our Goal',
-  //   body: "To become India's leading provider of rare earth-free EV powertrain technology — enabling a cleaner, more reliable, and self-reliant electric mobility ecosystem.",
-  // },
+
 ]
 
 // ── Feature Chip ──────────────────────────────────────────────────────────────

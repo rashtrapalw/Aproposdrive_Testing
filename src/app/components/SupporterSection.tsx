@@ -66,12 +66,12 @@ function SupporterCard({ supporter, delay }: { supporter: Supporter; delay: numb
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true, margin: '-8% 0px' }}
       transition={{ delay, duration: 0.55, ease: EASE }}
-      className="relative w-full"
-      style={{ maxWidth: 560 }}
+      className="relative flex w-full"
+      style={{ maxWidth: 600 }}
     >
       {/* Card body — ornate certificate-style border */}
       <div
-        className="relative rounded-[30px] pt-32 sm:pt-36 pb-10 px-8 sm:px-10"
+        className="relative w-full rounded-[30px] pt-32 sm:pt-36 pb-10 px-8 sm:px-10"
         style={{
           background: '#ffffff',
           border: '1px solid #dfe6e2',
@@ -152,7 +152,7 @@ export function SupporterSection() {
       className="relative w-full py-20 sm:py-24 lg:py-28 overflow-hidden"
       style={{ background: '#fafcfb' }}
     >
-      <div ref={ref} className="mx-auto max-w-7xl px-5 sm:px-8 lg:px-12">
+      <div ref={ref} className="mx-auto max-w-[1360px] px-5 sm:px-8 lg:px-12">
         {/* ── Header ── */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -181,7 +181,7 @@ export function SupporterSection() {
         </motion.div>
 
         {/* ── Cards ── */}
-        <div className="flex flex-col sm:flex-row flex-wrap items-center justify-center gap-28 sm:gap-14 lg:gap-16 pt-20 sm:pt-24">
+        <div className="grid grid-cols-1 xl:grid-cols-2 auto-rows-fr items-stretch justify-items-center gap-28 sm:gap-14 lg:gap-16 pt-20 sm:pt-24">
           {supporters.map((supporter, i) => (
             <SupporterCard key={supporter.name} supporter={supporter} delay={i * 0.12 + 0.1} />
           ))}

@@ -39,7 +39,7 @@ const milestones: Milestone[] = [
     points: [
       'Ultra lightweight drone motors',
       'Collaboration with Japanese AL coil company',
-      'Winner FLCID: Pilot grant',
+      'Winner FLCID: Pilot grant SRM',
     ],
     icon: Wrench,
   },

@@ -25,7 +25,7 @@ const supporters: Supporter[] = [
     role: 'Technical Advisor & Professor. IIT Bombay',
     image: '/photos/BG-fernadis.png',
     description:
-      "With over a decade of experience, we bridge the gap between laboratory-scale innovation and large-scale industrial commercialization.",
+      "Professor, Electrical Engineering, IIT Bombay. A distinguished expert in electrical machines, power electronics and motor drives, Prof. B. G. Fernandes brings deep expertise in switched reluctance and permanent-magnet technologies. He provides technical guidance to AproposDrive in advancing next-generation and rare-earth-free electric drive systems.",
     linkedin: 'https://www.linkedin.com/in/bg-fernandes/',
   },
 ]

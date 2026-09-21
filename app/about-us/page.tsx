@@ -25,8 +25,8 @@ const features: Feature[] = [
 
 const goals = [
   {
-    title: 'Our Mission & Goal',
-    body: 'To drive the world towards a sustainable future by delivering innovative, efficient and cost-effective electric mobility solutions through rare earth-free technologies. To become India’s leading provider of rare earth-free EV powertrain technology — enabling a cleaner, more reliable, and self-reliant electric mobility ecosystem.',
+    title: 'OUR VISION & MISSION',
+    body: 'To redefine electric motion through intelligent engineering and sustainable innovation — developing the next generation of electric motor, power electronics and control technologies that combine advanced electromagnetic design, intelligent control and system engineering to deliver high-performance, scalable and sustainable solutions for the mobility and industrial world.',
   },
   // {
   //   title: 'Our Goal',
@@ -195,16 +195,7 @@ function MissionSection() {
       >
         <div className="max-w-xl">
 
-          {/* Main heading */}
-          <motion.h2
-            initial={{ opacity: 0, y: 22 }}
-            animate={inView ? { opacity: 1, y: 0 } : {}}
-            transition={{ duration: 0.55, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="font-black leading-tight tracking-tight text-white mb-8 sm:mb-10"
-            style={{ fontSize: 'clamp(32px, 5vw, 52px)' }}
-          >
-            Our Mission &amp; Goal
-          </motion.h2>
+          
 
           {/* Mission + Goal blocks */}
           <div className="flex flex-col gap-7 sm:gap-8">
@@ -229,7 +220,7 @@ function MissionSection() {
                   />
                   <h3
                     className="font-bold text-white"
-                    style={{ fontSize: 'clamp(16px, 2.5vw, 20px)' }}
+                    style={{ fontSize: 'clamp(32px, 5vw, 40px)' }}
                   >
                     {g.title}
                   </h3>

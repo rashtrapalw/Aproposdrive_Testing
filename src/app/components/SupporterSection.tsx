@@ -17,7 +17,7 @@ const supporters: Supporter[] = [
     role: 'Business Advisor & MD. Pogli Co. Japan',
     image: '/photos/proff1.jpeg',
     description:
-      "Our multidisciplinary expertise spans Japan’s semiconductor ecosystem, power electronics, electric motor and machine technology, manufacturing, and business strategy.",
+      "A technology and business leader with extensive experience in the electronics industry and Japanese business ecosystem, Dr. Karun Malhotra leads Murata Business Engineering India, driving technology-led business development and commercialization. At AproposDrive, he provides strategic guidance on market development, partnerships and scaling the company’s technology platforms.",
     linkedin: 'https://www.linkedin.com/in/karun-malhotra/',
   },
   {
@@ -25,7 +25,7 @@ const supporters: Supporter[] = [
     role: 'Technical Advisor & Professor. IIT Bombay',
     image: '/photos/BG-fernadis.png',
     description:
-      "Professor, Electrical Engineering, IIT Bombay. A distinguished expert in electrical machines, power electronics and motor drives, Prof. B. G. Fernandes brings deep expertise in switched reluctance and permanent-magnet technologies. He provides technical guidance to AproposDrive in advancing next-generation and rare-earth-free electric drive systems.",
+      "A distinguished expert in electrical machines, power electronics and motor drives, Prof. B. G. Fernandes brings deep expertise in switched reluctance and permanent-magnet technologies. He provides technical guidance to AproposDrive in advancing next-generation and rare-earth-free electric drive systems.",
     linkedin: 'https://www.linkedin.com/in/bg-fernandes/',
   },
 ]

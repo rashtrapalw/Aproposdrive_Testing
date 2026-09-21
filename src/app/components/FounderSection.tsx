@@ -19,7 +19,7 @@ const founders: Founder[] = [
     qualification: 'M.Tech, IIT Bombay',
     image: '/photos/Nimish.png',
     description:
-      "A technology entrepreneur with an M.Tech from IIT Bombay, Nimish combines strong engineering experience with a focus on turning advanced technologies into scalable products and markets. His work spans technology and product development, product strategy, commercialization, OEM partnerships and execution of technology-led business initiatives.At AproposDrive, he bridges technology and business — shaping product and market strategy, building strategic partnerships and developing the operational foundations to bring next-generation electric motor and power electronics technologies to market.",
+      "A technology entrepreneur with an M.Tech from IIT Bombay, Nimish combines strong engineering experience with a focus on turning advanced technologies into scalable products and markets. His work spans technology and product development, product strategy, commercialization, OEM partnerships and execution of technology-led business initiatives. At AproposDrive, he bridges technology and business — shaping product and market strategy, building strategic partnerships and developing the operational foundations to bring next-generation electric motor and power electronics technologies to market.",
     linkedin: 'https://www.linkedin.com/in/nimish-kothari/',
   },
   {

@@ -22,15 +22,15 @@ const founders: Founder[] = [
       "A technology entrepreneur with an M.Tech from IIT Bombay, Nimish combines strong engineering experience with a focus on turning advanced technologies into scalable products and markets. His work spans technology and product development, product strategy, commercialization, OEM partnerships and execution of technology-led business initiatives. At AproposDrive, he bridges technology and business — shaping product and market strategy, building strategic partnerships and developing the operational foundations to bring next-generation electric motor and power electronics technologies to market.",
     linkedin: 'https://www.linkedin.com/in/nimish-kothari/',
   },
-  {
-    name: 'Dr. Saurabh Nikam',
-    role: 'Co-Founder',
-    qualification: 'Ph.D., IIT Bombay',
-    image: '/photos/Sourabh.jpeg',
-    description:
-      "A deep-tech innovator leading AproposDrive's technological frontier, Saurabh brings doctoral expertise from IIT Bombay to solving the complex electromagnetic and control challenges at the heart of rare earth-free motor technology.Their work bridges rigorous academic research and hands-on engineering — turning breakthrough science into technology that's viable at mass-market scale.",
-    linkedin: 'https://www.linkedin.com/in/saurabh-nikam-b3078713/',
-  },
+  // {
+  //   name: 'Dr. Saurabh Nikam',
+  //   role: 'Co-Founder',
+  //   qualification: 'Ph.D., IIT Bombay',
+  //   image: '/photos/Sourabh.jpeg',
+  //   description:
+  //     "A deep-tech innovator leading AproposDrive's technological frontier, Saurabh brings doctoral expertise from IIT Bombay to solving the complex electromagnetic and control challenges at the heart of rare earth-free motor technology.Their work bridges rigorous academic research and hands-on engineering — turning breakthrough science into technology that's viable at mass-market scale.",
+  //   linkedin: 'https://www.linkedin.com/in/saurabh-nikam-b3078713/',
+  // },
 ]
 
 // ── LinkedIn Icon Button ────────────────────────────────────────────────

@@ -26,25 +26,32 @@ const supporters: Supporter[] = [
     image: '/photos/BG-fernadis.png',
     description:
       "A distinguished expert in electrical machines, power electronics and motor drives, Prof. B. G. Fernandes brings deep expertise in switched reluctance and permanent-magnet technologies. He provides technical guidance to AproposDrive in advancing next-generation and rare-earth-free electric drive systems.",
-    linkedin: 'https://www.linkedin.com/in/bg-fernandes/',
+    linkedin: 'https://www.ee.iitb.ac.in/wiki/faculty/bgf',
   },
 ]
 
 const EASE = [0.25, 0.46, 0.45, 0.94] as const
 
 // ─── LINKEDIN BUTTON ────────────────────────────────────────────────────────
-function LinkedInButton({ url }: { url: string }) {
+function LinkedInButton({ url, profileIcon = false }: { url: string; profileIcon?: boolean }) {
   return (
     <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      aria-label="View LinkedIn profile"
+      aria-label={profileIcon ? 'View profile' : 'View LinkedIn profile'}
       className="inline-flex items-center justify-center w-7 h-7 rounded-sm transition-transform duration-200 hover:scale-110 hover:shadow-md"
       style={{
         backgroundColor: '#0d3f8f',
       }}
     >
+      {profileIcon ? (
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="#ffffff" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+          <rect x="2" y="4" width="20" height="16" rx="2" />
+          <circle cx="8" cy="10" r="2" />
+          <path d="M5 16a3 3 0 0 1 6 0M15 9h4M15 13h4M15 17h2" />
+        </svg>
+      ) : (
       <svg
         width="16"
         height="16"
@@ -54,6 +61,7 @@ function LinkedInButton({ url }: { url: string }) {
       >
         <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z" />
       </svg>
+      )}
     </a>
   )
 }
@@ -120,7 +128,7 @@ function SupporterCard({ supporter, delay }: { supporter: Supporter; delay: numb
             >
               {supporter.name}
             </h3>
-            <LinkedInButton url={supporter.linkedin} />
+            <LinkedInButton url={supporter.linkedin} profileIcon={supporter.name === 'Prof. B. G. Fernandes'} />
           </div>
 
           <p

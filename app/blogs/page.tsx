@@ -43,7 +43,7 @@ const BLOG_POSTS: BlogPost[] = [
     accent: '#0077b6',
     link: 'https://medium.com/@vedika.capt/why-india-needs-rare-earth-free-motor-technology-f836490b17d1',
   },
-  // {
+  {
     id: 3,
     category: 'Industry',
     title: "SRM Motor Explained: Working Principle, Advantages, and Applications",

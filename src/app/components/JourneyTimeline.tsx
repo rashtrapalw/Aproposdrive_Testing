@@ -39,7 +39,7 @@ const milestones: Milestone[] = [
     points: [
       'Ultra lightweight drone motors',
       'Collaboration with Japanese AL coil company',
-      'Winner FLCID: Pilot grant SRM',
+      'Winner FLCTD: Pilot grant SRM',
     ],
     icon: Wrench,
   },
@@ -87,7 +87,6 @@ const milestones: Milestone[] = [
     points: [
       '2000 km+ tested',
       '+15% range, 10% higher torque',
-      '30°C lower temperature',
       '1 kW to 6 kW MCU Platform R&D',
       'Rare Earth Free Motor R&D',
     ],
@@ -102,14 +101,7 @@ const milestones: Milestone[] = [
     ],
     icon: Award,
   },
-  {
-    year: '2028',
-    title: 'E-Mobility Platform',
-    points: [
-      'E-Mobility Platform commercialization',
-    ],
-    icon: Rocket,
-  },
+
 ]
 
 // ── Milestone Card ─────────────────────────────────────────────────────────────
